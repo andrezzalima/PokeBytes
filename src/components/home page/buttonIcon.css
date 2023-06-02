@@ -1,0 +1,37 @@
+.iconsButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    width: 65px;
+    height: 65px;
+    background-color: #FAFF00;
+  /*  border: 1px solid black; */
+    
+}
+
+.imgIcons{
+    width: 45px;
+    height: 45px;
+}
+
+.iconProfile{
+    display: flex;
+    position: absolute;
+    top: 20px;
+    left: 95%;
+}
+.iconsBotton{
+    display:flex;
+    position: absolute;
+    bottom: 20px;
+    left: 83%;
+    gap: 10px;
+}
+
+.iconBattle{
+    display: flex;
+    position: absolute;
+    bottom: 20px;
+    left: 1%;
+}
