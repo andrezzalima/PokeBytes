@@ -1,0 +1,10 @@
+.background {
+    background-image: url('../../images/BACKGROUND.png');
+    height: 100vh;
+    background-attachment: fixed;
+
+    background-repeat: no-repeat;
+    background-size: cover;
+
+
+}

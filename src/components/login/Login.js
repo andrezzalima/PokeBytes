@@ -1,16 +1,23 @@
 import "./login.css";
 import pokebytesLogo from "../../images/pokebytes.png";
-import { useHistory } from 'react-router-dom'
+import login from "../../icons/UserIcon.png";
+
+
+import { Link } from 'react-router-dom'
+
 
 function Login(props) {
 
+
+
   return (
     <div className="backgound">
+
       <div className="pokebytes">
         <img className="logo" src={pokebytesLogo} />
       </div>
       <div className="buttons">
-        <input
+        <input 
           className="inputUsername"
           type="email"
           placeholder="USERNAME"
@@ -18,10 +25,11 @@ function Login(props) {
         <input
           className="inputPassword"
           type="password"
-          placeholder="PASSWORD"
+          placeholder= "PASSWORD" 
         ></input>
-        <button Link to='/homePage' className="buttonLogin">LOGIN</button>
-        <button onClick={() => history.push('../')} className="buttonSignUp">SIGN UP</button>
+        <Link to="/homePage"><button className="buttonLogin">LOGIN</button></Link>
+        <button className='buttonSignUp'
+        >SIGN UP</button>
       </div>
     </div>
     
