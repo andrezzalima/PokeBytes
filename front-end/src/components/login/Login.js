@@ -17,7 +17,7 @@ function Login(props) {
         <img className="logo" src={pokebytesLogo} />
       </div>
       <div className="buttons">
-        <input 
+{/*         <input 
           className="inputUsername"
           type="email"
           placeholder="USERNAME"
@@ -26,7 +26,7 @@ function Login(props) {
           className="inputPassword"
           type="password"
           placeholder= "PASSWORD" 
-        ></input>
+        ></input> */}
         <Link to="/homePage"><button className="buttonLogin">LOGIN</button></Link>
         <button className='buttonSignUp'
         >SIGN UP</button>

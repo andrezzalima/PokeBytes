@@ -11,7 +11,7 @@
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-
+ 
   }
   
   .dropdown .dropdown-menu li {
@@ -26,11 +26,11 @@
     background-color: #fbff009f;
   }
   
-  .dropdown .dropdown-menu li:first-child {
+  .firstChild {
     font-weight: bold;
   }
   
-  .dropdown .dropdown-menu li:last-child {
+  .lastChild {
     border-top: 1px solid #ccc;
     margin-top: 10px;
     padding-top: 10px;

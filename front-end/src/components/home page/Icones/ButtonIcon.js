@@ -1,4 +1,5 @@
-import ".Icones/buttonIcon.css";
+//css
+import "../Icones/buttonIcon.css";
 
 
 function ButtonIcon(props){

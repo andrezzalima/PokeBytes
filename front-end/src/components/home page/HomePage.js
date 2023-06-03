@@ -1,13 +1,16 @@
+//css
 import "./HomePage.css";
-import Dropdown from "./Dropdown";
+//componentes
+import Dropdown from "./Icones/Dropdown";
+import ButtonIcon from "./Icones/ButtonIcon";
 
-import profile from "../../icons/profile.png";
+//Imagens
 import battle from "../../icons/battle.png";
 import packs from "../../icons/packs-cartas.png";
 import pokecoins from "../../icons/pokecoin.png";
 import trademachine from "../../icons/trade-machine.png";
 import pokebag from "../../icons/pokebag.png";
-import ButtonIcon from "./ButtonIcon";
+
 
 
 function HomePage(){
