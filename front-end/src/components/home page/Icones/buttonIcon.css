@@ -21,6 +21,10 @@
     top: 20px;
     left: 95%;
 }
+
+.iconProfile:hover, .iconsBotton:hover, .iconBattle:hover{
+    cursor:pointer
+}
 .iconsBotton{
     display:flex;
     position: absolute;
