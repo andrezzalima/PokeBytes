@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import "./profile.css"
 
 //imagem
-import imagem from "../../images/BACKGROUND.png"
+import imagem from "../../images/background.png"
 
 function Profile(){
     const [userName, setUserName] = useState('Andrezza');

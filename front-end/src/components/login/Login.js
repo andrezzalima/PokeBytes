@@ -1,5 +1,5 @@
 import "./login.css";
-import pokebytesLogo from "../../images/pokebytes.png";
+
 import login from "../../icons/UserIcon.png";
 
 
@@ -13,9 +13,6 @@ function Login(props) {
   return (
     <div className="backgound">
 
-      <div className="pokebytes">
-        <img className="logo" src={pokebytesLogo} />
-      </div>
       <div className="buttons">
 {/*         <input 
           className="inputUsername"
