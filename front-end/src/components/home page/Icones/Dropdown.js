@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import ButtonIcon from './ButtonIcon';
 import { Link } from 'react-router-dom'
-
-import profile from "../../icons/profile.png";
+//componentes
+import ButtonIcon from '../Icones/ButtonIcon';
+//imagem
+import profile from "../../../icons/profile.png";
+//css
 import "../Icones/dropdown.css";
 
 
@@ -20,10 +22,10 @@ const Dropdown = () => {
 
       {open && (
         <ul className="dropdown-menu">
-          <li>Perfil</li>
-          <li>Termos e Condições</li>
-          <li>Política de Privacidade</li>
-          <Link to="/" className='link'><li>Logout</li></Link>
+          <Link to="/profile" className='link'><li className='firstChild'>Profile</li></Link>
+          <Link to="/terms-and-conditions" className='link'><li>Terms and conditions</li></Link>
+          <Link to="/privacy-policy" className='link'><li>Privacy Policy</li></Link>
+          <Link to="/" className='link'><li className='lastChild'>Logout</li></Link>
         </ul>
       )}
     </div>

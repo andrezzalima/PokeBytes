@@ -20,11 +20,11 @@
 
 .buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
+    gap: 1%;
     position: absolute;
-    bottom: 20px;
+    bottom: 10%;
     width: 100%;
     margin-top: 10px;
 
@@ -77,11 +77,12 @@
     font-weight: 700;
     border-radius: 50px;
     width: 300px;
-    height: 36px;
+    height: 45px;
     padding: 10px;
     margin: 5px;
     border: none;
-    color: #F28680;
+    color: #fff;
+    background-color: #192653;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 16px;
 
@@ -91,7 +92,7 @@
 .buttonSignUp:hover {
     background-color: #58585A;
     cursor: pointer;
-    color: white;
+    color: #F28680;
 
 }
 
