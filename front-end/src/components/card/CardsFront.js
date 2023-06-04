@@ -1,10 +1,10 @@
-import './Cartas.css'
+import './CardsFront.css'
 
 
-function Cartas(){
+function CardsFront(props){
     return(
         <div>
-            <div className="cards">
+            <div className="cards-tras">
                 <h3>Pikachu</h3>
                 <div className='image'>
         
@@ -17,4 +17,4 @@ function Cartas(){
     )
 }
 
-export default Cartas
+export default CardsFront
