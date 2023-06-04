@@ -86,6 +86,7 @@ function HomePage() {
       </div>
 
 
+
         <div className="iconsMeio">
           <div className="tooltip"> 
             <ButtonIcon image={packs} tooltip="PackOpening" alt="Packs Icon" />
@@ -96,6 +97,7 @@ function HomePage() {
             <ButtonIcon image={pokecoins} tooltip="PokeCoins" alt="Packs Icon" />
             <span className="tooltiptext">PokéCoins</span> 
           </div>
+
         </div>
 
         <div className="divCima">
@@ -107,7 +109,7 @@ function HomePage() {
 
         <div className="tooltip"> 
           <ButtonIcon image={pokebag} tooltip="PokeBag" alt="Packs Icon" />
-          <span className="tooltiptext">PokéBag</span> 
+          <span className="tooltiptext icon">PokéBag</span> 
         </div>
         </div>
       
