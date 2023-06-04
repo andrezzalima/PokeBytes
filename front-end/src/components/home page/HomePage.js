@@ -72,7 +72,10 @@ function HomePage() {
       <div className="iconProfile">
         <Dropdown />
       </div>
+
+      
       <div className="iconBattle">
+  
   <div className="tooltip imgBattle">
     <ButtonIcon image={battle} tooltip="PackOpening" alt="Packs Icon" />
     <span className="tooltiptext">Let's Battle!</span> 
@@ -82,25 +85,32 @@ function HomePage() {
         
       </div>
 
-      <div className="iconsBotton">
-        <div className="tooltip"> 
-          <ButtonIcon image={packs} tooltip="PackOpening" alt="Packs Icon" />
-          <span className="tooltiptext">Pack Opening</span> 
+
+        <div className="iconsMeio">
+          <div className="tooltip"> 
+            <ButtonIcon image={packs} tooltip="PackOpening" alt="Packs Icon" />
+            <span className="tooltiptext">Pack Opening</span> 
+          </div>
+
+          <div className="tooltip"> 
+            <ButtonIcon image={pokecoins} tooltip="PokeCoins" alt="Packs Icon" />
+            <span className="tooltiptext">PokéCoins</span> 
+          </div>
         </div>
-        <div className="tooltip"> 
-          <ButtonIcon image={pokecoins} tooltip="PokeCoins" alt="Packs Icon" />
-          <span className="tooltiptext">PokéCoins</span> 
-        </div>
-        <div className="tooltip"> 
-          <ButtonIcon image={trademachine} tooltip="TradeMachine" alt="Packs Icon" />
-          <span className="tooltiptext">Trading Machine</span> 
-        </div>
+
+        <div className="divCima">
+          <div className="tooltip"> 
+            <ButtonIcon image={trademachine} tooltip="TradeMachine" alt="Packs Icon" />
+            <span className="tooltiptext">Trading Machine</span> 
+          </div>
+        
+
         <div className="tooltip"> 
           <ButtonIcon image={pokebag} tooltip="PokeBag" alt="Packs Icon" />
           <span className="tooltiptext">PokéBag</span> 
         </div>
-        
-      </div>
+        </div>
+      
     </div>
   );
 }

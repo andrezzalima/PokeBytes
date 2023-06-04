@@ -8,7 +8,7 @@
   
   .dropdown .dropdown-menu {
     position: absolute;
-    top: 55px; 
+    top: 75px; 
     right: 0;
     background-color: #FAFF00;
     padding: 10px;
@@ -28,7 +28,7 @@
   }
   
   .dropdown .dropdown-menu li:hover {
-    background-color: #0000009f;
+    background-color: #192653;
     color: white;
   }
   
@@ -44,7 +44,7 @@
   }
   
 .lastChild:hover {
-    background-color:  #f44336 !important; 
+    background-color:  #DC011B !important; 
     color: #fff !important;
   }
   

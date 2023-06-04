@@ -3,62 +3,57 @@
     align-items: center;
     justify-content: center;
     border-radius: 100%;
-    width: 65px;
-    height: 65px;
+    width: 90px;
+    height: 90px;
     background-color: #FAFF00;
-  /*  border: 1px solid black; */
-    
+
+}
+
+.iconsButtons:hover{
+    cursor: pointer;
 }
 
 .imgIcons{
-    width: 45px;
-    height: 45px;
+    width: 60px;
+    height: 60px;
 }
 
 .iconProfile{
     display: flex;
     position: absolute;
-    top: 20px;
-    left: 95%;
+    top: 40px;
+    left: 92%;
 
-}
-
-.iconProfile:hover, .iconsBotton:hover, .iconBattle:hover{
-    cursor:pointer
-}
-.iconsBotton{
-    display:flex;
-    position: absolute;
-    justify-content: space-around;
-    bottom: 20px;
-    left: 80%;
-    gap: 10px;
-    
 }
 
 .iconBattle{
-    background-color: #FAFF00;
+
     display: flex;
-    position: absolute;
+    align-items:self-end;
     justify-content: center;
-    align-items: center;
-    left: 1%;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin-top: 20px;
-    margin-left: 40px;
+    height: 22%;
+    padding-bottom: 50px;
+
 }
 
-.imgBattle{
- 
-    transform: scale(1.5); 
-      
-    
+.imgBattle{ 
+    transform: scale(1.5);   
 }
 
-.icons{
-    width: 70px;
-    height: 70px;
+
+.iconsMeio{
+    display: flex;
+    display: flex;
+    justify-content: center;
+    gap:23%
 }
 
+.divCima{
+
+    display: flex;
+    margin-top: 6%;
+    display: flex;
+    justify-content: center;
+    gap:33%
+
+}
