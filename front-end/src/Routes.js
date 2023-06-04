@@ -23,7 +23,13 @@ export default () => {
             </Route>
             <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}> 
             </Route>
+
+            <Route exact path="/homePage/pokeBag" element={<PokeBag/>}> 
+            </Route>
+            <Route exact path="/homePage/tradeMachine" element={<TradeMachine/>}> 
+
             <Route exact path="homePage/pokecards" element={<PokeCards/>}> 
+
             </Route>
         </Routes>
     )
