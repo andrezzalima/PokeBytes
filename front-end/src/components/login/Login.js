@@ -1,9 +1,10 @@
 import "./login.css";
+import ModalLogin from "./ModalLogin"
+import ModalSignUp from "./ModalSignUp";
 
-import login from "../../icons/UserIcon.png";
 
 
-import { Link } from 'react-router-dom'
+
 
 
 function Login(props) {
@@ -14,19 +15,8 @@ function Login(props) {
     <div className="backgound">
 
       <div className="buttons">
-{/*         <input 
-          className="inputUsername"
-          type="email"
-          placeholder="USERNAME"
-        ></input>
-        <input
-          className="inputPassword"
-          type="password"
-          placeholder= "PASSWORD" 
-        ></input> */}
-        <Link to="/homePage"><button className="buttonLogin">LOGIN</button></Link>
-        <button className='buttonSignUp'
-        >SIGN UP</button>
+        <ModalLogin name="LOGIN"/>
+        <ModalSignUp/>
       </div>
     </div>
     
