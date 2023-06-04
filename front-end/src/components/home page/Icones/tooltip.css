@@ -7,8 +7,8 @@
   .tooltip .tooltiptext {
     visibility: hidden;
     width: 120px;
-    background-color: #192653;
-    color: #fff;
+    background-color: #FAFF00;
+    color: black;
     text-align: center;
     border-radius: 6px;
     padding: 5px;
@@ -20,6 +20,7 @@
     opacity: 0;
     transition: opacity 0.8s;
     font-family: PokemonRBYG, Arial, Helvetica, sans-serif;
+    font-weight: 900;
   }
   
   .tooltip:hover .tooltiptext {
@@ -33,8 +34,8 @@
     bottom: -100%; 
     left: 50%;
     transform: translateX(-50%);
-    background-color: white;
-    color: #192653;
+    background-color: #FAFF00;
+    color: black;
 
     }
 

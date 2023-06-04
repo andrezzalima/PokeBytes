@@ -10,7 +10,7 @@
     position: absolute;
     top: 55px; 
     right: 0;
-    background-color: #5D9CEC;
+    background-color: #FAFF00;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -28,7 +28,8 @@
   }
   
   .dropdown .dropdown-menu li:hover {
-    background-color: #fbff009f;
+    background-color: #0000009f;
+    color: white;
   }
   
   .firstChild {
