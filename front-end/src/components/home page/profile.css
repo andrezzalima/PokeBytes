@@ -1,9 +1,11 @@
+
+
 .profile {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgb(239,64,54);
-    background: linear-gradient(176deg, rgba(239,64,54,1) 0%, rgba(255,255,255,1) 100%);
+    background: #192653;
+    background-image: linear-gradient(#192653, white);
     height: 100vh;
     gap: 5%
 
@@ -25,6 +27,11 @@
     border-radius: 100%;
     object-fit: cover;
     margin-bottom: 20px;
+    background-image: url('../../images/pokeball_main.png');
+    background-size: cover;
+    background-position: center;
+    border: 3px white solid;
+    
   }
   
   .informacaoPerfil {
@@ -63,4 +70,6 @@
   button:last-child {
     margin-right: 0;
   }
+
+  
   
