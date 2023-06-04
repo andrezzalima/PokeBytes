@@ -1,5 +1,5 @@
 .background-privacy{
-    background-color: #EF4036;
+    background-color: rgb(25,38,83);
     display: flex;
     justify-content: center;
   }
@@ -11,7 +11,7 @@
   }
 
 .h1{
-    color: #EF4036;
+    color: rgb(25,38,83);;
     margin: 30px;
     text-align: center;
     

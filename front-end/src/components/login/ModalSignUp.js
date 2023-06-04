@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 
+import voltar from "../../icons/return_icon.png"
+
 function ModalSignUp(){
     const [modal, setModal] = useState(false);
 
@@ -37,7 +39,7 @@ function ModalSignUp(){
                   ></input>
                 <input
                     className="inputUsername inputIconName"
-                    type="date"
+                    type="birthday"
                     placeholder="Birthday"
                   ></input>
                                   <input
@@ -58,6 +60,7 @@ function ModalSignUp(){
                     type="password"
                     placeholder="Confirm PassWord"
                   ></input>
+                  <img className="voltar" src={voltar} onClick={fecharModal}></img>
                   <Link to="/homePage">
                     <button className="enter">Create</button>
                   </Link>
