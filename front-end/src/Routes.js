@@ -7,6 +7,7 @@ import HomePage from './components/home page/HomePage'
 import Profile from './components/home page/Profile';
 import TermsAndConditions from './components/home page/TermsAndConditions';
 import PrivacyPolicy from './components/home page/PrivacyPolicy';
+import PrivacyPolicy from './components/home page//PokeCards';
 
 
 export default () => {
@@ -21,6 +22,8 @@ export default () => {
             <Route exact path="/terms-and-conditions" element={<TermsAndConditions/>}> 
             </Route>
             <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}> 
+            </Route>
+            <Route exact path="homePage/pokecards" element={<PokeCards/>}> 
             </Route>
         </Routes>
     )
