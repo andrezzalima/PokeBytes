@@ -39,7 +39,9 @@ function ModalLogin(props) {
                   placeholder="PASSWORD"
                 ></input>
                 
-                <img className="voltar" src={voltar} onClick={fecharModal}></img>
+                <div className="voltar-wrapper">
+               <div className="voltar-inner"><img className="voltar" src={voltar} onClick={fecharModal}></img></div> 
+                </div>
                 <Link to="/homePage">
                   <button className="enter">Enter</button>
                 </Link>
