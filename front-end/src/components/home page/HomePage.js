@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 //components
 import Dropdown from "./Icones/Dropdown";
 import ButtonIcon from "./Icones/ButtonIcon";
-
+//imagens
 import battle from "../../icons/battle.png";
 import packs from "../../icons/packs-cartas.png";
 import pokecoins from "../../icons/pokecoin.png";
