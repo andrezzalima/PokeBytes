@@ -85,19 +85,19 @@ function HomePage() {
       <div className="iconsBotton">
         <div className="tooltip"> 
           <ButtonIcon image={packs} tooltip="PackOpening" alt="Packs Icon" />
-          <span className="tooltiptext">Pack Opening</span> 
+          <span className="tooltiptext icon">Pack Opening</span> 
         </div>
         <div className="tooltip"> 
           <ButtonIcon image={pokecoins} tooltip="PokeCoins" alt="Packs Icon" />
-          <span className="tooltiptext">PokéCoins</span> 
+          <span className="tooltiptext icon">PokéCoins</span> 
         </div>
         <div className="tooltip"> 
           <ButtonIcon image={trademachine} tooltip="TradeMachine" alt="Packs Icon" />
-          <span className="tooltiptext">Trading Machine</span> 
+          <span className="tooltiptext icon">Trading Machine</span> 
         </div>
         <div className="tooltip"> 
           <ButtonIcon image={pokebag} tooltip="PokeBag" alt="Packs Icon" />
-          <span className="tooltiptext">PokéBag</span> 
+          <span className="tooltiptext icon">PokéBag</span> 
         </div>
         
       </div>
