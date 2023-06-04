@@ -217,6 +217,15 @@ app.post("/api/purchases/packs", async (req, res) => {
     }
 })
 
+
+app.get("/api/cards/pokemons", async (req, res) => {
+    try {
+        
+    } catch (err){
+        console.log(err)
+    }
+})
+
 /*
 
 //VIRAR CARTAS NA ABERTURA DO PACK id do jogador tambem
