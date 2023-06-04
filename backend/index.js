@@ -7,9 +7,11 @@ const port = process.env.PORT ?? 5030
 const app = express()
 app.use(express.json())
 const fs = require("fs")
-const pokemons = []
+const POKEMONS = []
 const PACKAGES = []
 const PACK_OF_CARDS_SIZE = 10
+const PACK_OF_CARDS_TRADE = 5
+const RARITY_POKEMONS = ["very_common", "common", "uncommon", "rare", "very_rare", "epic", "legendary"]
 
 app.post("/api/user", async(req, res) => {
     try {
@@ -169,14 +171,14 @@ app.post("/api/purchases/packs", async (req, res) => {
             if (!userFounded) {
                 res.status(404).json({ message: "not_found" })
             } else if(userFounded.coins <= package.value){
-                res.status(401).json({message: "Insuficient Founds"})
+                res.status(401).json({message: "Insuficient Funds"})
             } else {
                 const collectionCards = await getMongoCollection("carta")
                 const collectionInventario = await getMongoCollection("inventario")
 
                 let packCards = []
                 let packCardsFrontEnd = []
-                let rarityList = getListOfRarityOfPackages(package.type, PACK_OF_CARDS_SIZE)
+                let rarityList = getListOfRarityOfPokemons(package.type, PACK_OF_CARDS_SIZE)
                 let pokemons = getPokemons()
 
                 for(let i = 0; i < PACK_OF_CARDS_SIZE; i++){
@@ -196,9 +198,9 @@ app.post("/api/purchases/packs", async (req, res) => {
                     packCardsFrontEnd.push(cartaFrontEnd)
                 }
                 let idCards = await collectionCards.insertMany(packCards)
-                console.log(idCards.insertedIds)
-                console.log(typeof idCards.insertedIds)
                 
+                //idCards.insertedIds = map    exemplo: {1: newObjectId(idAleatorio), 2: newObjectId(idAleatorio2)}  object.values pega só os objectsIds e bota numa lista
+                //o each tem o mesmo objetivo do spread ao dar um push numa lista
                 collectionInventario.updateOne(
                     {idUsuario: userFounded._id},
                     { $push: {cartas: {$each: (Object.values(idCards.insertedIds))}}}
@@ -206,7 +208,7 @@ app.post("/api/purchases/packs", async (req, res) => {
 
 
                 collectionUser.updateOne( 
-                    { _id: new ObjectId(req.body.id) },
+                    { _id: userFounded._id },
                     { $inc: { coins: - package.value } }
                 )
                 res.status(200).json(packCardsFrontEnd)
@@ -217,44 +219,107 @@ app.post("/api/purchases/packs", async (req, res) => {
     }
 })
 
-
-app.get("/api/cards/pokemons", async (req, res) => {
+//LISTA DE TODOS OS POKEMONS
+app.get("/api/pokemons", async (req, res) => {
     try {
-        
+        res.status(200).json(getPokemons())
     } catch (err){
         console.log(err)
     }
 })
 
+//VISUALIZAÇÃO DAS CARTAS PRA TROCA
+app.get("/api/user/:id/card-trade/" , async (req, res) => {
+    try {
+        if(!req.params.id){
+            res.status(401).json({ message: "Required Field: 'idUser' "} )
+        } else {
+            const collectionUser = await getMongoCollection("user")
+            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.params.id) })
+            if(!userFounded){
+                res.status(404).json({ message: "not_found" })
+            } else {
+                console.log("entrou")
+                const collectionTrades = await getMongoCollection("trades")
+                const tradeFounded = await collectionTrades.findOne({idUsuario: new ObjectId(req.params.id)})
+                if(!tradeFounded){
+                    let newTradeId = await insertNewTrade(req.params.id)
+                    const collectionTrades = await getMongoCollection("trades")
+                    const newTradeFounded = await collectionTrades.findOne({_id: new ObjectId(newTradeId)})
+                    res.status(200).json(newTradeFounded)
+                } else {
+                    res.status(200).json(tradeFounded)
+                }
+                
+
+            }
+        }
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+//REALIZAR TROCA DE CARTAS COM A MAQUINA - REFRESH CARDS
+app.get("/api/user/:id/card-trade/:idCard", async (req, res) => {  // /:idCard?
+
+    try {
+        if(!req.params.id || !req.params.idCard){
+            res.status(401).json({ message: "Required Field: 'idUser' 'idCard"} )
+           } else {
+            const collectionUser = await getMongoCollection("user")
+            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.params.id) })
+            if(!userFounded){
+                res.status(404).json({ message: "not_found" })
+            } else {
+                const collectionTrades = await getMongoCollection("trades")
+
+
+
+                let pokemons = getPokemons()
+                const collectionCards = await getMongoCollection("carta")
+                const cardFounded = await collectionCards.findOne({_id: new ObjectId(req.params.idCard)})
+                const pokemonToBeTraded = pokemons.find(pokemon => pokemon.id === cardFounded.idPokemon)
+                               
+                res.status(200).json(generateListOfPokemonsByRarity(pokemons, pokemonToBeTraded.rarity))
+            }
+            
+           }
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+//REALIZAR TROCA DE CARTAS COM A MAQUINA - TROCA EM SI
+app.patch("/api/card-trades", async (req, res) => {
+
+    try {
+       if(!req.body.idUser || !req.body.idPokemon || !req.body.idCard){
+        res.status(401).json({message: "Required Fields: 'idUser' 'idPokemon' 'idCard' "})
+       } else {
+            const collectionUser = await getMongoCollection("user")
+            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.body.idUser) })
+            if(!userFounded){
+                res.status(404).json({ message: "User not found" })
+            } else {
+                const collectionCarta = await getMongoCollection("carta")
+                const cardFounded = await collectionCarta.findOne({_id: new ObjectId(req.body.idCard)})
+                if(!cardFounded){
+                    res.status(404).json({ message: "Card not found" })
+                } else {
+                    await collectionCarta.updateOne(
+                        {_id: new ObjectId(req.body.idCard)},
+                        {$set: {idPokemon: req.body.idPokemon, xp: 0}}
+                    )
+                    res.sendStatus(200)
+                }
+            }
+        }
+    } catch (err) {
+        console.log(err)
+    }
+})
+
 /*
-
-//VIRAR CARTAS NA ABERTURA DO PACK id do jogador tambem
-app.patch("/api/cards/:packid", async (req, res) => {
-
-    try {
-        if (condicao) {
-            res.status(400).json({ message: "" }) //erro
-        } else {
-            res.status(201).json({ respostarecebida });
-        }
-    } catch (err) {
-        console.log(err)
-    }
-})
-
-//REALIZAR TROCA DE CARTAS COM A MAQUINA
-app.post("/api/card-trades", async (req, res) => {
-
-    try {
-        if (condicao) {
-            res.status(400).json({ message: "" }) //erro
-        } else {
-            res.status(201).json({ respostarecebida});
-        }
-    } catch (err) {
-        console.log(err)
-    }
-})
 
 //EDITAR DADOS DO PERFIL
 app.patch("/api/profile", async (req, res) => {
@@ -285,12 +350,12 @@ app.delete("/api/account", async (req, res) => {
 })*/
 
 function getPokemons(){
-    if(pokemons.length === 0){
+    if(POKEMONS.length === 0){
         let resultsJsonFile = fs.readFileSync('./database/pokemons.json', {encoding: "utf-8", lag: "r"})
         let resultInObject = JSON.parse(resultsJsonFile).pokemons
-        pokemons.push(...resultInObject)
+        POKEMONS.push(...resultInObject)
     } 
-    return pokemons
+    return POKEMONS
 }
 
 function getPackage(type){
@@ -302,7 +367,7 @@ function getPackage(type){
     return PACKAGES.find((package) => package.type === type.toLowerCase())
 }
 
-function getListOfRarityOfPackages(type, size){
+function getListOfRarityOfPokemons(type, size){
     let pacote = getPackage(type)
     let common = pacote.epic + pacote.legendary + pacote.very_rare + pacote.rare + pacote.uncommon + pacote.common
     let uncommon = pacote.epic + pacote.legendary + pacote.very_rare + pacote.rare + pacote.uncommon
@@ -332,6 +397,37 @@ function getListOfRarityOfPackages(type, size){
         }
     }
     return listaDeRaridade
+}
+
+function generateListOfPokemonsByRarity(pokemons, rarity){
+    let pokemonByRarity = pokemons.filter(pokemon => pokemon.rarity === rarity)
+                
+    const pokemonsGenerate = []
+
+    for(let i = 0; i < PACK_OF_CARDS_TRADE; i++){
+        let randomIndex = Math.floor(Math.random() * pokemonByRarity.length)
+
+        pokemonsGenerate.push(pokemonByRarity[randomIndex])
+    }
+    return pokemonsGenerate
+}
+
+async function insertNewTrade(idUsuario){
+    const collectionTrades = await getMongoCollection("trades") 
+    let newTrade = {
+        idUsuario: new ObjectId(idUsuario),
+        tryOuts: 0,
+        date: new Date()
+    }
+    let pokemons = getPokemons()
+    for(let i = 0; i < RARITY_POKEMONS.length; i++){
+        let rarity = RARITY_POKEMONS[i]
+        newTrade[rarity] = generateListOfPokemonsByRarity(pokemons, rarity) //adiciona uma nova propriedade ao objeto. Ex: newTrade.common = [1, 2, 3] || newTrade["common"] = [1, 2, 3]
+    }
+    let tradedInserted = await collectionTrades.insertOne(newTrade)
+
+    return tradedInserted.insertedId
+
 }
 
 app.listen(port, () => {
