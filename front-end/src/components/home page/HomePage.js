@@ -20,14 +20,24 @@ function HomePage(){
             <Dropdown />
             </div>
             <div className="iconBattle">
-              <ButtonIcon image={battle}/>
+             {/*  <ButtonIcon image={battle}/> */}
+              <img className="imgBattle" src={battle}></img>
+
             </div>
 
             <div className="iconsBotton"> 
-              <ButtonIcon image={packs}/>
-              <ButtonIcon image={pokecoins}/>
+              
+              <img className="icons" src={packs}></img>
+              <img className="icons" src={pokecoins}></img>
+              <img className="icons" src={trademachine}></img>
+              <img className="icons" src={pokebag}></img>
+
+
+{/*               
+<ButtonIcon image={packs}/>
+<ButtonIcon image={pokecoins}/>
               <ButtonIcon image={trademachine}/>
-              <ButtonIcon image={pokebag}/>
+              <ButtonIcon image={pokebag}/> */}
             </div>
         </div>
         

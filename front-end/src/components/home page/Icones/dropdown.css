@@ -37,8 +37,8 @@
     font-weight: 400;
   }
   
-  .dropdown .dropdown-menu li:last-child:hover {
-    background-color: #f44336;
+.lastChild:hover {
+    background-color:  #f44336 !important; 
     color: #fff;
   }
   
