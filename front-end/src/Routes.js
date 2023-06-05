@@ -7,7 +7,12 @@ import HomePage from './components/home page/HomePage'
 import Profile from './components/home page/Profile';
 import TermsAndConditions from './components/home page/TermsAndConditions';
 import PrivacyPolicy from './components/home page/PrivacyPolicy';
+<<<<<<< HEAD
+import PokeBag from './components/home page/PokeBag/PokeBag';
+import TradeMachine from './components/home page/tradeMachine/TradeMachine';
+=======
 import PrivacyPolicy from './components/home page//PokeCards';
+>>>>>>> 89c8fb89145da1e1dd837750de32f18a7d00ae0e
 
 
 export default () => {
