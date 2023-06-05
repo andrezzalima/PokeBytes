@@ -305,7 +305,7 @@ app.get("/api/user/:id/card-trade-refresh/:rarity", async (req, res) => {  // /:
                         updatedFields.tryOuts = 0
                         updatedFields.date = new Date()
                     }
-                    let test = await collectionTrades.updateOne(
+                    await collectionTrades.updateOne(
                         {_id: tradesUser._id},
                         {$set: updatedFields}
                     )
