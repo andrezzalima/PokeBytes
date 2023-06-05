@@ -1,0 +1,22 @@
+.background-tradeMachine{
+    background-image: url('../../../images/trading_machine.png');
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.rules{
+    background-color: yellow;
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+}
+.rules-text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rules-content-box{
+    border: 5px solid black;
+}
