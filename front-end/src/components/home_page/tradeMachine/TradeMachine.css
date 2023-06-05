@@ -1,22 +1,135 @@
-.background-tradeMachine{
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: 'PokemonRBYG';
+}
+
+.background-tradeMachine {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-image: url('../../../images/trading_machine.png');
     height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
+    
+
+
 }
 
-.rules{
+.rules {
     background-color: yellow;
     height: 70px;
     width: 70px;
     border-radius: 50%;
-}
-.rules-text{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
-.rules-content-box{
-    border: 5px solid black;
+.rules-text {
+    text-align: center;
+    font-family: 'PokemonRBYG';
+    font-size: 12px;
+    font-weight: 900;
+}
+    
+ .rules-content-box {
+
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    
+    border-radius: 15px;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+.pokeball-background{
+
+   opacity: 0.1; 
+   width: 150px;
+   
+   
+    
+}
+
+.rules-title{
+    font-size: 20px;
+    height: auto;
+    width: auto;
+}
+ 
+
+
+.rules-content {
+    text-align: center;
+    margin: 0;
+    font-weight: 700;
+    color: #192653;
+
+}
+
+.very-common {
+    color: #804320;
+    font-family: 'PokemonRBYG';
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.common {
+    color: #32d61f;
+    font-family: 'PokemonRBYG';
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.uncommon {
+    color: #008b8b;
+    font-family: 'PokemonRBYG';
+    font-size: 13px;
+}
+
+.rare {
+    color: #309BF0;
+    font-family: 'PokemonRBYG';
+    font-size: 13px;
+}
+
+.very-rare {
+    
+    color:#E12C6A; 
+    font-family: 'PokemonRBYG';
+    font-size: 13px;
+}
+
+.epic {
+    color: #ff00ff;
+    font-family: 'PokemonRBYG';
+    font-size: 13px;
+}
+
+.legendary {
+    color: #ffa500;
+    font-family: 'PokemonRBYG';
+    font-size: 13px;
+}
+
+.return-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    height: 50px;
+    width: auto;
 }
