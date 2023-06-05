@@ -35,7 +35,7 @@ function HomePage() {
 
         <div className="iconsMeio">
           <div className="tooltip"> 
-            <ButtonIcon image={packs} tooltip="PackOpening" alt="Packs Icon" />
+          <Link to="/homePage/pokecard"><ButtonIcon image={packs} tooltip="PackOpening" alt="Packs Icon" /></Link>
             <span className="tooltiptext">Pack Opening</span> 
           </div>
 

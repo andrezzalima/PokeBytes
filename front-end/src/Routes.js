@@ -33,7 +33,7 @@ export default () => {
             <Route exact path="/homePage/tradeMachine" element={<TradeMachine/>}> 
             </Route>
 
-            <Route exact path="homePage/pokecards" element={<PokeCards/>}> 
+            <Route exact path="/homePage/pokecard" element={<PokeCards/>}> 
 
             </Route>
         </Routes>

@@ -1,10 +1,13 @@
 import "./PokeCards.css"; 
 
 
-function PokeCards(){
+function PokeCards(props){
 
     return(
-        "Olá Mundo"
+        <div className="background-pokeCard">
+             "Olá do PokeCard"
+        </div>
+       
     )
 
 }

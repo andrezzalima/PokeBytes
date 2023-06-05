@@ -4,4 +4,12 @@
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    padding-top: 40px;
+}
+
+.row-cards{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    gap: 30px;
 }
