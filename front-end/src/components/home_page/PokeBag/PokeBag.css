@@ -1,0 +1,43 @@
+.background-pokeBag{
+    background-image: url('../../../images/background.png');
+    height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 40px;
+}
+
+.container {
+    width: auto;
+    display: flex;
+    flex-flow: row wrap;
+    position: relative;
+    justify-content: center;
+    gap: 10px
+  }
+  
+  .item {
+
+    height: 100%;
+    width: 100%;
+    margin: 4px;
+    flex: 0 1 calc(20% - 8px);
+    padding:10px
+    
+}
+
+.row-cards{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    
+    
+}
+
+.carta-mochila{
+    width: 205px;
+    height: 286px;
+    border: 1px solid red;
+    margin-bottom: 20px;
+    
+}

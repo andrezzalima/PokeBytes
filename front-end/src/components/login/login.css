@@ -1,5 +1,5 @@
 .backgound {
-    background-image: url('../../images/BACKGROUND1.png');
+    background-image: url('../../images/background_gradient.png');
     height: 100vh;
     background-attachment: fixed;
     background-position: center center;
@@ -20,11 +20,11 @@
 
 .buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
+    gap: 1%;
     position: absolute;
-    bottom: 20px;
+    bottom: 10%;
     width: 100%;
     margin-top: 10px;
 
@@ -41,47 +41,16 @@
     align-items: center;
 }
 
-.inputUsername,
-.inputPassword {
-    font-weight: 300;
-    border-radius: 50px;
-    width: 300px;
-    height: 36px;
-    padding: 5px;
-    margin: 5px;
-    border: 3px solid #58585a8c;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    color: #58585a8c;
-    font-size: 20px
-}
-
-.inputUsername:hover,
-.inputPassword:hover {
-    color: #58585a8c;
-    border: 3px solid #58585a8c;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-}
-
-.inputUsername:hover::placeholder,
-.inputPassword:hover::placeholder {
-    font-weight: bold;
-}
-
-
 .buttonLogin,
 .buttonSignUp {
     font-weight: 700;
     border-radius: 50px;
     width: 300px;
-    height: 36px;
+    height: 45px;
     padding: 10px;
     margin: 5px;
     border: none;
-    color: #F28680;
+    /* color: #fff; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 16px;
 
@@ -89,9 +58,8 @@
 
 .buttonLogin:hover,
 .buttonSignUp:hover {
-    background-color: #58585A;
     cursor: pointer;
-    color: white;
+    /* color: #192653; */
 
 }
 

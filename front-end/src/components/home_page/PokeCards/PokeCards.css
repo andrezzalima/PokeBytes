@@ -1,0 +1,25 @@
+.background-pokeCard{
+    background-image: url('../../../images/pokecards.png');
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.poker-card-wrapper {
+    display: flex;
+    gap:30px;
+
+
+}
+
+.pokecard-back{
+    width: 50px;
+    height: 70px;
+}
