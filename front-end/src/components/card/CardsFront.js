@@ -4,7 +4,7 @@ import './CardsFront.css'
 function CardsFront(props){
     return(
         <div>
-            <div className="cards-tras">
+            <div onClick={props.onClick} className="cards-front">
                 <h3>Pikachu</h3>
                 <div className='image'>
         

@@ -1,11 +1,11 @@
 import { useState } from "react";
+import PokeCardBack from "../../card/PokeCardBack";
 import "./PokeCards.css";
 
 function PokeCards(props) {
   const [selectedRarity, setRarity] = useState("silver");
   async function buyPack() {
-    console.log("BUYING PACK");
-    const res = await fetch("/api/purchases/packs", {
+     const res = await fetch("/api/purchases/packs", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +21,9 @@ function PokeCards(props) {
   return (
     <div className="background-pokeCard">
       <div className="poker-card-wrapper">
-        <button onClick={buyPack}>OLA</button>
+        <PokeCardBack className="pokecard-back" onClick={buyPack}/>
+        <PokeCardBack className="pokecard-back" onClick={buyPack}/>
+        <PokeCardBack className="pokecard-back" onClick={buyPack}/>
       </div>
     </div>
   );
