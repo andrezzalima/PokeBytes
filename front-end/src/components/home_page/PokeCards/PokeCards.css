@@ -14,5 +14,12 @@
 
 .poker-card-wrapper {
     display: flex;
-    flex-direction: column;
+    gap:30px;
+
+
+}
+
+.pokecard-back{
+    width: 50px;
+    height: 70px;
 }

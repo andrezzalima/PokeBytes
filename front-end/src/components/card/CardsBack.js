@@ -4,7 +4,7 @@ import './CardsBack.css'
 function CardsBack(props){
     return(
         <div>
-            <div className="cards-tras">
+            <div  onClick={props.onClick} className="cards-tras">
 
             </div>
         </div>
