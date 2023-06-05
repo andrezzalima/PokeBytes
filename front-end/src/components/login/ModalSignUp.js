@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 import voltar from "../../icons/return_icon.png";
 
@@ -13,13 +14,9 @@ function ModalSignUp() {
     password: "",
   });
 
-
-
   function handleEvent(e, param) {
     setUser((prevState) => ({ ...prevState, [param]: e.target.value }));
   }
-
-
 
   const sendData = async (info) => {
     const res = await fetch("/api/user", {
@@ -45,9 +42,19 @@ function ModalSignUp() {
   return (
     <div className="backgroundModal">
       <div>
-        <button className="buttonLogin" onClick={abrirModal}>
+      <motion.button
+          initial={{
+            color: "#fff",
+            backgroundColor: "#192653",
+            rotateY: "0",
+          }}
+          whileHover={{
+            color: "#192653",
+            backgroundColor: "#FAFF00",
+            rotateY: "180",
+          }} className="buttonLogin" onClick={abrirModal}>
           SIGN UP
-        </button>
+        </motion.button>
       </div>
       <div>
         {modal && (

@@ -50,8 +50,7 @@
     padding: 10px;
     margin: 5px;
     border: none;
-    color: #fff;
-    background-color: #192653;
+    /* color: #fff; */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-size: 16px;
 
@@ -59,9 +58,8 @@
 
 .buttonLogin:hover,
 .buttonSignUp:hover {
-    background-color: #FAFF00;
     cursor: pointer;
-    color: #192653;
+    /* color: #192653; */
 
 }
 
