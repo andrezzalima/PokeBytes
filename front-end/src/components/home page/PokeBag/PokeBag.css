@@ -1,0 +1,15 @@
+.background-pokeBag{
+    background-image: url('../../../images/background.png');
+    height: 100vh;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-top: 40px;
+}
+
+.row-cards{    
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,40 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap');
+
+  @font-face {
+    font-family: 'PokemonRBYG';
+    src: url('./fonts//PKMNRBYGSC.ttf') format('truetype');
+  }
+  
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  
+ 
+}
+
+
+
+
+/* 
+
+.body{
+  background-image: url('./images/Homepage.png');
+  height: 100vh;
+  background-attachment: fixed;
+  background-position: center center;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+ 
+}
+
+.lista{
+  display: flex;
+  justify-content: center;
+  
+}
+ */

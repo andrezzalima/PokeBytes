@@ -1,0 +1,59 @@
+.iconsButtons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    width: 90px;
+    height: 90px;
+    background-color: #FAFF00;
+
+}
+
+.iconsButtons:hover{
+    cursor: pointer;
+}
+
+.imgIcons{
+    width: 60px;
+    height: 60px;
+}
+
+.iconProfile{
+    display: flex;
+    position: absolute;
+    top: 40px;
+    left: 92%;
+
+}
+
+.iconBattle{
+
+    display: flex;
+    align-items:self-end;
+    justify-content: center;
+    height: 22%;
+    padding-bottom: 50px;
+
+}
+
+.imgBattle{ 
+    transform: scale(1.5);   
+}
+
+
+.iconsMeio{
+    display: flex;
+    display: flex;
+    justify-content: center;
+    gap:23%
+}
+
+.divCima{
+
+    display: flex;
+    margin-top: 6%;
+    display: flex;
+    justify-content: center;
+    gap:33%
+
+}
