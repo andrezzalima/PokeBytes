@@ -1,12 +1,15 @@
 import "./FAQ.css";
 import { Link } from 'react-router-dom';
-import returnIcon from "../../icons/return_icon1.png";
+import FAQIcon from "../../icons/faq_icon.png";
+import returnIcon from "../../icons/return_icon2.png";
 
 function FAQ() {
   return (
     <div className="background-faqs">
       <div className="body">
-        <h1 className="title">Frequently Asked Questions (FAQs)</h1>
+
+      <img className="faq-icon" src={FAQIcon}></img>
+        <h1 className="title">Frequently Asked Questions</h1>
 
         <hr></hr> <br></br>
 

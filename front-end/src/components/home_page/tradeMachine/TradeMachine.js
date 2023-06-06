@@ -46,7 +46,7 @@ function TradeMachine(props) {
         )}
 
         <div className='return-wrapper'>
-          <div className='return-to-homepage' >
+          <div className='return-to-homepage ' >
             <Link to = "/homePage"> <img src={returnIcon} className='return-icon' alt="Return to Homepage" /> </Link> 
           </div>
         </div>
