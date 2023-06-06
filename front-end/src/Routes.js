@@ -11,6 +11,8 @@ import PokeBag from './components/home_page/PokeBag/PokeBag';
 import TradeMachine from './components/home_page/tradeMachine/TradeMachine';
 import PokeCards from './components/home_page/PokeCards/PokeCards';
 import FAQ from './components/home_page/FAQ';
+import PokeCoins from './components/home_page/PokeCoins/PokeCoins';
+import Battle from './components/home_page/Battle/Battle';
 
 
 
@@ -37,6 +39,10 @@ export default () => {
             </Route>
 
             <Route exact path="/homePage/pokecard" element={<PokeCards/>}> 
+            </Route>
+            <Route exact path="/homePage/pokecoins" element={<PokeCoins/>}> 
+            </Route>
+            <Route exact path="/homePage/battle" element={<Battle/>}> 
             </Route>
             
         </Routes>
