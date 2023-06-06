@@ -10,6 +10,14 @@
     padding: 30px 70px 30px 70px;
   }
 
+
+  .terms-and-conditions-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
 .h1{
     color: #192552;
     margin: 30px;

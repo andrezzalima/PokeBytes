@@ -1,6 +1,6 @@
 import "./PrivacyPolicy.css"
 import { Link } from 'react-router-dom';
-import returnIcon from "../../icons/return_icon1.png";
+import returnIcon from "../../icons/return_icon2.png";
 import PrivacyIcon from "../../icons/privacy_policy.png";
 
 function PrivacyPolicy(props) {

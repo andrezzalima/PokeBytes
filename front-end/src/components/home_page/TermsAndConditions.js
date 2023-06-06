@@ -1,12 +1,16 @@
 import "./TermsAndConditions.css"
 import { Link } from 'react-router-dom';
-import returnIcon from "../../icons/return_icon1.png";
+import returnIcon from "../../icons/return_icon2.png";
+import TermsAndConditionsIcon from "../../icons/terms_and_conditions.png";
 
 
 function TermsAndConditions() {
   return (
     <div className="background-termos">
       <div className="body">
+
+      <img className="terms-and-conditions-icon" src={TermsAndConditionsIcon}></img>
+
       <h1 className="h1">Terms and Conditions:</h1>
       <hr></hr> <br></br>
 
@@ -20,7 +24,7 @@ function TermsAndConditions() {
         containing 5 packs of 10 cards each. Users can collect their cards and
         battle against the computer. Trading with the computer is also possible,
         where the quality of the trade is influenced by the rarity of the
-        Pokémon being traded. Check our <a href="/homepage/faq"><b><u>FAQs</u></b></a> page for more information on these topics.</li>
+        Pokémon being traded. Check our <a href="/faq"><b><u>FAQs</u></b></a> page for more information on these topics.</li>
         <br></br>
 
         <li className="listaTermos">User Responsibilities: You are responsible for

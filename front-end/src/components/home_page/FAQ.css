@@ -10,6 +10,13 @@
     padding: 30px 70px 30px 70px;
   }
 
+  .faq-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
 .title{
     color: #192552;
     margin: 30px;
