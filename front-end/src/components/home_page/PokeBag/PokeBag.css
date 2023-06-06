@@ -39,7 +39,7 @@
 }
 
 .image-inner-wrapper {
-    background-image: url('C:\Users\formando\Desktop\Hugo\Projecto Final\PokeBytes\front-end\src\images\pokemon-types-backgrounds\Grass.png');
+    background-image: url('../../../images/pokemon-types/Grass.png');
     background-size: cover; /* Added background-size property to cover the entire area */
 }
 

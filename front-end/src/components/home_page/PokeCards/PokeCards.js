@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import "./PokeCards.css";
 
 function PokeCards(props) {
+  
   const [selectedRarity, setRarity] = useState("silver");
   async function buyPack() {
      const res = await fetch("/api/purchases/packs", {
