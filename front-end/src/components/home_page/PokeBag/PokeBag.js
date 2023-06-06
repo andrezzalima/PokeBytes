@@ -27,8 +27,9 @@ function PokeBag(props) {
           <div className="carta-mochila" key={carta.id}>
        
           <div className="Carta-interior item">
-            <img src={`/images/pokemons/${carta.pokemon.id}.png`} alt={carta.pokemon.label}></img>
+          
             <p>{carta.pokemon.label}</p> 
+            <img src={`/images/pokemons/${carta.pokemon.id.toLocaleString('en-US', {minimumIntegerDigits: 3})}.png`} alt={carta.pokemon.label}></img>
             <p>{carta.pokemon.id}</p> 
             <p>{carta.pokemon.base.HP}HP</p>
             <p>Rarity: {carta.pokemon.rarity}</p>
