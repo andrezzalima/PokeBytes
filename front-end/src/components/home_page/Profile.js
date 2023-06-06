@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 //css
 import "./profile.css"
 
 //imagem
 import imagem from "../../images/background.png"
+import returnIcon from "../../icons/return_icon1.png";
 
 function Profile(){
     const [userName, setUserName] = useState('Andrezza');
@@ -134,6 +136,12 @@ function Profile(){
             <button className='buttonProfile'>Change Password</button>
             </>
           )}   
+        </div>
+
+        <div className='return-wrapper'>
+          <div className='return-to-homepage' >
+            <Link to = "/homePage"> <img src={returnIcon} className='return-icon' alt="Return to Homepage" /> </Link> 
+          </div>
         </div>
         </div>
 

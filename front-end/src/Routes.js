@@ -10,6 +10,7 @@ import PrivacyPolicy from './components/home_page/PrivacyPolicy';
 import PokeBag from './components/home_page/PokeBag/PokeBag';
 import TradeMachine from './components/home_page/tradeMachine/TradeMachine';
 import PokeCards from './components/home_page/PokeCards/PokeCards';
+import FAQ from './components/home_page/FAQ';
 
 
 
@@ -27,6 +28,8 @@ export default () => {
             </Route>
             <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}> 
             </Route>
+            
+            <Route exact path="/faq" element={<FAQ/>}> </Route>
 
             <Route exact path="/homePage/pokeBag" element={<PokeBag/>}> 
             </Route>
@@ -34,8 +37,8 @@ export default () => {
             </Route>
 
             <Route exact path="/homePage/pokecard" element={<PokeCards/>}> 
-
             </Route>
+            
         </Routes>
     )
 }
