@@ -25,6 +25,7 @@ const Dropdown = () => {
           <Link to="/profile" className='link'><li className='firstChild'>Profile</li></Link>
           <Link to="/terms-and-conditions" className='link'><li>Terms and conditions</li></Link>
           <Link to="/privacy-policy" className='link'><li>Privacy Policy</li></Link>
+          <Link to="/faq" className='link'><li className='link'>FAQs</li></Link>
           <Link to="/" className='link'><li className='lastChild'>Logout</li></Link>
         </ul>
       )}

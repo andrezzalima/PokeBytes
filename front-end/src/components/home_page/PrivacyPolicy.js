@@ -1,10 +1,17 @@
 import "./PrivacyPolicy.css"
+import { Link } from 'react-router-dom';
+import returnIcon from "../../icons/return_icon1.png";
+import PrivacyIcon from "../../icons/privacy_policy.png";
 
-function PrivacyPolicy() {
+function PrivacyPolicy(props) {
   return (
     <div className="background-privacy">
        <div className="body">
-      <h1 className="h1">Privacy Policy:</h1>
+       
+      <img className="privacy-icon" src={PrivacyIcon}></img>
+       
+      <h1 className="h1"><b>Privacy Policy:</b></h1>
+      <hr></hr> <br></br>
       <p className="paragrafo">
         We respect your privacy and are committed to protecting your personal
         information. This Privacy Policy explains how we collect, use, and
@@ -55,6 +62,12 @@ function PrivacyPolicy() {
         last updated on 03/06/2023.</p>
       
       </div>
+
+      <div className='return-wrapper'>
+          <div className='return-to-homepage' >
+            <Link to = "/homePage"> <img src={returnIcon} className='return-icon' alt="Return to Homepage" /> </Link> 
+          </div>
+        </div>
     </div>
   );
 }
