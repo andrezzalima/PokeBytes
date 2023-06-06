@@ -5,5 +5,88 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.card-pokecoin {
+  width: 300PX;
+  height: 400px;
+  background: #FAFF00;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: .5vmin solid #05060f;
+  box-shadow: .4rem .4rem #05060f;
+  overflow: hidden;
+  padding:50px
+}
+
+/*Card content*/
+.pricing-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+
+  gap: .5rem;
+}
+
+.pricing-plan {
+  color: #192653;
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
 
 }
+
+.price-value {
+  display: flex;
+  color: #05060f;
+  font-size: 1.8rem;
+  line-height: 1.25;
+  font-weight: 700;
+  
+  flex-direction: column;
+
+}
+
+.pricing-note {
+  opacity: .8;
+}
+.valueCoins{
+    font-weight: bold;
+}
+
+
+.divImagem-pokecoin{
+    width: auto;
+    height: 100px;
+    margin-top: 20px;
+    align-self: center;
+
+}
+.img-pokecoin{
+    width: auto;
+    height: 70px;
+}
+
+.buy-pokecoin{
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: bold;
+    background-color: #192653;
+    width: 200px;
+    height: 45px;
+    padding: 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
