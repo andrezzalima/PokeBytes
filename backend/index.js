@@ -7,10 +7,14 @@ const port = process.env.PORT ?? 5030
 const app = express()
 app.use(express.json())
 const fs = require("fs")
-const pokemons = []
+const POKEMONS = []
 const PACKAGES = []
 const PACK_OF_CARDS_SIZE = 10
+const PACK_OF_CARDS_TRADE = 5
+const RARITY_POKEMONS = ["very_common", "common", "uncommon", "rare", "very_rare", "epic", "legendary"]
+const MAX_TRY_OUTS_DAY = 5;
 
+//CREATE NEW USER
 app.post("/api/user", async(req, res) => {
     try {
         if (!req.body) {
@@ -18,13 +22,25 @@ app.post("/api/user", async(req, res) => {
 
         } else if(!req.body.username) {
             res.status(400).json({ message: "Required Fields: 'username'"})
-        } else {
+        } else  if (!isUserValid(req)) {
+            res.status(400).json({ message: "Username must be bigger than 3 and at max 30 characters'"})
+        } else if (req.body.password && !isPasswordValid(req)) {
+            res.status(400).json({ message: "Invalid Password"})
+        } else if (req.body.email && !isEmailValid(req)) {
+            res.status(400).json({ message: "Invalid E-mail"})
+        } else if (req.body.birthday && !isValidDate(req.body.birthday)) {
+            res.status(400).json({ message: "Invalid date"})
+        } else if (req.body.phoneNumber && !isPhoneNumberValid(req)) {
+            res.status(400).json({ message: "Invalid Phone Number"})
+        }
+        
+        else {
             const requestBody = req.body
-
-
             const newUser = {
                 username: requestBody.username,
                 email: requestBody.email,
+                birthday: requestBody.birthday,
+                phoneNumber: requestBody.phoneNumber,
                 password: requestBody.password,
                 coins: 0
             }
@@ -145,7 +161,7 @@ app.get("/api/user/:id/pokebag", async (req, res) => {
                     id: cardsFounded[i]._id //id carta db
                 })
             }
-            res.status(200).json({idUsuario: req.params.id, cartas: listaCartas})
+            res.status(200).json({idUsuario: req.params.id, cartas: listaCartas}) //IdUser
         }
 
     } catch (err) {
@@ -169,14 +185,14 @@ app.post("/api/purchases/packs", async (req, res) => {
             if (!userFounded) {
                 res.status(404).json({ message: "not_found" })
             } else if(userFounded.coins <= package.value){
-                res.status(401).json({message: "Insuficient Founds"})
+                res.status(401).json({message: "Insuficient Funds"})
             } else {
                 const collectionCards = await getMongoCollection("carta")
                 const collectionInventario = await getMongoCollection("inventario")
 
                 let packCards = []
                 let packCardsFrontEnd = []
-                let rarityList = getListOfRarityOfPackages(package.type, PACK_OF_CARDS_SIZE)
+                let rarityList = getListOfRarityOfPokemons(package.type, PACK_OF_CARDS_SIZE)
                 let pokemons = getPokemons()
 
                 for(let i = 0; i < PACK_OF_CARDS_SIZE; i++){
@@ -196,9 +212,9 @@ app.post("/api/purchases/packs", async (req, res) => {
                     packCardsFrontEnd.push(cartaFrontEnd)
                 }
                 let idCards = await collectionCards.insertMany(packCards)
-                console.log(idCards.insertedIds)
-                console.log(typeof idCards.insertedIds)
                 
+                //idCards.insertedIds = map    exemplo: {1: newObjectId(idAleatorio), 2: newObjectId(idAleatorio2)}  object.values pega só os objectsIds e bota numa lista
+                //o each tem o mesmo objetivo do spread ao dar um push numa lista
                 collectionInventario.updateOne(
                     {idUsuario: userFounded._id},
                     { $push: {cartas: {$each: (Object.values(idCards.insertedIds))}}}
@@ -206,7 +222,7 @@ app.post("/api/purchases/packs", async (req, res) => {
 
 
                 collectionUser.updateOne( 
-                    { _id: new ObjectId(req.body.id) },
+                    { _id: userFounded._id },
                     { $inc: { coins: - package.value } }
                 )
                 res.status(200).json(packCardsFrontEnd)
@@ -217,73 +233,254 @@ app.post("/api/purchases/packs", async (req, res) => {
     }
 })
 
-/*
-
-//VIRAR CARTAS NA ABERTURA DO PACK id do jogador tambem
-app.patch("/api/cards/:packid", async (req, res) => {
-
+//LISTA DE TODOS OS POKEMONS
+app.get("/api/pokemons", async (req, res) => {
     try {
-        if (condicao) {
-            res.status(400).json({ message: "" }) //erro
+        res.status(200).json(getPokemons())
+    } catch (err){
+        console.log(err)
+    }
+})
+
+//VISUALIZAÇÃO DAS CARTAS PRA TROCA
+app.get("/api/user/:id/card-trade/" , async (req, res) => {
+    try {
+        if(!req.params.id){
+            res.status(401).json({ message: "Required Field: 'idUser' "} )
         } else {
-            res.status(201).json({ respostarecebida });
+            const collectionUser = await getMongoCollection("user")
+            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.params.id) })
+            if(!userFounded){
+                res.status(404).json({ message: "not_found" })
+            } else {
+                const collectionTrades = await getMongoCollection("trades")
+                let tradeFounded = await collectionTrades.findOne({idUsuario: new ObjectId(req.params.id)})
+                if(!tradeFounded){
+                    let newTradeId = await insertNewTrade(req.params.id)
+
+                    const collectionTrades = await getMongoCollection("trades")
+                    tradeFounded = await collectionTrades.findOne({_id: new ObjectId(newTradeId)})
+                } 
+                for(let i = 0; i < RARITY_POKEMONS.length; i++){
+                    let rarity = RARITY_POKEMONS[i]
+                    let pokemonsIds = tradeFounded[rarity];
+                    tradeFounded[rarity] =getPokemonsByIds(pokemonsIds);
+                }    
+                res.status(200).json(tradeFounded)
+                             
+
+            }
         }
     } catch (err) {
         console.log(err)
     }
 })
 
-//REALIZAR TROCA DE CARTAS COM A MAQUINA
-app.post("/api/card-trades", async (req, res) => {
+//REALIZAR TROCA DE CARTAS COM A MAQUINA - REFRESH CARDS
+app.get("/api/user/:id/card-trade-refresh/:rarity", async (req, res) => {  // /:idCard?
 
     try {
-        if (condicao) {
-            res.status(400).json({ message: "" }) //erro
+        if(!req.params.id || !req.params.rarity){
+            res.status(401).json({ message: "Required Field: 'rarity' "} )
         } else {
-            res.status(201).json({ respostarecebida});
+            const collectionUser = await getMongoCollection("user")
+            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.params.id) })
+            if(!userFounded){
+                res.status(404).json({ message: "not_found" })
+            } else {
+                const collectionTrades = await getMongoCollection("trades")
+                const tradesUser = await collectionTrades.findOne({idUsuario: new ObjectId(req.params.id)}) //
+                let lastTrade = new Date(tradesUser.date)
+                let pokemons = getPokemons()
+                let updatedFields = {}
+
+                if(sameDay(lastTrade, new Date()) && tradesUser.tryOuts >= MAX_TRY_OUTS_DAY){
+                    res.status(403).json({ message: "Exceeded number of refresh of the day" })
+                } else {
+                    updatedFields[req.params.rarity] = generateListOfIdPokemonsByRarity(pokemons, req.params.rarity)
+                    console.log(updatedFields)
+                    if(sameDay(lastTrade, new Date())){
+                        updatedFields.tryOuts = tradesUser.tryOuts + 1;
+                    } else {
+                        updatedFields.tryOuts = 0
+                        updatedFields.date = new Date()
+                    }
+                    await collectionTrades.updateOne(
+                        {_id: tradesUser._id},
+                        {$set: updatedFields}
+                    )
+                    const updatedTrade = await collectionTrades.findOne({idUsuario: new ObjectId(req.params.id)})
+                    for(let i = 0; i < RARITY_POKEMONS.length; i++){
+                        let rarity = RARITY_POKEMONS[i]
+                        let pokemonsIds = updatedTrade[rarity];
+                        updatedTrade[rarity] =getPokemonsByIds(pokemonsIds);
+                    }  
+                    res.status(200).json(updatedTrade)
+                }
+               
+            }
+            
+           }
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+//REALIZAR TROCA DE CARTAS COM A MAQUINA - TROCA EM SI
+app.patch("/api/card-trades", async (req, res) => {
+
+    try {
+       if(!req.body.idUser || !req.body.idPokemon || !req.body.idCard){
+        res.status(401).json({message: "Required Fields: 'idUser' 'idPokemon' 'idCard' "})
+       } else {
+            const collectionUser = await getMongoCollection("user")
+            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.body.idUser) })
+            if(!userFounded){
+                res.status(404).json({ message: "User not found" })
+            } else {
+                const collectionCarta = await getMongoCollection("carta")
+                const cardFounded = await collectionCarta.findOne({_id: new ObjectId(req.body.idCard)})
+                if(!cardFounded){
+                    res.status(404).json({ message: "Card not found" })
+                } else {
+                    await collectionCarta.updateOne(
+                        {_id: new ObjectId(req.body.idCard)},
+                        {$set: {idPokemon: req.body.idPokemon, xp: 0}}
+                    )
+                    res.sendStatus(200)
+                }
+            }
         }
     } catch (err) {
         console.log(err)
     }
 })
+
 
 //EDITAR DADOS DO PERFIL
-app.patch("/api/profile", async (req, res) => {
-
+app.patch("/api/profile/edit/:id", async (req, res) => {
     try {
-        if (condicao) {
-            res.status(400).json({ message: "" }) //erro
+    if(!req.params.id){
+        res.status(401).json({ message: "Required Field: 'idUser' "})
+    } else {
+        const collectionUser = await getMongoCollection("user")
+        const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.params.id) })
+        if(!userFounded){
+            res.status(404).json({ message: "User not found" })
         } else {
-            res.status(201).json({ respostarecebida });
+            let updateUser = {} //FAZER A VALIDAÇÃO
+            if (isUserValid(req)) {
+                updateUser.username = req.body.username;
+            }
+            if (isPasswordValid(req)) {
+                updateUser.password = req.body.password;
+            }
+            if (isEmailValid(req)) {
+                updateUser.email = req.body.email;
+            }
+            if (req.body.birthday && isValidDate(req.body.birthday)) {
+                updateUser.birthday = req.body.birthday;
+            }
+            if (isPhoneNumberValid(req)) {
+                updateUser.phoneNumber = req.body.phoneNumber;
+            }
+            await collectionUser.updateOne(
+                { _id: new ObjectId(req.params.id) },
+                { $set: updateUser }
+            );
+            res.status(200).json({ message: "User updated" }); 
         }
-    } catch (err) {
-        console.log(err)
     }
+        
+    
+} catch (err) {
+    console.log(err)
+}
 })
 
-//APAGAR CONTA account? or profile
-app.delete("/api/account", async (req, res) => {
+//APAGAR CONTA
 
+app.delete("/api/profile/delete/:id", async (req, res) => {
     try {
-        if (condicao) {
-            res.status(400).json({ message: "" }) //erro
+        if (!req.params.id) {
+            res.status(401).json({ message: "Required Field: 'idUser' "})
         } else {
-            res.status(201).json({ respostarecebida });
+            const collectionUser = await getMongoCollection("user");
+            const collectionInventario = await getMongoCollection("inventario")
+            const collectionCartas = await getMongoCollection("carta");
+            const collectionTrades = await getMongoCollection("trades")
+            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.params.id) });
+
+            if (!userFounded) {
+                res.status(404).json({ message: "User not found" });
+            } else {
+                let inventarioDoUsuario = await collectionInventario.findOne({ idUsuario: new ObjectId(req.params.id) })
+
+                collectionTrades.deleteOne(
+                    { idUsuario: new ObjectId(req.params.id) }
+                )
+
+                collectionCartas.deleteMany(
+                    {_id: {$in: inventarioDoUsuario.cartas}}
+                )
+
+                await collectionInventario.deleteOne(
+                    { idUsuario: new ObjectId(req.params.id) }
+                )
+                await collectionUser.deleteOne(
+                    { _id: new ObjectId(req.params.id) });
+
+                res.status(200).json({ message: "User deleted" });
+            }
         }
     } catch (err) {
-        console.log(err)
+        console.log(err);
     }
-})*/
+});
 
-function getPokemons(){
-    if(pokemons.length === 0){
-        let resultsJsonFile = fs.readFileSync('./database/pokemons.json', {encoding: "utf-8", lag: "r"})
-        let resultInObject = JSON.parse(resultsJsonFile).pokemons
-        pokemons.push(...resultInObject)
-    } 
-    return pokemons
+
+
+//FUNCTIONS
+
+function sameDay(d1, d2) {
+    return d1.getFullYear() === d2.getFullYear() &&
+      d1.getMonth() === d2.getMonth() &&
+      d1.getDate() === d2.getDate();
+  }
+
+function isPhoneNumberValid(req) {
+    return req.body.phoneNumber && typeof req.body.phoneNumber === 'string' && isValidPhoneNumber(req.body.phoneNumber)
 }
 
+function isEmailValid(req) {
+    return req.body.email && typeof req.body.email === 'string' && isValidEmail(req.body.email)
+}
+
+function isPasswordValid(req) {
+    return req.body.password && typeof req.body.password === 'string'
+}
+
+function isUserValid(req) {
+    return req.body.username && typeof req.body.username === 'string' && req.body.username.length >= 3 && req.body.username.length <= 30
+}
+
+function getPokemonsByIds(ids){
+    let pokemons = getPokemons();
+    let pokemonsFiltrados = pokemons.filter(pokemon => ids.includes(pokemon.id));
+    return pokemonsFiltrados;
+}
+
+//TODOS OS POKEMONS NA LISTA JSON
+function getPokemons(){
+    if(POKEMONS.length === 0){
+        let resultsJsonFile = fs.readFileSync('./database/pokemons.json', {encoding: "utf-8", lag: "r"})
+        let resultInObject = JSON.parse(resultsJsonFile).pokemons
+        POKEMONS.push(...resultInObject)
+    } 
+    return POKEMONS
+}
+
+//TODOS OS PACOTES CONFORME LISTA JSON
 function getPackage(type){
     if(PACKAGES.length === 0){
         let resultsJsonFile = fs.readFileSync('./database/packages.json', {encoding: "utf-8", lag: "r"})
@@ -293,7 +490,8 @@ function getPackage(type){
     return PACKAGES.find((package) => package.type === type.toLowerCase())
 }
 
-function getListOfRarityOfPackages(type, size){
+//GERA OS POKEMONS PARA OS PACOTES CONFORME A RARIDADE
+function getListOfRarityOfPokemons(type, size){
     let pacote = getPackage(type)
     let common = pacote.epic + pacote.legendary + pacote.very_rare + pacote.rare + pacote.uncommon + pacote.common
     let uncommon = pacote.epic + pacote.legendary + pacote.very_rare + pacote.rare + pacote.uncommon
@@ -324,6 +522,71 @@ function getListOfRarityOfPackages(type, size){
     }
     return listaDeRaridade
 }
+
+//LISTA DE POKEMONS SEPARADOS POR RARIDADE, PARA A MAQUINA DE TROCA
+function generateListOfIdPokemonsByRarity(pokemons, rarity){
+    let pokemonByRarity = pokemons.filter(pokemon => pokemon.rarity === rarity)
+                
+    const pokemonsGenerate = []
+
+    while(pokemonsGenerate.length < PACK_OF_CARDS_TRADE){
+        let randomIndex = Math.floor(Math.random() * pokemonByRarity.length)
+        let randomPokemon = pokemonByRarity[randomIndex]
+        if(!pokemonsGenerate.includes(randomPokemon.id)){
+            pokemonsGenerate.push(randomPokemon.id)
+        }        
+    }
+    return pokemonsGenerate
+}
+
+//CONTABILIZAR TROCAS DO USUÁRIO
+async function insertNewTrade(idUsuario){
+    const collectionTrades = await getMongoCollection("trades") 
+    let newTrade = {
+        idUsuario: new ObjectId(idUsuario),
+        tryOuts: 0,
+        date: new Date()
+    }
+    let pokemons = getPokemons()
+    for(let i = 0; i < RARITY_POKEMONS.length; i++){
+        let rarity = RARITY_POKEMONS[i]
+        newTrade[rarity] = generateListOfIdPokemonsByRarity(pokemons, rarity) //adiciona uma nova propriedade ao objeto. Ex: newTrade.common = [1, 2, 3] || newTrade["common"] = [1, 2, 3]
+    }
+    let tradedInserted = await collectionTrades.insertOne(newTrade)
+
+    return tradedInserted.insertedId
+
+}
+
+//FUNÇÕES DE VALIDAÇÃO DE DADOS
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function isValidDate(date) {
+    if (typeof date !== 'string') {
+        return false;
+    }
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!dateRegex.test(date)) {
+        return false;
+    }
+    const parsedDate = new Date(date);
+    if (isNaN(parsedDate.getTime())) {
+        return false;
+    }
+    return true;
+}
+
+function isValidPhoneNumber(phoneNumber) {
+    const phoneRegex = /^[0-9]{10,12}$/;
+    return phoneRegex.test(phoneNumber);
+}
+
+
+
+
 
 app.listen(port, () => {
     console.log(`À escuta em http://localhost:${port}`)
