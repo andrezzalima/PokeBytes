@@ -59,10 +59,8 @@ app.post("/api/user", async(req, res) => {
     } catch (err) {
         console.log(err)
     }
-  } catch (err) {
-    console.log(err);
-  }
-});
+  })
+
 
 app.get("/api/user", async (req, res) => {
   try {
@@ -182,7 +180,7 @@ app.get("/api/user/:id/pokebag", async (req, res) => {
 
     } catch (err) {
         console.log(err)
-    }
+    }/* 
     const collectionUser = await getMongoCollection("user");
     const userFound = await collectionUser.findOne({
       _id: new ObjectId(req.params.id),
@@ -217,7 +215,7 @@ app.get("/api/user/:id/pokebag", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
-  }
+  } */
 });
 
 //COMPRAR PACKS DE CARTAS
@@ -583,7 +581,6 @@ function getListOfRarityOfPokemons(type, size){
         }
 
     }
-  }
   return listaDeRaridade;
 }
 
@@ -654,4 +651,4 @@ function isValidPhoneNumber(phoneNumber) {
 
 app.listen(port, () => {
   console.log(`À escuta em http://localhost:${port}`);
-});
+})

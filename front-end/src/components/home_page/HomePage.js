@@ -21,7 +21,7 @@ function HomePage() {
 
       <div className="iconBattle">
         <div className="tooltip imgBattle">
-          <ButtonIcon image={battle} tooltip="PackOpening" alt="Packs Icon" />
+        <Link to = "/homePage/battle"><ButtonIcon image={battle} tooltip="PackOpening" alt="Packs Icon" /></Link>
           <span className="tooltiptext">Let's Battle!</span>
         </div>
       </div>
@@ -35,7 +35,7 @@ function HomePage() {
         </div>
 
         <div className="tooltip">
-          <ButtonIcon image={pokecoins} tooltip="PokeCoins" alt="Packs Icon" />
+        <Link to = "/homePage/pokecoins"><ButtonIcon image={pokecoins} tooltip="PokeCoins" alt="Packs Icon" /></Link>
           <span className="tooltiptext">PokéCoins</span>
         </div>
       </div>
