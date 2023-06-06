@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
-import voltar from "../../icons/return_icon.png";
+
 
 function ModalSignUp() {
   const [modal, setModal] = useState(false);
@@ -103,11 +103,7 @@ function ModalSignUp() {
                   type="password"
                   placeholder="Confirm PassWord"
                 ></input>
-                <img
-                  className="voltar"
-                  src={voltar}
-                  onClick={fecharModal}
-                ></img>
+    
                 <Link to="/homePage">
                   <button className="enter" onClick={() => sendData(user)}>
                     Create
