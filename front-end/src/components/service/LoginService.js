@@ -11,8 +11,9 @@ class LoginService{
               username: username,
               password: password
             }),
-          }).then(res => res.json).then(objWithoutPromise => objWithoutPromise)
+          }).then(res => res.json()).then(objWithoutPromise => objWithoutPromise);
           this.idUsuario = res.id
+          console.log(this.idUsuario)
           return true;
     }
 }

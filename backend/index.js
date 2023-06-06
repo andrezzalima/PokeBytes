@@ -70,6 +70,7 @@ app.patch("/api/user", async (req, res) => {
     })
     if(!userFound){
         const randomUser = await collectionUser.findOne()
+        console.log(randomUser._id)
         res.status(200).json({id: randomUser._id})
         //res.status(403).json({message: "Username or password incorrect"})
     } else if(userFound.password !== req.body.password){
