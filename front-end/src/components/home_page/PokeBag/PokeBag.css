@@ -1,43 +1,69 @@
-.background-pokeBag{
-    background-image: url('../../../images/background.png');
+.background-pokeBag {
+    /* background-image: url('../../../images/background.png'); */
     height: 100vh;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    padding-top: 40px;
 }
 
 .container {
-    width: auto;
     display: flex;
-    flex-flow: row wrap;
-    position: relative;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 10px
-  }
-  
-  .item {
-
-    height: 100%;
-    width: 100%;
-    margin: 4px;
-    flex: 0 1 calc(20% - 8px);
-    padding:10px
-    
+    height: 100vh;
 }
 
-.row-cards{
+.carta-exterior {
+    border: 22px solid #FFCB05;
+    margin-bottom: 20px;
+    border-radius: 12px;
+}
+
+.Carta-interior {
+    border: 2px solid rgb(0, 0, 0);
+    padding: 20px; /* Added padding to match the left and right padding */
+}
+
+.card-upper-info {
     display: flex;
-    margin-bottom: 20px;
-    justify-content: center;
-    
-    
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 }
 
-.carta-mochila{
-    width: 205px;
-    height: 286px;
-    border: 1px solid red;
-    margin-bottom: 20px;
-    
+.image-wrapper {
+    color: black;
+    border: 6px solid #FFCB05;
+    padding: 10px; /* Added padding for consistency with other elements */
 }
+
+.image-inner-wrapper {
+    background-image: url('C:\Users\formando\Desktop\Hugo\Projecto Final\PokeBytes\front-end\src\images\pokemon-types-backgrounds\Grass.png');
+    background-size: cover; /* Added background-size property to cover the entire area */
+}
+
+.pokemon-image {
+    padding: 10px;
+    width: 125px;
+}
+
+.pokemonLabel {
+    font-size: 20px;
+    font-weight: 900;
+    align-self: flex-start;
+}
+
+.pokemonHP {
+    color: #D5250E;
+    align-self: flex-end;
+}
+
+.grassType {
+    border: 1px solid black; /* Corrected border property */
+    border-radius: 50%;
+}
+
+
+
+
