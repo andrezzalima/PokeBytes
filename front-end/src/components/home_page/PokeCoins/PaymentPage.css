@@ -1,0 +1,122 @@
+.background-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+.wrapper {    
+    width: 80vh;
+
+    display: flex;
+    justify-content: center;
+    background-color: #192653;
+   
+}
+
+
+.container {
+    padding: 5% 10%;
+    margin-bottom: 20%;
+
+}
+
+form {
+    width: 100%;    
+}
+
+    input {
+        width: 90%;
+        min-height: 25px;
+        border: 0;
+        font-size: 1rem;
+        letter-spacing: .15rem;
+        margin-top: 5px;
+        color: #000000;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        
+    }
+
+    label {
+        text-transform: uppercase;
+        font-size: 12px;
+        letter-spacing: 2px;
+        color: #FAFF00;
+    }
+
+.h1 {
+        font-size: 24px;
+        line-height: 10px;
+        color: #192653;
+        background-color: #FAFF00;
+       padding: 20px;
+        justify-content: center;
+        align-items: center;
+        letter-spacing: 1px;
+        align-self: center;
+    }
+
+
+
+.name {
+    justify-content: space-between;
+    display: flex;
+    width: 100%;
+
+
+
+}
+
+.address-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.cc-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btns {
+    display: flex;
+   justify-content: space-between;
+    margin-top: 30px;
+}
+
+.button-payment {
+        display: flex;
+        margin: 3px 0;
+        height: 30px;
+        width: 250px;
+        color: #192653;
+        background-color: #FAFF00;
+        text-transform: uppercase;
+        font-weight: bold;
+        border-radius: 50px;
+        letter-spacing: 2px;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+.btns button:hover {
+            animation-name: btn-hov;
+            animation-duration: 550ms;
+            animation-fill-mode: forwards;
+        }
+
+input:focus,
+button:focus {
+    outline: none;
+}
+
+@media (max-width: 736px) {
+    .wrapper {
+        width: 100%;
+    }
+
+
+}
