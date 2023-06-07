@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import "./PokeCards.css";
 
 function PokeCards(props) {
+
   const [selectedRarity, setRarity] = useState();
   const [showCloseButton, setShowCloseButton] = useState(false);
 
+
   async function buyPack(amount) {
-    console.log("BUYING PACK");
     const res = await fetch("/api/purchases/packs", {
       method: "POST",
       headers: {
@@ -50,6 +51,7 @@ function PokeCards(props) {
           </>
         ) : (
           <>
+
             <button className="singular" onClick={() => buyPack("singular")}>Single Pack</button>
             <button className="multi" onClick={() => buyPack("multi")}>Multi Pack</button>
             {showCloseButton && (
@@ -57,6 +59,7 @@ function PokeCards(props) {
                 Close
               </button>
             )}
+
           </>
         )}
       </div>
