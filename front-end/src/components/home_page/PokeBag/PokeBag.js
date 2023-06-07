@@ -54,7 +54,7 @@ function PokeBag(props) {
       backgroundImage = 'Fighting.png';
     } else if (type === 'Poison') {
       backgroundImage = 'Poison.png';
-    } else if (type === 'ground') {
+    } else if (type === 'Ground') {
       backgroundImage = 'Ground.png';
     } else if (type === 'Flying') {
       backgroundImage = 'Flying.png';
@@ -100,7 +100,7 @@ function PokeBag(props) {
       backgroundImage = 'Fighting.png';
     } else if (type === 'Poison') {
       backgroundImage = 'Poison.png';
-    } else if (type === 'ground') {
+    } else if (type === 'Ground') {
       backgroundImage = 'Ground.png';
     } else if (type === 'Flying') {
       backgroundImage = 'Flying.png';
@@ -146,7 +146,7 @@ function PokeBag(props) {
       backgroundImage = 'Fighting.png';
     } else if (type === 'Poison') {
       backgroundImage = 'Poison.png';
-    } else if (type === 'ground') {
+    } else if (type === 'Ground') {
       backgroundImage = 'Ground.png';
     } else if (type === 'Flying') {
       backgroundImage = 'Flying.png';
@@ -180,7 +180,7 @@ function PokeBag(props) {
       <div className="container">
         {cartas.map((carta, index) => (
           <div className="carta-exterior" key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
-            <div className="Carta-interior">
+            <div className="carta-interior">
               <div className="card-upper-info">
                 <div className="id-label-hp-type">
                   <div className="id-and-label">
@@ -210,11 +210,10 @@ function PokeBag(props) {
                   <div className="card-lower-info">
                   </div>
 
-
+                  <div className="info-pokemons">
                   <p className="pokemonRarity">
                     <b>Rarity:</b> <span className="rarity border-dotted border-2">{getFormattedRarity(carta.pokemon.rarity)}</span>
                   </p>
-
                   <p className="pokemonType">
                     <b>Type:</b> {carta.pokemon.type.join(", ")}</p>
                   <p className="pokemonAttack">
@@ -223,6 +222,7 @@ function PokeBag(props) {
                   <p className="pokemonDefense">
                     <b>Defense:</b> {carta.pokemon.base.Defense}
                   </p>
+                  </div>
                 </div>
               </div>
             </div>
