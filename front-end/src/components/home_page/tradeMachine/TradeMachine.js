@@ -6,15 +6,12 @@ import pokeballBackground from "../../../icons/pokeball_background.png";
 
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
-
+  /* 
+  */
 
   const toggleRules = () => {
     setShowRules(!showRules);
   };
-
-
-
-
 
   return (
     <div>

@@ -2,11 +2,13 @@ import { useState } from "react";
 import "./PokeCards.css";
 
 function PokeCards(props) {
+
   const [selectedRarity, setRarity] = useState();
 
   async function buyPack(amount) {
     console.log("BUYING PACK");
     const res = await fetch("/api/purchases/packs", {
+
       method: "POST",
       headers: {
         "Content-Type": "application/json",

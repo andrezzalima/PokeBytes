@@ -62,47 +62,21 @@ app.post("/api/user", async(req, res) => {
   })
 
 
-app.get("/api/user", async (req, res) => {
+app.patch("/api/user", async (req, res) => {
   try {
-    let pacote = getPackage("platinum");
-    let common =
-      pacote.epic +
-      pacote.legendary +
-      pacote.very_rare +
-      pacote.rare +
-      pacote.uncommon +
-      pacote.common;
-    let uncommon =
-      pacote.epic +
-      pacote.legendary +
-      pacote.very_rare +
-      pacote.rare +
-      pacote.uncommon;
-    let rare = pacote.epic + pacote.legendary + pacote.very_rare + pacote.rare;
-    let very_rare = pacote.epic + pacote.legendary + pacote.very_rare;
-    let epic = pacote.epic + pacote.legendary;
-
-    let listaDeRaridade = [];
-    for (let i = 0; i < 10; i++) {
-      let aleatorio = Math.random() * 100;
-
-      if (aleatorio < pacote.legendary) {
-        listaDeRaridade.push("legendary");
-      } else if (aleatorio < epic) {
-        listaDeRaridade.push("epic");
-      } else if (aleatorio < very_rare) {
-        listaDeRaridade.push("very_rare");
-      } else if (aleatorio < rare) {
-        listaDeRaridade.push("rare");
-      } else if (aleatorio < uncommon) {
-        listaDeRaridade.push("uncommon");
-      } else if (aleatorio < common) {
-        listaDeRaridade.push("common");
-      } else {
-        listaDeRaridade.push("very_common");
-      }
+    const collectionUser = await getMongoCollection("user");
+    const userFound = await collectionUser.findOne({
+        username: req.body.username
+    })
+    if(!userFound){
+        const randomUser = await collectionUser.findOne()
+        res.status(200).json({id: randomUser._id})
+        //res.status(403).json({message: "Username or password incorrect"})
+    } else if(userFound.password !== req.body.password){
+        res.status(403).json({message: "Username or password incorrect"})
+    } else {
+        res.status(200).json({id: userFound._id})
     }
-    res.status(201).json(listaDeRaridade);
   } catch (err) {
     console.log(err);
   }
@@ -143,6 +117,11 @@ app.patch("/api/purchase/coins", async (req, res) => {
 });
 
 //VISUALIZAR POKEBAG
+/* IDEIA - RETIRAR ID E UTILIZAR USER APENAS, POIS HAVERA APENAS UM USER
+const user = await getUser(); 
+    async function getUser() {
+      const col = await getMongoCollection("user");
+      return await col.findOne();*/
 
 app.get("/api/user/:id/pokebag", async (req, res) => {
 
@@ -180,42 +159,7 @@ app.get("/api/user/:id/pokebag", async (req, res) => {
 
     } catch (err) {
         console.log(err)
-    }/* 
-    const collectionUser = await getMongoCollection("user");
-    const userFound = await collectionUser.findOne({
-      _id: new ObjectId(req.params.id),
-    });
-    if (!userFound) {
-      res.status(404).json({ message: "not_found" });
     }
-    const collectionInventario = await getMongoCollection("inventario");
-    const pokebagFounded = await collectionInventario.findOne({
-      idUsuario: new ObjectId(req.params.id),
-    });
-    if (pokebagFounded.cartas.length === 0) {
-      res.status(200).json({ pokebagFounded });
-    } else {
-      const collectionCards = await getMongoCollection("carta");
-      const cardsFounded = await collectionCards
-        .find({ _id: { $in: pokebagFounded.cartas } })
-        .toArray(); //1 parametro do find (e nesse ex unico) representa a query (consulta) que significa ache cartas em que o _id eh um dos itens INside lista
-      const pokemons = getPokemons();
-      let listaCartas = [];
-      for (let i = 0; i < cardsFounded.length; i++) {
-        let pokemondFounded = pokemons.find((pokemon) => {
-          return pokemon.id === cardsFounded[i].idPokemon;
-        });
-        listaCartas.push({
-          pokemon: pokemondFounded,
-          XP: cardsFounded[i].XP,
-          id: cardsFounded[i]._id, //id carta db
-        });
-      }
-      res.status(200).json({cartas: listaCartas });
-    }
-  } catch (err) {
-    console.log(err);
-  } */
 });
 
 //COMPRAR PACKS DE CARTAS
@@ -223,7 +167,6 @@ app.post("/api/purchases/packs", async (req, res) => {
 
   try {
     const user = await getUser();
-    console.log(user);
     async function getUser() {
       const col = await getMongoCollection("user");
       return await col.findOne();
@@ -472,10 +415,10 @@ app.delete("/api/profile/delete/:id", async (req, res) => {
             const collectionInventario = await getMongoCollection("inventario")
             const collectionCartas = await getMongoCollection("carta");
             const collectionTrades = await getMongoCollection("trades")
-            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.params.id) });
+            const userFounded = await collectionUser.findOne({ _id: new ObjectId(req.params.id) })
 
             if (!userFounded) {
-                res.status(404).json({ message: "User not found" });
+                res.status(404).json({ message: "User not found" })
             } else {
                 let inventarioDoUsuario = await collectionInventario.findOne({ idUsuario: new ObjectId(req.params.id) })
 
@@ -491,13 +434,13 @@ app.delete("/api/profile/delete/:id", async (req, res) => {
                     { idUsuario: new ObjectId(req.params.id) }
                 )
                 await collectionUser.deleteOne(
-                    { _id: new ObjectId(req.params.id) });
+                    { _id: new ObjectId(req.params.id) })
 
-                res.status(200).json({ message: "User deleted" });
+                res.status(200).json({ message: "User deleted" })
             }
         }
     } catch (err) {
-        console.log(err);
+        console.log(err)
     }
 });
 
@@ -623,7 +566,7 @@ async function insertNewTrade(idUsuario){
 
 //FUNÇÕES DE VALIDAÇÃO DE DADOS
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return emailRegex.test(email);
 }
 
@@ -631,11 +574,11 @@ function isValidDate(date) {
     if (typeof date !== 'string') {
         return false;
     }
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
     if (!dateRegex.test(date)) {
         return false;
     }
-    const parsedDate = new Date(date);
+    const parsedDate = new Date(date)
     if (isNaN(parsedDate.getTime())) {
         return false;
     }
@@ -643,12 +586,9 @@ function isValidDate(date) {
 }
 
 function isValidPhoneNumber(phoneNumber) {
-    const phoneRegex = /^[0-9]{10,12}$/;
-    return phoneRegex.test(phoneNumber);
+    const phoneRegex = /^[0-9]{10,12}$/
+    return phoneRegex.test(phoneNumber)
 }
-
-
-
 
 
 app.listen(port, () => {

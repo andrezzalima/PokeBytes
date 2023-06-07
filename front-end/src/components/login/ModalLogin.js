@@ -2,12 +2,18 @@ import React, { useState } from "react";
 import "./ModalLogin.css";
 import voltar2 from "../../icons/return_icon.png";
 import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
+import LoginService from "../service/LoginService";
+
 
 import { Link } from "react-router-dom";
 
 function ModalLogin(props) {
   const [modal, setModal] = useState(false);
   const [hover, setHover] = useState(false);
+  const [username, setUsername] = useState()
+  const [password, setPassword] = useState()
+  const navigate = useNavigate();
 
   const abrirModal = (props) => {
     setModal(true);
@@ -16,6 +22,13 @@ function ModalLogin(props) {
   const fecharModal = () => {
     setModal(false);
   };
+
+  const login = async () => {
+    let success = await LoginService.login(username, password)
+    if(success){
+      navigate('/homePage')
+    }
+  }
 
   return (
     <div className="backgroundModal">
@@ -47,11 +60,13 @@ function ModalLogin(props) {
                   className="inputUsername inputIconName"
                   type="email"
                   placeholder="USERNAME"
+                  onChange={setUsername} value={username}
                 ></input>
                 <input
                   className="inputPassword inputIconPass"
                   type="password"
                   placeholder="PASSWORD"
+                  onChange={setPassword} value={password}
                 ></input>
 
                 <div className="voltar2-wrapper">
@@ -63,7 +78,7 @@ function ModalLogin(props) {
                     ></img>
                   </div>
                 </div>
-                <Link to="/homePage">
+                <Link onClick={login}>
                   <button className="enter">Enter</button>
                 </Link>
               </div>
