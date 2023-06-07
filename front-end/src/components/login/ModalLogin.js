@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ModalLogin.css";
-import voltar from "../../icons/return_icon.png";
+import voltar2 from "../../icons/return_icon.png";
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
 import LoginService from "../service/LoginService";
@@ -69,11 +69,11 @@ function ModalLogin(props) {
                   onChange={setPassword} value={password}
                 ></input>
 
-                <div className="voltar-wrapper">
-                  <div className="voltar-inner">
+                <div className="voltar2-wrapper">
+                  <div className="voltar2-inner">
                     <img
-                      className="voltar"
-                      src={voltar}
+                      className="voltar2"
+                      src={voltar2}
                       onClick={fecharModal}
                     ></img>
                   </div>

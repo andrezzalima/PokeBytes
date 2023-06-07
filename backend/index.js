@@ -197,6 +197,8 @@ app.post("/api/purchases/packs", async (req, res) => {
           package.type,
           PACK_OF_CARDS_SIZE
         );
+          
+
         let pokemons = getPokemons();
 
         for (let i = 0; i < PACK_OF_CARDS_SIZE; i++) {

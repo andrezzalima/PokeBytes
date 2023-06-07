@@ -23,3 +23,193 @@
     width: 50px;
     height: 70px;
 }
+
+.silver{
+    position: absolute;
+    background-color: #C0C0C0;
+    border: 2px solid #C0C0C0;
+    border-radius: 4px;
+    font-family: PokemonRBYG, Arial, Helvetica, sans-serif;
+    color: #3c4043;
+    cursor: pointer;
+    font-size: 10px;
+    height: 20px;
+    line-height: 16px;
+    min-width: 54px;
+    padding: 0 10px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: pre;
+    top:44%;
+    left:57.2%;
+}
+
+.silver:hover {
+    border-color: #dadce0;
+    box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+    color: #202124;
+  }
+  
+  .silver:focus {
+    border-color: #4285f4;
+    outline: none;
+  } 
+
+
+  .gold{
+    position: absolute;
+    background-color: #FFD700;
+    border: 1px solid #FFD700;
+    border-radius: 4px;
+    color: #3c4043;
+    cursor: pointer;
+    font-family: PokemonRBYG, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    height: 20px;
+    line-height: 16px;
+    min-width: 54px;
+    padding: 0 15px;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: pre;
+    top: 52%;
+    left: 57.2%;
+  }
+  .gold:hover {
+    border-color: #d0ff00;
+    box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+    color: #202124;
+  }
+  .gold:focus {
+    border-color: #4285f4;
+    outline: none;
+  } 
+
+  .platinum{
+    position: absolute;
+    background-color: #e5e4e2;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    color: #3c4043;
+    cursor: pointer;
+    font-family: PokemonRBYG, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    height: 20px;
+    line-height: 16px;
+    min-width: 54px;
+    padding: 0 3px;
+    text-align: center;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: pre;
+    top: 60%;
+    left: 57.2%;
+  }
+
+
+.platinum:hover {
+  border-color: #ff2d2d;
+  box-shadow: rgba(255, 4, 4, 0.1) 0 1px 1px;
+  color: #202124;
+}
+.platinum:focus {
+  border-color: #4285f4;
+  outline: none;
+} 
+
+.singular{
+  font-family: PokemonRBYG, Arial, Helvetica, sans-serif;
+  font-size: 10.3px;
+    position: absolute;
+    top: 45%;
+    left: 56.4%;
+    padding: 0.4em 0.8em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  background: #000000;
+  z-index: 0;
+  border-radius: 9px;
+  user-select: none;
+  -webkit-user-select: none;
+    text-align: center;
+
+
+}
+  
+.multi {
+  font-family: PokemonRBYG, Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  position: absolute;
+  top: 55%;
+  left: 56.6%;
+  padding: 0.4em 0.8em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  background: #000000;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.multi:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 100%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-multi 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+  
+
+}
+
+@keyframes glowing-multi {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.multi:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
