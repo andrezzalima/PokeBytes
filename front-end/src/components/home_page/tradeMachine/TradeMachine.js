@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./TradeMachine.css";
 import returnIcon from "../../../icons/return_icon1.png";
 import LoginService from "../../service/LoginService";
+import PokeBag from "../PokeBag/PokeBag";
 
 /* 
 clicar numa div para abrir o inventario do jogador
@@ -137,7 +138,13 @@ function TradeMachine(props) {
           </div>
         )}
 
-        <div className="content-wrapper">
+
+ <div className="inventario"></div>
+ <PokeBag />
+        {/* <div className="content-wrapper">
+         
+         
+          
           <label for="pokemon">Choose a pokemon to trade:</label>
           <select
             name="pokemon"
@@ -149,11 +156,14 @@ function TradeMachine(props) {
               <option value={carta.pokemon.id}>{carta.pokemon.label}</option>
             ))}
           </select>
-          {/* {getOpcoesDeTroca()} */}
+          { {getOpcoesDeTroca()} 
           <GetOpcoesDeTroca />
 
           <div>{selectedIdPokemon}</div>
-        </div>
+        </div> */}
+
+
+
         <div className="return-wrapper">
           <div className="return-to-homepage ">
             <Link to="/homePage">
