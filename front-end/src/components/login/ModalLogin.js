@@ -41,7 +41,7 @@ function ModalLogin(props) {
           }}
           whileHover={{
             color: "#192653",
-            backgroundColor: "#FAFF00",
+            backgroundColor: "#FFCB05",
             rotateY: "180",
           }}
           className="buttonLogin"
@@ -59,13 +59,13 @@ function ModalLogin(props) {
                 <input
                   className="inputUsername inputIconName"
                   type="email"
-                  placeholder="USERNAME"
+                  placeholder="Username"
                   onChange={setUsername} value={username}
                 ></input>
                 <input
                   className="inputPassword inputIconPass"
                   type="password"
-                  placeholder="PASSWORD"
+                  placeholder="Password"
                   onChange={setPassword} value={password}
                 ></input>
 

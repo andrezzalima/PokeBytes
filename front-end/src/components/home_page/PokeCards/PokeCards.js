@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./PokeCards.css";
+import { Link } from "react-router-dom";
+
 
 function PokeCards(props) {
 
@@ -93,8 +95,16 @@ function App() {
           <button onClick={handleNovosBotoes}>Novo Botão 2</button>
         </div>
       )}
+
+ 
     </div>
+
+
+
   );
+
+
+
 }
 
 export default PokeCards;

@@ -50,7 +50,7 @@ function ModalSignUp() {
           }}
           whileHover={{
             color: "#192653",
-            backgroundColor: "#FAFF00",
+            backgroundColor: "#FFCB05",
             rotateY: "180",
           }} className="buttonLogin" onClick={abrirModal}>
           SIGN UP

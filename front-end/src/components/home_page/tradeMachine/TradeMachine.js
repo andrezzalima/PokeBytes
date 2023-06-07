@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./TradeMachine.css";
-import returnIcon from "../../../icons/return_icon1.png";
+import returnIcon from "../../../icons/return_icon2.png";
 import LoginService from "../../service/LoginService";
 import PokeBag from "../PokeBag/PokeBag";
 
