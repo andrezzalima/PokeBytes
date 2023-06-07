@@ -19,7 +19,7 @@
     border-radius: 12px;
     height: 550px;
     width: 367px;
-    background-image: url("C:\Users\formando\Desktop\Hugo\Projecto Final\PokeBytes\front-end\src\images\card-gradients\Grass3.png");
+    background-image: url("C:\Users\Formando\Desktop\PokeBytes\front-end\src\images\card-gradients\Grass3.png");
     background-size: cover;
     opacity: 0.95;
     margin-top: 40vh;
@@ -64,7 +64,7 @@
 
 .image-inner-wrapper {
 
-    background-image: url("C:\Users\formando\Desktop\Hugo\Projecto Final\PokeBytes\front-end\src\images\pokemon-types-backgrounds\Grass.png");
+    background-image: url("C:\Users\Formando\Desktop\PokeBytes\front-end\src\images\pokemon-types-backgrounds\Grass.png");
     background-size: cover;
 
 
