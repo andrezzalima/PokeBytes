@@ -1,51 +1,54 @@
 .background-pokeBag {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
- 
-  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
 }
 
 .carta-exterior {
-  border: 18px solid #ffcb05;
-  border-radius: 12px;
-  height: 550px;
-  width: 367px;
-  background-image: url("C:\Users\Formando\Desktop\PokeBytes\front-end\src\images\card-gradients\Grass3.png");
-  background-size: cover;
-  opacity: 0.95;
-  margin-top: 40vh;
-  
+
+    border: 18px solid #ffcb05;
+    border-radius: 12px;
+    height: 550px;
+    width: 367px;
+    background-image: url("C:\Users\formando\Desktop\Hugo\Projecto Final\PokeBytes\front-end\src\images\card-gradients\Grass3.png");
+    background-size: cover;
+    opacity: 0.95;
+    margin-top: 40vh;
+
+
 }
+
 .id-label-hp-type {
-  display: flex;
-  gap: 150px;
+    display: flex;
+    gap: 150px;
 }
 
 .id-and-label {
-  display: flex;
-  gap: 3px;
-  font-size: 20px;
-  font-weight: 900;
-  
+    display: flex;
+    gap: 3px;
+    font-size: 20px;
+    font-weight: 900;
+
 }
 
 .hp-and-type {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 10px;
-  font-weight: 900;
+    font-weight: 900;
 }
 
-.grassType{
+.grassType {
     border: 2px solid black;
     border-radius: 50%;
 }
@@ -55,26 +58,25 @@
 .image-wrapper {
     border: 6px solid #ffcb05;
     margin: 18px;
-  height: 200px;
-  width: 300px;
+    height: 200px;
+    width: 300px;
 }
 
 .image-inner-wrapper {
 
-    background-image: url("C:\Users\Formando\Desktop\PokeBytes\front-end\src\images\pokemon-types-backgrounds\Grass.png");
+    background-image: url("C:\Users\formando\Desktop\Hugo\Projecto Final\PokeBytes\front-end\src\images\pokemon-types-backgrounds\Grass.png");
     background-size: cover;
 
 
 }
 
 
-
 .pokemon-field {
     width: 65%;
 
 
-    
 }
+
 .image-inner-wrapper img {
     transform: translate(60%);
 }
@@ -90,29 +92,41 @@
 .pokemonRarity {
     margin-top: 30px;
     font-size: 20px;
-    border: 1px black solid;
-    margin-bottom: 20px;
-    text-align: center;
-}
-.pokemonType{
-    margin-top: 30px;
-    font-size: 20px;
-    border: 1px black solid;
+    
     margin-bottom: 20px;
     text-align: center;
 }
 
-.pokemonAttack{
+.rarity{
+    
+    background-color: rgba(224, 37, 107, 0.5);
+    
+/* border: 1px solid black; */
+    border-radius: 5px;
+    padding: 2px;
+}
+
+
+.pokemonType {
     margin-top: 30px;
     font-size: 20px;
-    border: 1px black solid;
+    
     margin-bottom: 20px;
     text-align: center;
 }
-.pokemonDefense{
+
+.pokemonAttack {
     margin-top: 30px;
     font-size: 20px;
-    border: 1px black solid;
+    
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pokemonDefense {
+    margin-top: 30px;
+    font-size: 20px;
+    
     margin-bottom: 20px;
     text-align: center;
 }
