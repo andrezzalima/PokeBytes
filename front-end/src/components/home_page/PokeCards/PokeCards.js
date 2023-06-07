@@ -1,21 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./PokeCards.css";
 
 function PokeCards(props) {
-
   const [selectedRarity, setRarity] = useState();
+  const [showCloseButton, setShowCloseButton] = useState(false);
 
   async function buyPack(amount) {
     console.log("BUYING PACK");
     const res = await fetch("/api/purchases/packs", {
-
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         packageType: selectedRarity,
-
       }),
     });
 
@@ -24,6 +22,12 @@ function PokeCards(props) {
 
   function selectRarity(raridade) {
     setRarity(raridade);
+    setShowCloseButton(true);
+  }
+
+  function handleClose() {
+    setRarity(undefined);
+    setShowCloseButton(false);
   }
 
   return (
@@ -46,8 +50,13 @@ function PokeCards(props) {
           </>
         ) : (
           <>
-            <button className="singular" onClick={() => buyPack("singular")}>SinglePack</button>
-            <button className="multi" onClick={() => buyPack("multi")}>MultiPack</button>
+            <button className="singular" onClick={() => buyPack("singular")}>Single Pack</button>
+            <button className="multi" onClick={() => buyPack("multi")}>Multi Pack</button>
+            {showCloseButton && (
+              <button className="close" onClick={handleClose}>
+                Close
+              </button>
+            )}
           </>
         )}
       </div>
