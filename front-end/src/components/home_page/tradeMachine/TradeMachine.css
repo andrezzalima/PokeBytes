@@ -123,4 +123,12 @@ body {
   width: auto;
 }
 
+.content-wrapper{
+  background-color: pink;
+  color:black;
+  height: 200px;
+  width: 200px;
+  padding:20px
+}
+
 
