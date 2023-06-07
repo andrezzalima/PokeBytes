@@ -17,7 +17,7 @@ const Dropdown = () => {
   };
 
   return (
-    <div className="dropdown">
+    <div className="dropdown" onMouseLeave={() => setOpen(false)}>
       <ButtonIcon onClick={openDropdown} image={profile} />
 
       {open && (
