@@ -1,7 +1,8 @@
 import "./HomePage.css";
 import "./Icones/tooltip.css";
-import React from "react";
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
+
 //components
 import Dropdown from "./Icones/Dropdown";
 import ButtonIcon from "./Icones/ButtonIcon";
@@ -13,6 +14,11 @@ import trademachine from "../../icons/trade-machine.png";
 import pokebag from "../../icons/pokebag.png";
 
 function HomePage() {
+
+
+
+
+
   return (
     <div className="background">
       <div className="iconProfile">

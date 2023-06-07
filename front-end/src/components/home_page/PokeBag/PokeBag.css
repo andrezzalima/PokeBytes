@@ -14,6 +14,7 @@
 }
 
 .carta-exterior {
+
     border: 18px solid #ffcb05;
     border-radius: 12px;
     height: 550px;
@@ -22,6 +23,7 @@
     background-size: cover;
     opacity: 0.95;
     margin-top: 40vh;
+
 
 }
 
@@ -61,15 +63,17 @@
 }
 
 .image-inner-wrapper {
+
     background-image: url("C:\Users\formando\Desktop\Hugo\Projecto Final\PokeBytes\front-end\src\images\pokemon-types-backgrounds\Grass.png");
     background-size: cover;
+
 
 }
 
 
-
 .pokemon-field {
     width: 65%;
+
 
 }
 
