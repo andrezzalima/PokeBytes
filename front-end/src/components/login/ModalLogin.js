@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./ModalLogin.css";
-
+import voltar2 from "../../icons/return_icon.png";
 import { motion } from "framer-motion";
 
 import { Link } from "react-router-dom";
@@ -54,7 +54,15 @@ function ModalLogin(props) {
                   placeholder="PASSWORD"
                 ></input>
 
-           
+                <div className="voltar2-wrapper">
+                  <div className="voltar2-inner">
+                    <img
+                      className="voltar2"
+                      src={voltar2}
+                      onClick={fecharModal}
+                    ></img>
+                  </div>
+                </div>
                 <Link to="/homePage">
                   <button className="enter">Enter</button>
                 </Link>
