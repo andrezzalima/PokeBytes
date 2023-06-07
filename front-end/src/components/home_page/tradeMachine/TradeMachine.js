@@ -14,6 +14,7 @@ efetivar troca e carta passar pro inventario do jogador e apagar a anterior
 
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
+
   const [inventario, setInventario] = useState([]);
   const [opcoesDeTroca, setOpcoesDeTroca] = useState([]);
   const [selectedIdPokemon, setSelectedIdPokemon] = useState(); // Id de controle do input
@@ -85,6 +86,7 @@ function TradeMachine(props) {
     
     getOpcoes();
   };
+
 
   const toggleRules = () => {
     setShowRules(!showRules);
