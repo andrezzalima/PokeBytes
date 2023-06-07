@@ -2,10 +2,9 @@ import { useState } from "react";
 import "./PokeCards.css";
 
 function PokeCards(props) {
-  const [selectedRarity, setRarity] = useState();
+  const [selectedRarity, setRarity] = useState("silver");
 
   async function buyPack(amount) {
-    console.log("BUYING PACK");
     const res = await fetch("/api/purchases/packs", {
       method: "POST",
       headers: {
@@ -13,7 +12,6 @@ function PokeCards(props) {
       },
       body: JSON.stringify({
         packageType: selectedRarity,
-
       }),
     });
 
@@ -44,8 +42,12 @@ function PokeCards(props) {
           </>
         ) : (
           <>
-            <button className="singular" onClick={() => buyPack("singular")}>SinglePack</button>
-            <button className="multi" onClick={() => buyPack("multi")}>MultiPack</button>
+            <button className="singular" onClick={() => buyPack("singular")}>
+              SinglePack
+            </button>
+            <button className="multi" onClick={() => buyPack("multi")}>
+              MultiPack
+            </button>
           </>
         )}
       </div>

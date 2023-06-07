@@ -180,42 +180,7 @@ app.get("/api/user/:id/pokebag", async (req, res) => {
 
     } catch (err) {
         console.log(err)
-    }/* 
-    const collectionUser = await getMongoCollection("user");
-    const userFound = await collectionUser.findOne({
-      _id: new ObjectId(req.params.id),
-    });
-    if (!userFound) {
-      res.status(404).json({ message: "not_found" });
     }
-    const collectionInventario = await getMongoCollection("inventario");
-    const pokebagFounded = await collectionInventario.findOne({
-      idUsuario: new ObjectId(req.params.id),
-    });
-    if (pokebagFounded.cartas.length === 0) {
-      res.status(200).json({ pokebagFounded });
-    } else {
-      const collectionCards = await getMongoCollection("carta");
-      const cardsFounded = await collectionCards
-        .find({ _id: { $in: pokebagFounded.cartas } })
-        .toArray(); //1 parametro do find (e nesse ex unico) representa a query (consulta) que significa ache cartas em que o _id eh um dos itens INside lista
-      const pokemons = getPokemons();
-      let listaCartas = [];
-      for (let i = 0; i < cardsFounded.length; i++) {
-        let pokemondFounded = pokemons.find((pokemon) => {
-          return pokemon.id === cardsFounded[i].idPokemon;
-        });
-        listaCartas.push({
-          pokemon: pokemondFounded,
-          XP: cardsFounded[i].XP,
-          id: cardsFounded[i]._id, //id carta db
-        });
-      }
-      res.status(200).json({cartas: listaCartas });
-    }
-  } catch (err) {
-    console.log(err);
-  } */
 });
 
 //COMPRAR PACKS DE CARTAS
