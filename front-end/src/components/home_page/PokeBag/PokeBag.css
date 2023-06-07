@@ -1,3 +1,87 @@
+/* 
+body {
+    background-color: #eff3ff;
+}
+.container {
+    width: 350px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+#card {
+    position: relative;
+    width: 100%;
+    padding: 30px 20px;
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+  #card img {
+    display: block;
+    width: 180px;
+    max-height: 200px;
+    position: relative;
+    margin: 20px auto;
+}
+.hp {
+    width: 80px;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 30px;
+    margin-left: auto;
+    font-weight: 400;
+}
+.poke-name {
+    text-align: center;
+    font-weight: 600;
+}
+.types {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0 40px 0;
+}
+.hp span,
+.types span {
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    font-weight: 600;
+}
+.types span {
+    padding: 5px 20px;
+    border-radius: 20px;
+    color: #ffffff;
+  }
+  .stats {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+.stats p {
+    color: #404060;
+}
+#btn {
+    display: block;
+    padding: 15px 60px;
+    font-size: 18px;
+    background-color: #101010;
+    color: #ffffff;
+    position: relative;
+    margin: 30px auto;
+    border: none;
+    border-radius: 5px;
+}
+
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
 .background-pokeBag {
     height: 100vh;
     display: flex;
@@ -19,24 +103,33 @@
     border-radius: 12px;
     height: 550px;
     width: 367px;
-    background-image: url("C:\Users\Formando\Desktop\PokeBytes\front-end\src\images\card-gradients\Grass3.png");
     background-size: cover;
     opacity: 0.95;
     margin-top: 40vh;
-
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
 
 }
 
 .id-label-hp-type {
+    letter-spacing: 0.4px;
     display: flex;
-    gap: 150px;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+
+
 }
 
 .id-and-label {
     display: flex;
     gap: 3px;
-    font-size: 20px;
     font-weight: 900;
+    margin-left: 10px;
+
+
+
 
 }
 
@@ -46,11 +139,14 @@
     align-items: center;
     gap: 10px;
     font-weight: 900;
+    margin-right: 10px;
+
 }
 
 .grassType {
     border: 2px solid black;
     border-radius: 50%;
+
 }
 
 
@@ -60,14 +156,17 @@
     margin: 18px;
     height: 200px;
     width: 300px;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    margin-left: 15px;
+
 }
 
 .image-inner-wrapper {
-
-    background-image: url("C:\Users\Formando\Desktop\PokeBytes\front-end\src\images\pokemon-types-backgrounds\Grass.png");
     background-size: cover;
-
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -77,9 +176,6 @@
 
 }
 
-.image-inner-wrapper img {
-    transform: translate(60%);
-}
 
 .pokemonHP {
     color: #d5250e;
@@ -92,16 +188,16 @@
 .pokemonRarity {
     margin-top: 30px;
     font-size: 20px;
-    
+
     margin-bottom: 20px;
     text-align: center;
 }
 
-.rarity{
-    
+.rarity {
+
     background-color: rgba(224, 37, 107, 0.5);
-    
-/* border: 1px solid black; */
+
+
     border-radius: 5px;
     padding: 2px;
 }
@@ -110,7 +206,7 @@
 .pokemonType {
     margin-top: 30px;
     font-size: 20px;
-    
+
     margin-bottom: 20px;
     text-align: center;
 }
@@ -118,7 +214,7 @@
 .pokemonAttack {
     margin-top: 30px;
     font-size: 20px;
-    
+
     margin-bottom: 20px;
     text-align: center;
 }
@@ -126,7 +222,7 @@
 .pokemonDefense {
     margin-top: 30px;
     font-size: 20px;
-    
+
     margin-bottom: 20px;
     text-align: center;
 }
