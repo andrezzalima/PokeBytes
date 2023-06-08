@@ -193,11 +193,10 @@ app.post("/api/purchases/packs", async (req, res) => {
 
         let packCards = [];
         let packCardsFrontEnd = [];
-        let rarityList = getListOfRarityOfPackages(
+        let rarityList = getListOfRarityOfPokemons(
           package.type,
           PACK_OF_CARDS_SIZE
         );
-          
 
         let pokemons = getPokemons();
 
@@ -474,7 +473,6 @@ function getPokemonsByIds(ids){
     return pokemonsFiltrados;
 }
 
-
 //TODOS OS POKEMONS NA LISTA JSON
 function getPokemons(){
     if(POKEMONS.length === 0){
@@ -494,6 +492,8 @@ function getPackage(type){
     }
     return PACKAGES.find((package) => package.type === type.toLowerCase())
 }
+
+
 
 //GERA OS POKEMONS PARA OS PACOTES CONFORME A RARIDADE
 function getListOfRarityOfPokemons(type, size){
@@ -524,9 +524,8 @@ function getListOfRarityOfPokemons(type, size){
         } else {
             listaDeRaridade.push("very_common")
         }
-
     }
-  return listaDeRaridade;
+    return listaDeRaridade
 }
 
 //LISTA DE POKEMONS SEPARADOS POR RARIDADE, PARA A MAQUINA DE TROCA
@@ -566,7 +565,7 @@ async function insertNewTrade(idUsuario){
 
 //FUNÇÕES DE VALIDAÇÃO DE DADOS
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
@@ -574,11 +573,11 @@ function isValidDate(date) {
     if (typeof date !== 'string') {
         return false;
     }
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(date)) {
         return false;
     }
-    const parsedDate = new Date(date)
+    const parsedDate = new Date(date);
     if (isNaN(parsedDate.getTime())) {
         return false;
     }
@@ -586,11 +585,14 @@ function isValidDate(date) {
 }
 
 function isValidPhoneNumber(phoneNumber) {
-    const phoneRegex = /^[0-9]{10,12}$/
-    return phoneRegex.test(phoneNumber)
+    const phoneRegex = /^[0-9]{10,12}$/;
+    return phoneRegex.test(phoneNumber);
 }
 
 
+
+
+
 app.listen(port, () => {
-  console.log(`À escuta em http://localhost:${port}`);
-})
+    console.log(`À escuta em http://localhost:${port}`)
+  })

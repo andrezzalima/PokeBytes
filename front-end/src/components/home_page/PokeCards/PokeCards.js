@@ -1,8 +1,5 @@
 import React, { useState } from "react";
 import "./PokeCards.css";
-import FlippableCard from "./FlippableCard";
-import { motion } from "framer-motion";
-import FuncoesCard from "../PokeBag/funcoesCard"
 
 function PokeCards(props) {
 
@@ -233,7 +230,7 @@ function PokeCards(props) {
       {/* Div com os 10 cards */}
         {showCardDiv && (
         <div className="cardDiv">
-         {cardsData.map((carta, index) => (
+         {cardsData.length > 0 && cardsData.map((carta, index) => (
           <div className="carta-exterior" key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
             <div className="carta-interior">
               <div className="card-upper-info">
