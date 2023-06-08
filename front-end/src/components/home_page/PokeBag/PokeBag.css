@@ -1,36 +1,33 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
-}
-
-.background-pokeBag {
+ 
+  .background-pokeBag {
+    background-image: url("../../../images/background.png");
+    background-size: cover;
+    background-repeat: no-repeat, no-repeat;
+    background-position: center;
+    background-attachment: fixed;
     height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    
+  }
+
+.container-pokebag {  
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+    margin-top: 50px;
 }
-
-.container {
- display: flex;
- align-items: center;
-}
-
-
 
 .carta-exterior {
-
-    border: 18px solid #ffcb05;
+    border: 10px solid #ffcb05;
     border-radius: 12px;
-    width: 367px;
-    height: 550px;
     background-size: cover;
     opacity: 0.95;
-    margin-top: 40vh;
-    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);    
+}
 
+.carta-interior{
+    width: 150px;
+    height: 210px;
 }
 
 .id-label-hp-type {
@@ -39,14 +36,14 @@
     align-items: center;
     justify-content: space-between;
     text-align: center;
+    font-size: 10px;
     margin-top: 10px;
-    font-size: 20px;
-
-
 }
 
 .id-and-label {
     display: flex;
+    font-size: 10px;
+    text-align: center;
     gap: 3px;
     font-weight: 900;
     margin-left: 10px;
@@ -64,36 +61,28 @@
 }
 
 .grassType {
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 50%;
 
 }
 
 .image-wrapper {
-    border: 6px solid #ffcb05;
-    margin: 18px;
-    height: 200px;
-    width: 300px;
-    font-size: 12px;
+    border: 4px solid #ffcb05;
+    margin: 5px 12px 0 12px;
     letter-spacing: 0.4px;
-    margin-left: 15px;
+    max-height: 170px;
 
 }
 
 .image-inner-wrapper {
-
-
     background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
 .pokemon-field {
     width: 65%;
-
-
 }
 
 
@@ -106,47 +95,42 @@
 }
 
 .pokemonRarity {
-    margin-top: 30px;
-    font-size: 20px;
-
-    margin-bottom: 20px;
+    margin-top: 10px;
+    font-size: 10px;
     text-align: center;
+    margin-bottom: 5px;
 }
 
 .rarity {
-
-    background-color: rgba(224, 37, 107, 0.5);
-
-
+    color: #fafff3;
     border-radius: 5px;
+    margin: 2px;
     padding: 2px;
+    font-size: 8px;
+
 }
 
-
-.pokemonType {
-    margin-top: 30px;
-    font-size: 20px;
-
-    margin-bottom: 20px;
+.pokemonType, .pokemonAttack,.pokemonDefense {
+    font-size: 10px;
+    margin-bottom: 5px;
     text-align: center;
 }
 
-.pokemonAttack {
-    margin-top: 30px;
-    font-size: 20px;
-
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.pokemonDefense {
-    margin-top: 30px;
-    font-size: 20px;
-
-    margin-bottom: 20px;
-    text-align: center;
-}
 
 .info-pokemons{
-    background-color: rgba(250, 235, 215, 0.507);
+    background-color: rgba(250, 235, 215, 0.301);
+    
 }
+
+@media (max-width: 768px) {
+    .card {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  
+  
+  
+  
+  

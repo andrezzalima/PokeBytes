@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./TradeMachine.css";
 import returnIcon from "../../../icons/return_icon2.png";
-import LoginService from "../../service/LoginService";
 import PokeBag from "../PokeBag/PokeBag";
 
 /* 
@@ -21,8 +20,8 @@ function TradeMachine(props) {
   const [selectedIdPokemon, setSelectedIdPokemon] = useState(); // Id de controle do input
   const [selectedPokemon, setSelectedPokemon] = useState();
 
-  const idUsuario = "647de2191f8686ad8f72ea51";
-
+  const idUsuario = "647c90dd9ac56ec4413f8f4d";
+  
   useEffect(() => {
     async function getInventario() {
       try {
