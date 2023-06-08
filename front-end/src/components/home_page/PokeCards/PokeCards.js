@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./PokeCards.css";
+import returnIcon from "../../../icons/return_icon2.png"
+import { Link } from "react-router-dom";
 
 function PokeCards(props) {
 
@@ -278,6 +280,18 @@ function PokeCards(props) {
                 </div>
               </div>
             </div>
+            <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+        </div>
           </div>
         ))}
 

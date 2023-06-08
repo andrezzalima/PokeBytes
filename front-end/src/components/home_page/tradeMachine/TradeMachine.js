@@ -4,7 +4,6 @@ import "./TradeMachine.css";
 import returnIcon from "../../../icons/return_icon2.png";
 import PokeBag from "../PokeBag/PokeBag";
 import TradingMachineTheme from "../../../sounds/background_music/trading_machine_theme.mp3"
-import LoginService from "../../service/LoginService";
 
 /* 
 clicar numa div para abrir o inventario do jogador
@@ -24,6 +23,8 @@ function TradeMachine(props) {
   const [selectedIdPokemon, setSelectedIdPokemon] = useState(); // Id de controle do input
   const [selectedPokemon, setSelectedPokemon] = useState();
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const audioRef = useRef(null);
 
   const handleMusicToggle = () => {
@@ -46,56 +47,23 @@ function TradeMachine(props) {
 
   const idUsuario = "647c90dd9ac56ec4413f8f4d";
   
-  useEffect(() => {
-    async function getInventario() {
-      try {
-        const res = await fetch(`/api/user/${idUsuario}/pokebag`);
-        const data = await res.json();
-        setInventario(data.cartas);
-      } catch (error) {
-        console.log("Ocorreu um erro ao atualizar a troca de cartas");
-      }
-    }
-    getInventario();
-  }, []);
+  function abrirInventario(){
+    setIsModalOpen(true);
+  }
 
-  const GetOpcoesDeTroca = () => {
-    if (selectedIdPokemon) {
-      console.log(selectedIdPokemon);
-
-
-
-
-      return (
-        <div>
-          <label for="tradePokemon">Select the Pokemon:</label>
-          <select
-            name="tradePokemon"
-            id="tradePokemon"
-            value={selectedIdPokemon}
-            onChange={handleChange}
-          >
-            {opcoesDeTroca.map((pokemon) => (
-              <option value={pokemon.id}>{pokemon.name}</option>
-            ))}
-          </select>
-
-          <button onClick={refreshList}>refresh</button>
-        </div>
-      );
-    }
-    return <div></div>;
-  };
-
-  const refreshList = () => {
-   
+  const handleCardClick = (cardData) => {
+    // Aqui você tem acesso ao id do card clicado
+    console.log(cardData)
+    const rarity = cardData
+    return rarity
+  
   };
 
   async function getOpcoes(rarity) {
     const res = await fetch(`/api/user/${idUsuario}/card-trade`);
     const corpo = await res.json();
     let opcoesRaridade = corpo[rarity];
-    console.log(opcoesRaridade);
+    console.log('huahuahua', opcoesRaridade);
     if (opcoesRaridade) {
       setOpcoesDeTroca(opcoesRaridade);
     }
@@ -119,6 +87,8 @@ function TradeMachine(props) {
   const toggleRules = () => {
     setShowRules(!showRules);
   };
+
+
 
   return (
     <div>
@@ -186,30 +156,17 @@ function TradeMachine(props) {
         )}
 
 
- <div className="inventario"></div>
- <PokeBag />
-        {/* <div className="content-wrapper">
-         
-         
-          
-          <label for="pokemon">Choose a pokemon to trade:</label>
-          <select
-            name="pokemon"
-            id="pokemon"
-            value={selectedIdPokemon}
-            onChange={handleChange}
-          >
-            {inventario.map((carta) => (
-              <option value={carta.pokemon.id}>{carta.pokemon.label}</option>
-            ))}
-          </select>
-          { {getOpcoesDeTroca()} 
-          <GetOpcoesDeTroca />
+ <div className="inventario" onClick={abrirInventario}>
+    {isModalOpen && (
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <PokeBag onCardClick={handleCardClick} />
+          {console.log(handleCardClick)}
+        </div>
+      </div>
+    )}
 
-          <div>{selectedIdPokemon}</div>
-        </div> */}
-
-
+ </div>
 
         <div className="return-wrapper">
           <div className="return-to-homepage ">
