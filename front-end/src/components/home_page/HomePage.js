@@ -1,6 +1,6 @@
 import "./HomePage.css";
 import "./Icones/tooltip.css";
-import React, { useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from "react-router-dom";
 
 //components
@@ -13,8 +13,33 @@ import pokecoins from "../../icons/pokecoin.png";
 import trademachine from "../../icons/trade-machine.png";
 import pokebag from "../../icons/pokebag.png";
 
+//musica e efeitos sonoros
+import HomepageTheme from "../../sounds/background_music/homepage_theme.mp3";
+
+
+
 function HomePage() {
 
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const handleMusicToggle = () => {
+    const audio = audioRef.current;
+
+    if (!isMusicPlaying) {
+      audio.muted = false; 
+      audio.play();
+    } else {
+      audio.muted = true; 
+    }
+
+    setIsMusicPlaying(!isMusicPlaying);
+  };
+
+  const handleVolumeChange = (event) => {
+    const audio = audioRef.current;
+    audio.volume = event.target.value;
+  };
 
 
 
@@ -65,6 +90,25 @@ function HomePage() {
           <span className="tooltiptext icon">PokéBag</span>
         </div>
       </div>
+
+      <button className='music-toggle' onClick={handleMusicToggle}>
+        {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
+      </button>
+
+      <input
+        className='volume-bar'
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        defaultValue="1"
+        onChange={handleVolumeChange}
+      />
+
+      <audio ref={audioRef} src={HomepageTheme} loop style={{ display: 'none' }}>
+        Your browser does not support the audio element.
+      </audio>
+
     </div>
   );
 }

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./TradeMachine.css";
 import returnIcon from "../../../icons/return_icon2.png";
-import LoginService from "../../service/LoginService";
 import PokeBag from "../PokeBag/PokeBag";
+import TradingMachineTheme from "../../../sounds/background_music/trading_machine_theme.mp3"
+import LoginService from "../../service/LoginService";
 
 /* 
 clicar numa div para abrir o inventario do jogador
@@ -13,13 +14,35 @@ efetivar troca e carta passar pro inventario do jogador e apagar a anterior
 
  */
 
+
+
+
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
-
   const [inventario, setInventario] = useState([]);
   const [opcoesDeTroca, setOpcoesDeTroca] = useState([]);
   const [selectedIdPokemon, setSelectedIdPokemon] = useState(); // Id de controle do input
   const [selectedPokemon, setSelectedPokemon] = useState();
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const handleMusicToggle = () => {
+    const audio = audioRef.current;
+
+    if (!isMusicPlaying) {
+      audio.muted = false; 
+      audio.play();
+    } else {
+      audio.muted = true; 
+    }
+
+    setIsMusicPlaying(!isMusicPlaying);
+  };
+
+  const handleVolumeChange = (event) => {
+    const audio = audioRef.current;
+    audio.volume = event.target.value;
+  };
 
   const idUsuario = "647de2191f8686ad8f72ea51";
 
@@ -39,6 +62,10 @@ function TradeMachine(props) {
   const GetOpcoesDeTroca = () => {
     if (selectedIdPokemon) {
       console.log(selectedIdPokemon);
+
+
+
+
       return (
         <div>
           <label for="tradePokemon">Select the Pokemon:</label>
@@ -97,6 +124,7 @@ function TradeMachine(props) {
     <div>
       <div className="background-tradeMachine">
         <div className="rules" onClick={toggleRules}>
+        
           <span className="rules-text">RULES</span>
         </div>
         {showRules && (
@@ -135,6 +163,25 @@ function TradeMachine(props) {
                 Happy trading, Pokémon trainers!
               </p>
             </div>
+
+    <button className='music-toggle2' onClick={handleMusicToggle}>
+        {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
+      </button>
+
+      <input
+        className='volume-bar'
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        defaultValue="1"
+        onChange={handleVolumeChange}
+      />
+
+      <audio ref={audioRef} src={TradingMachineTheme} loop style={{ display: 'none' }}>
+        Your browser does not support the audio element.
+      </audio>
+
           </div>
         )}
 

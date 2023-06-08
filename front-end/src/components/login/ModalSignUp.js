@@ -44,7 +44,7 @@ function ModalSignUp() {
       <div>
       <motion.button
           initial={{
-            color: "#fff",
+            color: "#FFCB05",
             backgroundColor: "#192653",
             rotateY: "0",
           }}
