@@ -1,19 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import "./profile.css";
 import imagem from "../../images/background.png";
 import returnIcon from "../../icons/return_icon1.png";
+import LoginService from '../service/LoginService';
 
 function Profile() {
-  const [userName, setUserName] = useState('Andrezza');
-  const [email, setEmail] = useState('andrezza@andrezza.com');
-  const [phoneNumber, setPhoneNumber] = useState('912345678');
-  const [dateBirth, setDateBirth] = useState('13/09/1991');
-  const [address, setAddress] = useState('Rua do bytes, 4');
-  const [city, setCity] = useState('Portugal');
+  const [userName, setUserName] = useState();
+  const [email, setEmail] = useState();
+  const [phoneNumber, setPhoneNumber] = useState();
+  const [dateBirth, setDateBirth] = useState();
+  const [address, setAddress] = useState();
+  const [city, setCity] = useState();
   const [upload, setUpload] = useState(false);
   const [photo, setPhoto] = useState(imagem);
   const [editMode, setEditMode] = useState(false);
+  
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const res = await fetch("/api/user/" + LoginService.getIdUsuario());
+        const data = await res.json();
+        console.log(data)
+        if(data){
+          setUserName(data.username)
+          setEmail(data.email)
+          setPhoneNumber(data.phoneNumber)
+          setDateBirth(data.birthday)
+          setAddress(data.address)
+          setCity(data.city)
+        }
+      } catch (error) {
+        console.log("Ocorreu um erro ao obter as cartas:", error);
+      }
+    }
+
+
+    fetchData();
+  }, []);
+
+  
 
   const handleNameChange = (e) => {
     setUserName(e.target.value);
@@ -51,13 +78,15 @@ function Profile() {
   const handleSaveButtonClick = () => {
     const profileData = {
       username: userName,
-      email,
-      phoneNumber,
-      birthday: dateBirth,
+      email: email,
+      phoneNumber: phoneNumber,
+      birthday: dateBirth, 
+      city : city,
+      address: address
       // Adicione aqui outras propriedades que deseja enviar para o servidor
     };
   
-    fetch("/api/profile/edit/_Id",{
+    fetch("/api/profile/edit/" + LoginService.getIdUsuario(), {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

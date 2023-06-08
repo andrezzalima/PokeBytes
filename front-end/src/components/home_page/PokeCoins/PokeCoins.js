@@ -3,6 +3,7 @@ import pokecoinBasic from "../../../icons/pokecoins0.png";
 import pokecoInter from "../../../icons/pokecoins1.png";
 import pokecoinAvanc from "../../../icons/pokecoins2.png";
 import { Link } from "react-router-dom";
+import LoginService from "../../service/LoginService";
 
 
 function PokeCoins(props) {
@@ -23,7 +24,7 @@ function PokeCoins(props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id: "647de2191f8686ad8f72ea51",
+            id: LoginService.getIdUsuario(),
             coinsAdded: coinsAdded,
           }),
         });

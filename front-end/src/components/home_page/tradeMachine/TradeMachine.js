@@ -21,7 +21,7 @@ function TradeMachine(props) {
   const [selectedIdPokemon, setSelectedIdPokemon] = useState(); // Id de controle do input
   const [selectedPokemon, setSelectedPokemon] = useState();
 
-  const idUsuario = "647de2191f8686ad8f72ea51";
+  const idUsuario = LoginService.getIdUsuario();
 
   useEffect(() => {
     async function getInventario() {

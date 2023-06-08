@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./PokeBag.css";
+import LoginService from "../../service/LoginService";
 
 
 function PokeBag(props) {
@@ -8,7 +9,7 @@ function PokeBag(props) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch("/api/user/647de2191f8686ad8f72ea51/pokebag");
+        const res = await fetch("/api/user/"+ LoginService.getIdUsuario() + "/pokebag");
         const data = await res.json();
         setCartas(data.cartas);
         console.log(data.cartas)
