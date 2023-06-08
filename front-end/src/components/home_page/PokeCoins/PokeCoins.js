@@ -5,6 +5,7 @@ import pokecoinAvanc from "../../../icons/pokecoins2.png";
 import { Link } from "react-router-dom";
 import LoginService from "../../service/LoginService";
 
+const idUsuario = "647c90dd9ac56ec4413f8f4d"
 
 function PokeCoins(props) {
     async function buyCoins(ref) {
@@ -24,7 +25,9 @@ function PokeCoins(props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
+
             id: LoginService.getIdUsuario(),
+
             coinsAdded: coinsAdded,
           }),
         });
@@ -57,7 +60,7 @@ function PokeCoins(props) {
               ></img>
             </div>
           </div>    
-          <p class="pricing-note"><b>300+300 PokeCoins</b></p>
+          <p class="pricing-note"><b>300 PokeCoins</b></p>
           <p class="pricing-note">on first purchase</p>
           <Link to = "/homePage/pokecoins/payment"><button className="buy-pokecoin" onClick={() => buyCoins('a')}>Buy</button></Link>
         </div>
@@ -82,7 +85,7 @@ function PokeCoins(props) {
               ></img>
             </div>
           </div>    
-          <p class="pricing-note"><b>680+680 PokeCoins</b></p>
+          <p class="pricing-note"><b>680 PokeCoins</b></p>
           <p class="pricing-note">on first purchase</p>
           <Link to = "/homePage/pokecoins/payment"><button className="buy-pokecoin" onClick={() => buyCoins('b')}>Buy</button></Link>
         </div>
@@ -107,7 +110,7 @@ function PokeCoins(props) {
               ></img>
             </div>
           </div>    
-          <p class="pricing-note"><b>1280+1280 PokeCoins</b></p>
+          <p class="pricing-note"><b>1280 PokeCoins</b></p>
           <p class="pricing-note">on first purchase</p>
           <Link to = "/homePage/pokecoins/payment"><button className="buy-pokecoin" onClick={()=>buyCoins('c')}>Buy</button></Link>
         </div>

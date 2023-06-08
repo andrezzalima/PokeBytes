@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./PokeBag.css";
-import LoginService from "../../service/LoginService";
+
+import { Link } from "react-router-dom";
+import returnIcon from "../../../icons/return_icon2.png"
 
 
-function PokeBag(props) {
+
+
+function PokeBag({ onCardClick }) {
   const [cartas, setCartas] = useState([]);
 
+  const idUsuario = "647c90dd9ac56ec4413f8f4d"
+  
   useEffect(() => {
     async function fetchData() {
       try {
+
         const res = await fetch("/api/user/"+ LoginService.getIdUsuario() + "/pokebag");
         const data = await res.json();
         setCartas(data.cartas);
@@ -97,6 +104,8 @@ function PokeBag(props) {
       backgroundImage = 'Grass.png';
     } else if (type === 'Ice') {
       backgroundImage = 'Ice.png';
+    } else if (type === 'Fairy') {
+      backgroundImage = 'Fairy.png';
     } else if (type === 'Fighting') {
       backgroundImage = 'Fighting.png';
     } else if (type === 'Poison') {
@@ -143,6 +152,8 @@ function PokeBag(props) {
       backgroundImage = 'Grass.png';
     } else if (type === 'Ice') {
       backgroundImage = 'Ice.png';
+    } else if (type === 'Fairy') {
+      backgroundImage = 'Fairy.png';
     } else if (type === 'Fighting') {
       backgroundImage = 'Fighting.png';
     } else if (type === 'Poison') {
@@ -165,6 +176,7 @@ function PokeBag(props) {
       backgroundImage = null;
     }
 
+
     if (backgroundImage) {
       return imagePath + backgroundImage;
     } else {
@@ -172,22 +184,57 @@ function PokeBag(props) {
     }
   }
 
+
+  function getColorRarity(rarity) {
+    let backgroundColor;
+    let color;
+  
+    if (rarity === 'very_common') {
+      backgroundColor = '#804320';
+      color = '#fafff3';
+    } else if (rarity === 'common') {
+      backgroundColor = '#32D61F';
+    } else if (rarity === 'uncommon') {
+      backgroundColor = '#008B8B';
+    } else if (rarity === 'rare') {
+      backgroundColor = '#309BF0';
+    } else if (rarity === 'very_rare') {
+      backgroundColor = '#A78F72';
+    } else if (rarity === 'epic') {
+      backgroundColor = '#FF00FF';
+    } else if (rarity === 'legendary') {
+      backgroundColor = '#FFA500';
+    } else {
+      backgroundColor = '#000';
+    }
+  
+    if (backgroundColor) {
+      return { backgroundColor, color };
+    } else {
+      return null;
+    }
+  }  
+
+  const handleCardClick = (cardData) => {
+    onCardClick(cardData);
+  };
+
   return (
 
     <div className="background-pokeBag">
 
-               
-
-      <div className="container">
+      <div className="container-pokebag">
         {cartas.map((carta, index) => (
-          <div className="carta-exterior" key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
+          <div className="carta-exterior" onClick={() => handleCardClick(carta.pokemon.rarity)} key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
             <div className="carta-interior">
               <div className="card-upper-info">
+
                 <div className="id-label-hp-type">
-                  <div className="id-and-label">
+              <div className="id-and-label">
                     <p className="pokemonID"><b>#{carta.pokemon.id}</b></p>
                     <p className="pokemonLabel">{carta.pokemon.label}</p>
                   </div>
+                  
                   <div className="hp-and-type">
                     <p className="pokemonHP">{carta.pokemon.base.HP}HP</p>
                     <img className="grassType w-6 h-6"  src={getIconTypes(carta.pokemon.type[0])} ></img>
@@ -213,7 +260,7 @@ function PokeBag(props) {
 
                   <div className="info-pokemons">
                   <p className="pokemonRarity">
-                    <b>Rarity:</b> <span className="rarity border-dotted border-2">{getFormattedRarity(carta.pokemon.rarity)}</span>
+                    <b>Rarity:</b> <span style = {getColorRarity(carta.pokemon.rarity)} className="rarity border-dotted border-2">{getFormattedRarity(carta.pokemon.rarity)}</span>
                   </p>
                   <p className="pokemonType">
                     <b>Type:</b> {carta.pokemon.type.join(", ")}</p>
@@ -230,6 +277,18 @@ function PokeBag(props) {
           </div>
         ))}
       </div>
+      <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+        </div>
     </div>
   );
 };

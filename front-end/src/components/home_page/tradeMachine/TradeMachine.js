@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./TradeMachine.css";
 import returnIcon from "../../../icons/return_icon2.png";
-import LoginService from "../../service/LoginService";
 import PokeBag from "../PokeBag/PokeBag";
+import TradingMachineTheme from "../../../sounds/background_music/trading_machine_theme.mp3"
 
 /* 
 clicar numa div para abrir o inventario do jogador
@@ -13,62 +13,57 @@ efetivar troca e carta passar pro inventario do jogador e apagar a anterior
 
  */
 
+
+
+
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
-
   const [inventario, setInventario] = useState([]);
   const [opcoesDeTroca, setOpcoesDeTroca] = useState([]);
   const [selectedIdPokemon, setSelectedIdPokemon] = useState(); // Id de controle do input
   const [selectedPokemon, setSelectedPokemon] = useState();
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const idUsuario = LoginService.getIdUsuario();
+  const audioRef = useRef(null);
 
-  useEffect(() => {
-    async function getInventario() {
-      try {
-        const res = await fetch(`/api/user/${idUsuario}/pokebag`);
-        const data = await res.json();
-        setInventario(data.cartas);
-      } catch (error) {
-        console.log("Ocorreu um erro ao atualizar a troca de cartas");
-      }
+  const handleMusicToggle = () => {
+    const audio = audioRef.current;
+
+    if (!isMusicPlaying) {
+      audio.muted = false; 
+      audio.play();
+    } else {
+      audio.muted = true; 
     }
-    getInventario();
-  }, []);
 
-  const GetOpcoesDeTroca = () => {
-    if (selectedIdPokemon) {
-      console.log(selectedIdPokemon);
-      return (
-        <div>
-          <label for="tradePokemon">Select the Pokemon:</label>
-          <select
-            name="tradePokemon"
-            id="tradePokemon"
-            value={selectedIdPokemon}
-            onChange={handleChange}
-          >
-            {opcoesDeTroca.map((pokemon) => (
-              <option value={pokemon.id}>{pokemon.name}</option>
-            ))}
-          </select>
-
-          <button onClick={refreshList}>refresh</button>
-        </div>
-      );
-    }
-    return <div></div>;
+    setIsMusicPlaying(!isMusicPlaying);
   };
 
-  const refreshList = () => {
-   
+  const handleVolumeChange = (event) => {
+    const audio = audioRef.current;
+    audio.volume = event.target.value;
+  };
+
+  const idUsuario = "647c90dd9ac56ec4413f8f4d";
+  
+  function abrirInventario(){
+    setIsModalOpen(true);
+  }
+
+  const handleCardClick = (cardData) => {
+    // Aqui você tem acesso ao id do card clicado
+    console.log(cardData)
+    const rarity = cardData
+    return rarity
+  
   };
 
   async function getOpcoes(rarity) {
     const res = await fetch(`/api/user/${idUsuario}/card-trade`);
     const corpo = await res.json();
     let opcoesRaridade = corpo[rarity];
-    console.log(opcoesRaridade);
+    console.log('huahuahua', opcoesRaridade);
     if (opcoesRaridade) {
       setOpcoesDeTroca(opcoesRaridade);
     }
@@ -93,10 +88,13 @@ function TradeMachine(props) {
     setShowRules(!showRules);
   };
 
+
+
   return (
     <div>
       <div className="background-tradeMachine">
         <div className="rules" onClick={toggleRules}>
+        
           <span className="rules-text">RULES</span>
         </div>
         {showRules && (
@@ -135,34 +133,40 @@ function TradeMachine(props) {
                 Happy trading, Pokémon trainers!
               </p>
             </div>
+
+    <button className='music-toggle2' onClick={handleMusicToggle}>
+        {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
+      </button>
+
+      <input
+        className='volume-bar'
+        type="range"
+        min="0"
+        max="1"
+        step="0.1"
+        defaultValue="1"
+        onChange={handleVolumeChange}
+      />
+
+      <audio ref={audioRef} src={TradingMachineTheme} loop style={{ display: 'none' }}>
+        Your browser does not support the audio element.
+      </audio>
+
           </div>
         )}
 
 
- <div className="inventario"></div>
- <PokeBag />
-        {/* <div className="content-wrapper">
-         
-         
-          
-          <label for="pokemon">Choose a pokemon to trade:</label>
-          <select
-            name="pokemon"
-            id="pokemon"
-            value={selectedIdPokemon}
-            onChange={handleChange}
-          >
-            {inventario.map((carta) => (
-              <option value={carta.pokemon.id}>{carta.pokemon.label}</option>
-            ))}
-          </select>
-          { {getOpcoesDeTroca()} 
-          <GetOpcoesDeTroca />
+ <div className="inventario" onClick={abrirInventario}>
+    {isModalOpen && (
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <PokeBag onCardClick={handleCardClick} />
+          {console.log(handleCardClick)}
+        </div>
+      </div>
+    )}
 
-          <div>{selectedIdPokemon}</div>
-        </div> */}
-
-
+ </div>
 
         <div className="return-wrapper">
           <div className="return-to-homepage ">

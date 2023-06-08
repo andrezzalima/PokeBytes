@@ -1,4 +1,3 @@
-
 class LoginService{
     static idUsuario;
     static idUsuarioFixo = "6481fa5a0d7eb87ed1836929";
@@ -14,8 +13,9 @@ class LoginService{
               username: username,
               password: password
             }),
-          }).then(res => res.json).then(objWithoutPromise => objWithoutPromise) 
-          console.log(res.id)
+
+          }).then(res => res.json()).then(objWithoutPromise => objWithoutPromise)
+
           this.idUsuario = res.id
           return true;
     }
