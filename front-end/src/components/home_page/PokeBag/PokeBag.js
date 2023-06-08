@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./PokeBag.css";
+
 import { Link } from "react-router-dom";
 import returnIcon from "../../../icons/return_icon2.png"
+
 
 
 
@@ -13,7 +15,8 @@ function PokeBag({ onCardClick }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`/api/user/${idUsuario}/pokebag`);
+
+        const res = await fetch("/api/user/"+ LoginService.getIdUsuario() + "/pokebag");
         const data = await res.json();
         setCartas(data.cartas);
         console.log(data.cartas)

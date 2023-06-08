@@ -58,6 +58,7 @@ app.post("/api/user", async(req, res) => {
         }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
   })
 
@@ -79,8 +80,23 @@ app.patch("/api/user", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(400).json({message: err})
   }
 });
+
+//ACESSAR DADOS DO USUARIO
+app.get("/api/user/:id", async (req, res) => {
+    try{
+       const collectionUser = await getMongoCollection("user");
+        const userFound = await collectionUser.findOne({
+        _id: new ObjectId(req.params.id)
+    }) 
+        res.status(200).json(userFound)
+    } catch (err) {
+    console.log(err);
+    res.status(400).json({message: err})
+  }
+})
 
 //COMPRAR POKECOINS
 
@@ -113,6 +129,7 @@ app.patch("/api/purchase/coins", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(400).json({message: err})
   }
 });
 
@@ -159,6 +176,7 @@ app.get("/api/user/:id/pokebag", async (req, res) => {
 
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 });
 
@@ -235,6 +253,7 @@ app.post("/api/purchases/packs", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(400).json({message: err})
   }
 });
 
@@ -244,6 +263,7 @@ app.get("/api/pokemons", async (req, res) => {
         res.status(200).json(getPokemons())
     } catch (err){
         console.log(err)
+        res.status(400).json({message: err})
     }
 })
 
@@ -271,13 +291,13 @@ app.get("/api/user/:id/card-trade/" , async (req, res) => {
                     let pokemonsIds = tradeFounded[rarity];
                     tradeFounded[rarity] =getPokemonsByIds(pokemonsIds);
                 }    
-                res.status(200).json(tradeFounded)
-                             
+                res.status(200).json(tradeFounded)                             
 
             }
         }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 })
 
@@ -328,6 +348,7 @@ app.get("/api/user/:id/card-trade-refresh/:rarity", async (req, res) => {  // /:
            }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 })
 
@@ -358,6 +379,7 @@ app.patch("/api/card-trades", async (req, res) => {
         }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 })
 
@@ -389,6 +411,12 @@ app.patch("/api/profile/edit/:id", async (req, res) => {
             if (isPhoneNumberValid(req)) {
                 updateUser.phoneNumber = req.body.phoneNumber;
             }
+            if(req.body.city){
+                updateUser.city = req.body.city;
+            }
+            if(req.body.address){
+                updateUser.address = req.body.address;
+            }
             await collectionUser.updateOne(
                 { _id: new ObjectId(req.params.id) },
                 { $set: updateUser }
@@ -400,6 +428,7 @@ app.patch("/api/profile/edit/:id", async (req, res) => {
     
 } catch (err) {
     console.log(err)
+    res.status(400).json({message: err})
 }
 })
 
@@ -440,6 +469,7 @@ app.delete("/api/profile/delete/:id", async (req, res) => {
         }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 });
 
@@ -452,7 +482,7 @@ function sameDay(d1, d2) {
   }
 
 function isPhoneNumberValid(req) {
-    return req.body.phoneNumber && typeof req.body.phoneNumber === 'string' && isValidPhoneNumber(req.body.phoneNumber)
+    return req.body.phoneNumber  && isValidPhoneNumber(req.body.phoneNumber)
 }
 
 function isEmailValid(req) {

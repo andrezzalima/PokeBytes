@@ -25,7 +25,9 @@ function PokeCoins(props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id: idUsuario,
+
+            id: LoginService.getIdUsuario(),
+
             coinsAdded: coinsAdded,
           }),
         });
