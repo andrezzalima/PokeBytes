@@ -27,7 +27,7 @@ function Login(props) {
   };
 
   return (
-    <div className="background">
+    <div className="background-login">
       <div></div>
 
       <div className="buttons">

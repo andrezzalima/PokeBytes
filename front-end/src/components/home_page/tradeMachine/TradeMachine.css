@@ -40,7 +40,6 @@ body {
   background-image: url(../../../icons/pokeball_background.png);
   background-repeat: no-repeat;
   background-position: center;
-
   border: 10px solid #192653;
   padding: 10px;
   position: absolute;
@@ -132,9 +131,28 @@ body {
 }
 
 .inventario{
-  background-color: red;
-  width:  50px;
-  height: 70px;
-  align-items: end;
+
+  width:  56px;
+  height: 110px;
+  position: absolute;
+  left: 40%;
+  top: 70%
+
 }
 
+.modal-overlay{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 180%;
+  top: 1px;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-content{
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+
+}
