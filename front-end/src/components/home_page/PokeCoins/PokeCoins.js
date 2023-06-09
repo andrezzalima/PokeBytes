@@ -11,7 +11,7 @@ import returnIcon from "../../../icons/return_icon2.png";
 
 import LoginService from "../../service/LoginService";
 
-const idUsuario = "647c90dd9ac56ec4413f8f4d"
+const idUsuario = "647de2191f8686ad8f72ea51"
 
 function PokeCoins(props) {
     

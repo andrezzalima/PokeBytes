@@ -16,7 +16,6 @@ import VolumeIcon from "../../../icons/sound_icon.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
   const [opcoesDeTroca, setOpcoesDeTroca] = useState([]);
@@ -53,11 +52,10 @@ function TradeMachine(props) {
   }
 
   function abrirOpcoesTroca() {
-    console.log("ABRI");
     setModalOpcoesTroca(true);
   }
   function fecharOpcoesTroca() {
-    console.log("FECHEI");
+
     setModalOpcoesTroca(false);
   }
 
@@ -289,249 +287,246 @@ function TradeMachine(props) {
   }
 
   return (
-
-
-    <div className="background-tradeMachine">
-      <div className="selectCards">
-        <div className="cartaSelecionada">
-          {selectedPokemon && (
-            <div
-              className="carta-exterior"
-              style={{
-                backgroundImage: `url(${getTypeBackgroundGradient(
-                  selectedPokemon.pokemon.type[0]
-                )})`,
-              }}
-            >
-              <div className="carta-interior">
-                <div className="card-upper-info">
-                  <div className="id-label-hp-type">
-                    <div className="id-and-label">
-                      <p className="pokemonID">
-                        <b>#{selectedPokemon.pokemon.id}</b>
-                      </p>
-                      <p className="pokemonLabel">
-                        {selectedPokemon.pokemon.label}
-                      </p>
-                    </div>
-                    <div className="hp-and-type">
-                      <p className="pokemonHP">
-                        {selectedPokemon.pokemon.base.HP}HP
-                      </p>
-                      <img
-                        className="grassType w-6 h-6"
-                        src={getIconTypes(selectedPokemon.pokemon.type[0])}
-                      ></img>
-                    </div>
-                  </div>
-
-                  <div className="image-wrapper">
-                    <div className="pokemon-container">
-                      <div
-                        className="image-inner-wrapper"
-                        style={{
-                          backgroundImage: `url(${getTypeBackgroundImage(
-                            selectedPokemon.pokemon.type[0]
-                          )})`,
-                        }}
-                      >
+    <>
+      <div className="background-tradeMachine">
+        <div className="selectCards">
+          <div className="cartaSelecionada">
+            {selectedPokemon && (
+              <div
+                className="carta-exterior"
+                style={{
+                  backgroundImage: `url(${getTypeBackgroundGradient(
+                    selectedPokemon.pokemon.type[0]
+                  )})`,
+                }}
+              >
+                <div className="carta-interior">
+                  <div className="card-upper-info">
+                    <div className="id-label-hp-type">
+                      <div className="id-and-label">
+                        <p className="pokemonID">
+                          <b>#{selectedPokemon.pokemon.id}</b>
+                        </p>
+                        <p className="pokemonLabel">
+                          {selectedPokemon.pokemon.label}
+                        </p>
+                      </div>
+                      <div className="hp-and-type">
+                        <p className="pokemonHP">
+                          {selectedPokemon.pokemon.base.HP}HP
+                        </p>
                         <img
-                          className="pokemon-field"
-                          src={`/images/pokemons/${selectedPokemon.pokemon.id.toLocaleString(
-                            "en-US",
-                            { minimumIntegerDigits: 3 }
-                          )}.png`}
-                          alt={selectedPokemon.pokemon.label}
-                        />
+                          className="grassType w-6 h-6"
+                          src={getIconTypes(selectedPokemon.pokemon.type[0])}
+                        ></img>
                       </div>
                     </div>
-                    <div className="card-lower-info"></div>
 
-                    <div className="info-pokemons">
-                      <p className="pokemonRarity">
-                        <b>Rarity:</b>{" "}
-                        <span className="rarity border-dotted border-2">
-                          {getFormattedRarity(selectedPokemon.pokemon.rarity)}
-                        </span>
-                      </p>
-                      <p className="pokemonType">
-                        <b>Type:</b> {selectedPokemon.pokemon.type.join(", ")}
-                      </p>
-                      <p className="pokemonAttack">
-                        <b>Attack:</b> {selectedPokemon.pokemon.base.Attack}
-                      </p>
-                      <p className="pokemonDefense">
-                        <b>Defense:</b> {selectedPokemon.pokemon.base.Defense}
-                      </p>
+                    <div className="image-wrapper">
+                      <div className="pokemon-container">
+                        <div
+                          className="image-inner-wrapper"
+                          style={{
+                            backgroundImage: `url(${getTypeBackgroundImage(
+                              selectedPokemon.pokemon.type[0]
+                            )})`,
+                          }}
+                        >
+                          <img
+                            className="pokemon-field"
+                            src={`/images/pokemons/${selectedPokemon.pokemon.id.toLocaleString(
+                              "en-US",
+                              { minimumIntegerDigits: 3 }
+                            )}.png`}
+                            alt={selectedPokemon.pokemon.label}
+                          />
+                        </div>
+                      </div>
+                      <div className="card-lower-info"></div>
+
+                      <div className="info-pokemons">
+                        <p className="pokemonRarity">
+                          <b>Rarity:</b>{" "}
+                          <span className="rarity border-dotted border-2">
+                            {getFormattedRarity(selectedPokemon.pokemon.rarity)}
+                          </span>
+                        </p>
+                        <p className="pokemonType">
+                          <b>Type:</b> {selectedPokemon.pokemon.type.join(", ")}
+                        </p>
+                        <p className="pokemonAttack">
+                          <b>Attack:</b> {selectedPokemon.pokemon.base.Attack}
+                        </p>
+                        <p className="pokemonDefense">
+                          <b>Defense:</b> {selectedPokemon.pokemon.base.Defense}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
 
-        <div className="cartaTrocaSelecionada">
-          {selectTradedPokemon && (
-            <div
-              className="carta-exterior"
-              style={{
-                backgroundImage: `url(${getTypeBackgroundGradient(
-                  selectTradedPokemon.type[0]
-                )})`,
-              }}
-            >
-              <div className="carta-interior">
-                <div className="card-upper-info">
-                  <div className="id-label-hp-type">
-                    <div className="id-and-label">
-                      <p className="pokemonID">
-                        <b>#{selectTradedPokemon.id}</b>
-                      </p>
-                      <p className="pokemonLabel">
-                        {selectTradedPokemon.label}
-                      </p>
-                    </div>
-                    <div className="hp-and-type">
-                      <p className="pokemonHP">
-                        {selectTradedPokemon.base.HP}HP
-                      </p>
-                      <img
-                        className="grassType w-6 h-6"
-                        src={getIconTypes(selectTradedPokemon.type[0])}
-                      ></img>
-                    </div>
-                  </div>
-
-                  <div className="image-wrapper">
-                    <div className="pokemon-container">
-                      <div
-                        className="image-inner-wrapper"
-                        style={{
-                          backgroundImage: `url(${getTypeBackgroundImage(
-                            selectTradedPokemon.type[0]
-                          )})`,
-                        }}
-                      >
+          <div className="cartaTrocaSelecionada">
+            {selectTradedPokemon && (
+              <div
+                className="carta-exterior"
+                style={{
+                  backgroundImage: `url(${getTypeBackgroundGradient(
+                    selectTradedPokemon.type[0]
+                  )})`,
+                }}
+              >
+                <div className="carta-interior">
+                  <div className="card-upper-info">
+                    <div className="id-label-hp-type">
+                      <div className="id-and-label">
+                        <p className="pokemonID">
+                          <b>#{selectTradedPokemon.id}</b>
+                        </p>
+                        <p className="pokemonLabel">
+                          {selectTradedPokemon.label}
+                        </p>
+                      </div>
+                      <div className="hp-and-type">
+                        <p className="pokemonHP">
+                          {selectTradedPokemon.base.HP}HP
+                        </p>
                         <img
-                          className="pokemon-field"
-                          src={`/images/pokemons/${selectTradedPokemon.id.toLocaleString(
-                            "en-US",
-                            { minimumIntegerDigits: 3 }
-                          )}.png`}
-                          alt={selectTradedPokemon.label}
-                        />
+                          className="grassType w-6 h-6"
+                          src={getIconTypes(selectTradedPokemon.type[0])}
+                        ></img>
                       </div>
                     </div>
-                    <div className="card-lower-info"></div>
 
-                    <div className="info-pokemons">
-                      <p className="pokemonRarity">
-                        <b>Rarity:</b>{" "}
-                        <span className="rarity border-dotted border-2">
-                          {getFormattedRarity(selectTradedPokemon.rarity)}
-                        </span>
-                      </p>
-                      <p className="pokemonType">
-                        <b>Type:</b> {selectTradedPokemon.type.join(", ")}
-                      </p>
-                      <p className="pokemonAttack">
-                        <b>Attack:</b> {selectTradedPokemon.base.Attack}
-                      </p>
-                      <p className="pokemonDefense">
-                        <b>Defense:</b> {selectTradedPokemon.base.Defense}
-                      </p>
+                    <div className="image-wrapper">
+                      <div className="pokemon-container">
+                        <div
+                          className="image-inner-wrapper"
+                          style={{
+                            backgroundImage: `url(${getTypeBackgroundImage(
+                              selectTradedPokemon.type[0]
+                            )})`,
+                          }}
+                        >
+                          <img
+                            className="pokemon-field"
+                            src={`/images/pokemons/${selectTradedPokemon.id.toLocaleString(
+                              "en-US",
+                              { minimumIntegerDigits: 3 }
+                            )}.png`}
+                            alt={selectTradedPokemon.label}
+                          />
+                        </div>
+                      </div>
+                      <div className="card-lower-info"></div>
+
+                      <div className="info-pokemons">
+                        <p className="pokemonRarity">
+                          <b>Rarity:</b>{" "}
+                          <span className="rarity border-dotted border-2">
+                            {getFormattedRarity(selectTradedPokemon.rarity)}
+                          </span>
+                        </p>
+                        <p className="pokemonType">
+                          <b>Type:</b> {selectTradedPokemon.type.join(", ")}
+                        </p>
+                        <p className="pokemonAttack">
+                          <b>Attack:</b> {selectTradedPokemon.base.Attack}
+                        </p>
+                        <p className="pokemonDefense">
+                          <b>Defense:</b> {selectTradedPokemon.base.Defense}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className="efetivarTroca" onClick={handleChange}></div>
-
-      <div className="rules" onClick={toggleRules}>
-        <span className="rules-text">RULES</span>
-      </div>
-      {showRules && (
-        <div className="rules-content-box">
-          <div className="rules-content">
-            <div className="bg-image"></div>
-            <p>
-              <span className="rules-title">
-                It's time to trade Pokémon cards, trainer! Prepare for some
-                exciting swaps!
-              </span>{" "}
-              <br />
-              <br />
-              Remember, you can only trade cards that share the same rarity
-              type, which is like a Pokémon's uniqueness level! <br />
-              <br />
-              The available rarities for trading are:{" "}
-              <span className="very-common">very common</span>,{" "}
-              <span className="common">common</span>,{" "}
-              <span className="uncommon">uncommon</span>, and{" "}
-              <span className="rare">rare</span>. Let's keep it fair and fun!{" "}
-              <br />
-              <br />
-              Sorry, legendary trainers! Pokémon cards beyond rare (like{" "}
-              <span className="very-rare">very rare</span>,{" "}
-              <span className="epic">epic</span>, and{" "}
-              <span className="legendary">legendary</span>) are off-limits for
-              trading. They're just too precious! <br />
-              <br />
-              Your trusty program buddy will help you find the perfect trading
-              partner based on the rarity you desire. Let the trading adventures
-              begin! <br />
-              <br />
-              These rules aim to capture the spirit of Pokémon, creating an
-              engaging and playful atmosphere. <br />
-              <br />
-              Happy trading, Pokémon trainers!
-            </p>
+            )}
           </div>
         </div>
-      )}
 
+        <div className="efetivarTroca" onClick={handleChange}></div>
 
-      <div className="return-wrapper">
-        <div className="return-to-homepage ">
-          <Link to="/homePage">
-            {" "}
-            <img
-              src={returnIcon}
-              className="return-icon"
-              alt="Return to Homepage"
-            />{" "}
-          </Link>
+        <div className="rules" onClick={toggleRules}>
+          <span className="rules-text">RULES</span>
         </div>
-      </div>
+        {showRules && (
+          <div className="rules-content-box">
+            <div className="rules-content">
+              <div className="bg-image"></div>
+              <p>
+                <span className="rules-title">
+                  It's time to trade Pokémon cards, trainer! Prepare for some
+                  exciting swaps!
+                </span>{" "}
+                <br />
+                <br />
+                Remember, you can only trade cards that share the same rarity
+                type, which is like a Pokémon's uniqueness level! <br />
+                <br />
+                The available rarities for trading are:{" "}
+                <span className="very-common">very common</span>,{" "}
+                <span className="common">common</span>,{" "}
+                <span className="uncommon">uncommon</span>, and{" "}
+                <span className="rare">rare</span>. Let's keep it fair and fun!{" "}
+                <br />
+                <br />
+                Sorry, legendary trainers! Pokémon cards beyond rare (like{" "}
+                <span className="very-rare">very rare</span>,{" "}
+                <span className="epic">epic</span>, and{" "}
+                <span className="legendary">legendary</span>) are off-limits for
+                trading. They're just too precious! <br />
+                <br />
+                Your trusty program buddy will help you find the perfect trading
+                partner based on the rarity you desire. Let the trading
+                adventures begin! <br />
+                <br />
+                These rules aim to capture the spirit of Pokémon, creating an
+                engaging and playful atmosphere. <br />
+                <br />
+                Happy trading, Pokémon trainers!
+              </p>
+            </div>
+          </div>
+        )}
 
-      <button className="music-toggle" onClick={handleMusicToggle}>
-        {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
-      </button>
-
-      <img
-        src={VolumeIcon}
-        alt="Volume Icon"
-        className={`volume-icon ${isVolumeBarVisible ? "active" : ""}`}
-        onClick={handleVolumeIconClick}
-      />
-
-  
-      <audio ref={audioRef} src={TradingMachineTheme} loop style={{ display: 'none' }}>
-
-        Your browser does not support the audio element.
-      </audio>
-
-      <div className="tm-background">
-        <div className="inventario" onClick={abrirInventario}>
-
-          {/* Rest of the inventory content */}
+        <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
         </div>
-  
+
+        
+
+        <img
+          src={VolumeIcon}
+          alt="Volume Icon"
+          className={`volume-icon ${isVolumeBarVisible ? "active" : ""}`}
+          onClick={handleVolumeIconClick}
+        />
+
+        <audio
+          ref={audioRef}
+          src={TradingMachineTheme}
+          loop
+          style={{ display: "none" }}
+        >
+          Your browser does not support the audio element.
+        </audio>
+
+        <div className="tm-background">
+          <div className="inventario" onClick={abrirInventario}>
+            
+          
 
           {modalInventario && (
             <div className="modal-overlay">
@@ -540,7 +535,7 @@ function TradeMachine(props) {
               </div>
             </div>
           )}
-        </div>
+        </div></div>
 
         <div>
           <div className="opcoesTroca" onClick={() => abrirOpcoesTroca()}>
@@ -629,7 +624,6 @@ function TradeMachine(props) {
           </div>
         </div>
 
-
         <div className="return-wrapper">
           <div className="return-to-homepage">
             <Link to="/homePage">
@@ -655,13 +649,8 @@ function TradeMachine(props) {
         pauseOnHover
         theme="light"
       />
-    </div>
+    </>
   );
+}
 
-  
-
-          }
-
-  export  default TradeMachine;
-
-
+export default TradeMachine;

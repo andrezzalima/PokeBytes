@@ -62,7 +62,7 @@ function PokeBag({ onCardClick }) {
 
 
     fetchData();
-  }, []); */
+  }, []); 
 
 
   const getFormattedRarity = (rarity) => {
