@@ -1,11 +1,4 @@
 
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import "./TradeMachine.css";
-import returnIcon from "../../../icons/return_icon2.png";
-import PokeBag from "../PokeBag/PokeBag";
-import TradingMachineTheme from "../../../sounds/background_music/trading_machine_theme.mp3"
-
 
 /* 
 clicar numa div para abrir o inventario do jogador
@@ -23,8 +16,7 @@ import "./TradeMachine.css";
 import returnIcon from "../../../icons/return_icon2.png";
 import PokeBag from "../PokeBag/PokeBag";
 import TradingMachineTheme from "../../../sounds/background_music/trading_machine_theme.mp3";
-import VolumeIcon from "../../../icons/sound_icon.png"
-
+import VolumeIcon from "../../../icons/sound_icon.png";
 
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
@@ -34,44 +26,42 @@ function TradeMachine(props) {
   const [selectedPokemon, setSelectedPokemon] = useState();
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
   const [isVolumeBarVisible, setIsVolumeBarVisible] = useState(false);
-
-
   const audioRef = useRef(null);
 
   const handleMusicToggle = () => {
     const audio = audioRef.current;
-
-    if (audio && audio.paused) {
-      audio.play();
-    } else if (audio && !audio.paused) {
-      audio.pause();
+  
+    if (audio) {
+      audio.muted = !audio.muted;
+      setIsMusicPlaying(!audio.muted);
     }
 
     setIsMusicPlaying(!isMusicPlaying);
   };
 
-  const handleVolumeChange = (event) => {
-    const audio = audioRef.current;
-    audio.volume = event.target.value;
-  };
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      const audio = audioRef.current;
+      if (audio && audio.paused) {
+        audio.play();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const idUsuario = "647c90dd9ac56ec4413f8f4d";
 
-  
-  function abrirInventario(){
-
+  function abrirInventario() {
     setIsModalOpen(true);
   }
 
   const handleCardClick = (cardData) => {
-
     // Aqui você tem acesso ao id do card clicado
-    console.log(cardData)
-    const rarity = cardData
-    return rarity
-
+    console.log(cardData);
+    const rarity = cardData;
+    return rarity;
   };
 
   async function getOpcoes(rarity) {
@@ -101,159 +91,79 @@ function TradeMachine(props) {
     setShowRules(!showRules);
   };
 
-
-  const handleVolumeIconClick = () => {
-    setIsVolumeBarVisible(!isVolumeBarVisible);
-  };
-
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    if (audio && audio.paused) {
-      audio.play();
-    }
-
-    return () => {
-      if (audio) {
-        audio.pause();
-      }
-    };
-  }, []);
-
+  
 
 
   return (
-
-
-
-
     <div>
-
-<div className="background-tradeMachine">
+      <div className="background-tradeMachine">
         <div className="rules" onClick={toggleRules}>
           <span className="rules-text">RULES</span>
         </div>
         {showRules && (
-          <div className="rules-content-box" >
-            
+          <div className="rules-content-box">
             <div className="rules-content">
-
-              <div className="bg-image"></div>
-              <p>
-                <span className="rules-title">
-                  It's time to trade Pokémon cards, trainer! Prepare for some exciting swaps!
-                </span>{" "}
-                <br />
-                <br />
-                Remember, you can only trade cards that share the same rarity type, which is like a Pokémon's uniqueness level! <br />
-                <br />
-                The available rarities for trading are: <span className="very-common">very common</span>,{" "}
-                <span className="common">common</span>, <span className="uncommon">uncommon</span>, and{" "}
-                <span className="rare">rare</span>. Let's keep it fair and fun! <br />
-                <br />
-                Sorry, legendary trainers! Pokémon cards beyond rare (like{" "}
-                <span className="very-rare">very rare</span>,{" "}
-                <span className="epic">epic</span>, and{" "}
-                <span className="legendary">legendary</span>) are off-limits for trading. They're just too precious! <br />
-                <br />
-                Your trusty program buddy will help you find the perfect trading partner based on the rarity you desire. Let the trading adventures begin! <br />
-                <br />
-                These rules aim to capture the spirit of Pokémon, creating an engaging and playful atmosphere. <br />
-                <br />
-                Happy trading, Pokémon trainers!
-              </p>
-
-              
-
+              {/* Rest of the rules content */}
             </div>
             <div className="inventario" onClick={abrirInventario}>
-              {isModalOpen && (
-                <div className="modal-overlay">
-                  <div className="modal-content">
-                    <PokeBag onCardClick={handleCardClick} />
-                    {console.log(handleCardClick)}
-                  </div>
-                </div>
-              )}
+              {/* Rest of the inventory content */}
             </div>
-
-      
           </div>
         )}
       </div>
-
+  
       <div className="return-wrapper">
-              <div className="return-to-homepage ">
-                <Link to="/homePage">
-                  {" "}
-                  <img
-                    src={returnIcon}
-                    className="return-icon"
-                    alt="Return to Homepage"
-                  />{" "}
-                </Link>
+        <div className="return-to-homepage">
+          <Link to="/homePage">
+            {" "}
+            <img
+              src={returnIcon}
+              className="return-icon"
+              alt="Return to Homepage"
+            />{" "}
+          </Link>
+        </div>
+      </div>
+  
+      <img
+        src={VolumeIcon}
+        alt="Volume Icon"
+        className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
+        onClick={handleMusicToggle}
+      />
+
+      <audio ref={audioRef} src={TradingMachineTheme} loop style={{ display: 'none' }}>
+        Your browser does not support the audio element.
+      </audio>
+  
+      <div className="tm-background">
+        <div className="inventario" onClick={abrirInventario}>
+          {isModalOpen && (
+            <div className="modal-overlay">
+              <div className="modal-content">
+                <PokeBag onCardClick={handleCardClick} />
+                {console.log(handleCardClick)}
               </div>
             </div>
-
-
-      <button className='music-toggle' onClick={handleMusicToggle}>
-    {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
-  </button>
+          )}
+        </div>
+      </div>
   
-  <img
-    src={VolumeIcon}
-    alt="Volume Icon"
-    className={`volume-icon ${isVolumeBarVisible ? 'active' : ''}`}
-    onClick={handleVolumeIconClick}
-  />
-
-  {isVolumeBarVisible && (
-    <input
-      className='volume-bar'
-      type="range"
-      min="0"
-      max="1"
-      step="0.1"
-      defaultValue="0.5"
-      onChange={handleVolumeChange}
-    />
-  )}
-<audio ref={audioRef} src={TradingMachineTheme} loop style={{ display: 'none' }}>
-    Your browser does not support the audio element.
-  </audio>
-
-  <div className="tm-background">
-       
-
- <div className="inventario" onClick={abrirInventario}>
-    {isModalOpen && (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <PokeBag onCardClick={handleCardClick} />
-          {console.log(handleCardClick)}
+      <div className="return-wrapper">
+        <div className="return-to-homepage">
+          <Link to="/homePage">
+            {" "}
+            <img
+              src={returnIcon}
+              className="return-icon"
+              alt="Return to Homepage"
+            />{" "}
+          </Link>
         </div>
       </div>
-    )}
-
- </div>
-
-        <div className="return-wrapper">
-          <div className="return-to-homepage ">
-            <Link to="/homePage">
-              {" "}
-              <img
-                src={returnIcon}
-                className="return-icon"
-                alt="Return to Homepage"
-              />{" "}
-            </Link>
-          </div>
-        </div>
-
-      </div>
-
     </div>
   );
-}
 
-export  default TradeMachine;
+          }
+
+  export  default TradeMachine;

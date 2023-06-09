@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./PaymentPage.css";
 
 function PaymentPage() {
@@ -7,10 +8,14 @@ function PaymentPage() {
     firstName: "Ruben",
     lastName: "",
   });
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const navigate = useNavigate();
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     localStorage.setItem("paymentInfo", JSON.stringify(formData));
+    // Add logic to navigate to the next page
+    navigate("/homePage/pokecoins/payment/success");
   };
 
   useEffect(() => {
@@ -102,7 +107,14 @@ function PaymentPage() {
           </form>
         </div>
       </div>
-    </div>
+
+      {showConfirmation && (
+        <div className="confirmation-dialog">
+          {/* Rest of your confirmation dialog code */}
+        </div>
+            )}
+            </div>
+   
   );
 }
 

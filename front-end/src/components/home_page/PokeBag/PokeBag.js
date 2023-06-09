@@ -1,13 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./PokeBag.css";
 
 import { Link } from "react-router-dom";
 import returnIcon from "../../../icons/return_icon2.png"
+import LoginService from "../../service/LoginService";
+import PokeBagTheme from "../../../sounds/background_music/pokebag_theme.mp3"
+import VolumeIcon from "../../../icons/sound_icon.png"
 
 
 
 
 function PokeBag({ onCardClick }) {
+
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const audioRef = useRef(null);
+ 
+
+  const handleMusicToggle = () => {
+    const audio = audioRef.current;
+  
+    if (audio) {
+      audio.muted = !audio.muted;
+      setIsMusicPlaying(!audio.muted);
+    }
+
+    setIsMusicPlaying(!isMusicPlaying);
+  };
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      const audio = audioRef.current;
+      if (audio && audio.paused) {
+        audio.play();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+
+
   const [cartas, setCartas] = useState([]);
 
   const idUsuario = "647c90dd9ac56ec4413f8f4d"
@@ -223,6 +255,21 @@ function PokeBag({ onCardClick }) {
 
     <div className="background-pokeBag">
 
+  
+       
+       <img
+       src={VolumeIcon}
+       alt="Volume Icon"
+       className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
+       onClick={handleMusicToggle}
+     />
+
+
+     <audio ref={audioRef} src={PokeBagTheme} loop style={{ display: 'none' }}>
+       Your browser does not support the audio element.
+     </audio>
+   
+
       <div className="container-pokebag">
         {cartas.map((carta, index) => (
           <div className="carta-exterior" onClick={() => handleCardClick(carta.pokemon.rarity)} key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
@@ -289,6 +336,8 @@ function PokeBag({ onCardClick }) {
             </Link>
           </div>
         </div>
+
+
     </div>
   );
 };

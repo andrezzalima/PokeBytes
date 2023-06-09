@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import "./profile.css";
-import imagem from "../../images/background.png";
-import returnIcon from "../../icons/return_icon1.png";
+import imagem from "../../images/trainer_avatar.jpg";
+import returnIcon from "../../icons/return_icon2.png";
 import LoginService from '../service/LoginService';
+import ProfileTheme from "../../sounds/background_music/profile_theme.mp3"
+import VolumeIcon from "../../icons/sound_icon.png";
+
 
 function Profile() {
   const [userName, setUserName] = useState();
@@ -15,6 +18,32 @@ function Profile() {
   const [upload, setUpload] = useState(false);
   const [photo, setPhoto] = useState(imagem);
   const [editMode, setEditMode] = useState(false);
+
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const audioRef = useRef(null);
+ 
+
+  const handleMusicToggle = () => {
+    const audio = audioRef.current;
+  
+    if (audio) {
+      audio.muted = !audio.muted;
+      setIsMusicPlaying(!audio.muted);
+    }
+
+    setIsMusicPlaying(!isMusicPlaying);
+  };
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      const audio = audioRef.current;
+      if (audio && audio.paused) {
+        audio.play();
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
   
 
   useEffect(() => {
@@ -245,6 +274,18 @@ function Profile() {
           </Link>
         </div>
       </div>
+
+      <img
+        src={VolumeIcon}
+        alt="Volume Icon"
+        className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
+        onClick={handleMusicToggle}
+      />
+
+      <audio ref={audioRef} src={ProfileTheme} loop style={{ display: 'none' }}>
+        Your browser does not support the audio element.
+      </audio>
+
     </div>
   );
 }

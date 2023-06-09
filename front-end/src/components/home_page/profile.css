@@ -1,78 +1,80 @@
-
-
 .profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../../images/profile_background.png');
+  background: rgb(25, 38, 83);
+  background: linear-gradient(176deg, #192653 0%, rgba(255, 255, 255, 1) 100%);
 
-    background: rgb(25,38,83);
-    background: linear-gradient(176deg, #192653 0%, rgba(255,255,255,1) 100%);
+
+  height: 100vh;
+  gap: 5%
+}
+
+.campoImg {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.foto {
+  width: 150px;
+  height: 150px;
+  background-color: #ffffff;
+  text-align: center;
+  align-items: center;
+  border-radius: 100%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  background-image: url('../../images/pokeball_main.png');
+  background-size: cover;
+  background-position: center;
 
 
-    height: 100vh;
-    gap: 5%
+}
 
-  }
-  
-  .campoImg{
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-  }
-  .foto {
-    width: 150px;
-    height: 150px;
-    background-color: #ffffff;
-    text-align: center;
-    align-items: center;
-    border-radius: 100%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    background-image: url('../../images/pokeball_main.png');
-    background-size: cover;
-    background-position: center;
-    border: 3px white solid;
-    
-  }
-  
-  .informacaoPerfil {
-    margin-bottom: 10px;
-  }
-  
-  .divInfo {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  label {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
+.informacaoPerfil {
+  margin-bottom: 10px;
+}
+
+.divInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+
+}
+
+label {
+
+  font-weight: bold;
+}
+
 .divInfo input {
-    padding: 5px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: none
+  padding: 5px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: none
+}
 
-  }
+.buttonProfile {
+  padding: 8px 16px;
+  margin-right: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #192653;
+  color: #FFCB05;
+  cursor: pointer;
+  font-family: "PokemonRBYG";
+  border-radius: 50px;
+}
 
-.buttonProfile{
-    padding: 8px 16px;
-    margin-right: 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #1B53BA;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  button:last-child {
-    margin-right: 0;
-  }
+.buttonProfile:hover {
+  background-color: #FFCB05;
+  color: #192653;
+}
 
-  
-  
+button:last-child {
+  margin-right: 0;
+}

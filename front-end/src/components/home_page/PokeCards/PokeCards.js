@@ -1,10 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "./PokeCards.css";
-
+import Dropdown from "../../home_page/Icones/Dropdown";
 import { Link } from "react-router-dom";
 import PokeCardsTheme from "../../../sounds/background_music/pokecards_theme.mp3"
 import VolumeIcon from "../../../icons/sound_icon.png"
 import returnIcon from "../../../icons/return_icon2.png";
+
 
 
 function PokeCards(props) {
@@ -18,26 +19,25 @@ function PokeCards(props) {
 
   const handleMusicToggle = () => {
     const audio = audioRef.current;
-
-    if (!isMusicPlaying) {
-      audio.muted = false;
-      audio.play();
-    } else {
-      audio.muted = true;
+  
+    if (audio) {
+      audio.muted = !audio.muted;
+      setIsMusicPlaying(!audio.muted);
     }
 
     setIsMusicPlaying(!isMusicPlaying);
   };
 
-  const handleVolumeIconClick = () => {
-    setIsVolumeBarVisible(!isVolumeBarVisible);
-  };
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      const audio = audioRef.current;
+      if (audio && audio.paused) {
+        audio.play();
+      }
+    }, 500);
 
-  const handleVolumeChange = (event) => {
-    const audio = audioRef.current;
-    audio.volume = event.target.value;
-  };
-
+    return () => clearTimeout(timer);
+  }, []);
   const idUsuario = "647c90dd9ac56ec4413f8f4d";
 
   async function buyPack() {
@@ -220,6 +220,11 @@ function PokeCards(props) {
 
 
     <div className="background-pokeCard">
+
+<div className="iconProfile">
+        <Dropdown />
+      </div>
+
       <div className="poker-card-wrapper">
         <div className="divPacks">
           <p className="pSilver">Silver</p>
@@ -232,6 +237,8 @@ function PokeCards(props) {
             }}
           ></div>
         </div>
+
+      
 
         <div className="divPacks">
           <p className="pGold">Gold</p>
@@ -261,8 +268,9 @@ function PokeCards(props) {
       {/* Div com os 10 cards */}
         {showCardDiv && (
         <div className="cardDiv">
+
          {cardsData.length > 0 && cardsData.map((carta, index) => (
-          <div className="carta-exterior" key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
+           <div className="carta-exterior" key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
             <div className="carta-interior">
               <div className="card-upper-info">
                 <div className="id-label-hp-type">
@@ -285,10 +293,11 @@ function PokeCards(props) {
                         src={`/images/pokemons/${carta.pokemon.id.toLocaleString(
                           "en-US",
                           { minimumIntegerDigits: 3 }
-                        )}.png`}
+                          )}.png`}
                         alt={carta.pokemon.label}
                       />
                     </div>
+                   
                   </div>
                   <div className="card-lower-info">
                   </div>
@@ -330,28 +339,12 @@ function PokeCards(props) {
       )} 
       
 
-      <button className='music-toggle' onClick={handleMusicToggle}>
-        {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
-      </button>
-      
       <img
         src={VolumeIcon}
         alt="Volume Icon"
-        className={`volume-icon ${isVolumeBarVisible ? 'active' : ''}`}
-        onClick={handleVolumeIconClick}
+        className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
+        onClick={handleMusicToggle}
       />
-
-      {isVolumeBarVisible && (
-        <input
-          className='volume-bar'
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          defaultValue="0.5"
-          onChange={handleVolumeChange}
-        />
-      )}
 
       <audio ref={audioRef} src={PokeCardsTheme} loop style={{ display: 'none' }}>
         Your browser does not support the audio element.
@@ -359,6 +352,7 @@ function PokeCards(props) {
 
       
       <div className="return-wrapper">
+        
           <div className="return-to-homepage ">
             <Link to="/homePage">
               {" "}
