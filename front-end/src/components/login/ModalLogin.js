@@ -23,13 +23,7 @@ function ModalLogin(props) {
     setModal(false);
   };
 
-  /* const login = async () => {
-    let success = await LoginService.login(username, password)
- /*    if(success){
-      navigate('/homePage?id=' + idRecebido)
 
-    } */
-  
 
 
   return (
@@ -87,8 +81,7 @@ function ModalLogin(props) {
                 </div>
 
 
-                <Link>
-
+                <Link to="/homePage">
                   <button className="enter">Enter</button>
                 </Link>
               </div>

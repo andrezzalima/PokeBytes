@@ -43,8 +43,12 @@ body {
  
   background-repeat: no-repeat;
   background-position: center;
-
+  justify-content: center;
   background-color: #FFCB05;
+  position: absolute;
+  right: 10%;
+  border: 4px #192653 dotted;
+  padding: 20px;
 
 
   
