@@ -1,13 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from 'react';
 import "./PokeCards.css";
-import returnIcon from "../../../icons/return_icon2.png"
+
 import { Link } from "react-router-dom";
+import PokeCardsTheme from "../../../sounds/background_music/pokecards_theme.mp3"
+import VolumeIcon from "../../../icons/sound_icon.png"
+import returnIcon from "../../../icons/return_icon2.png";
+
 
 function PokeCards(props) {
 
   const [rarity, setRarity] = useState('');
   const [showCardDiv, setShowCardDiv] = useState(false); // Novo estado
   const [cardsData, setCardsData] = useState([]);
+  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isVolumeBarVisible, setIsVolumeBarVisible] = useState(false);
+  const audioRef = useRef(null);
+
+  const handleMusicToggle = () => {
+    const audio = audioRef.current;
+
+    if (!isMusicPlaying) {
+      audio.muted = false;
+      audio.play();
+    } else {
+      audio.muted = true;
+    }
+
+    setIsMusicPlaying(!isMusicPlaying);
+  };
+
+  const handleVolumeIconClick = () => {
+    setIsVolumeBarVisible(!isVolumeBarVisible);
+  };
+
+  const handleVolumeChange = (event) => {
+    const audio = audioRef.current;
+    audio.volume = event.target.value;
+  };
 
   const idUsuario = "647c90dd9ac56ec4413f8f4d";
 
@@ -301,7 +330,46 @@ function PokeCards(props) {
       )} 
       
 
- 
+      <button className='music-toggle' onClick={handleMusicToggle}>
+        {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
+      </button>
+      
+      <img
+        src={VolumeIcon}
+        alt="Volume Icon"
+        className={`volume-icon ${isVolumeBarVisible ? 'active' : ''}`}
+        onClick={handleVolumeIconClick}
+      />
+
+      {isVolumeBarVisible && (
+        <input
+          className='volume-bar'
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          defaultValue="0.5"
+          onChange={handleVolumeChange}
+        />
+      )}
+
+      <audio ref={audioRef} src={PokeCardsTheme} loop style={{ display: 'none' }}>
+        Your browser does not support the audio element.
+      </audio>
+
+      
+      <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+        </div>
 
 
     </div>

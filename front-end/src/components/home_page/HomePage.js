@@ -1,6 +1,6 @@
-import "./HomePage.css";
-import "./Icones/tooltip.css";
 import React, { useState, useRef } from 'react';
+import "./Icones/tooltip.css";
+import "./HomePage.css";
 import { Link } from "react-router-dom";
 
 //components
@@ -12,6 +12,7 @@ import packs from "../../icons/packs-cartas.png";
 import pokecoins from "../../icons/pokecoin.png";
 import trademachine from "../../icons/trade-machine.png";
 import pokebag from "../../icons/pokebag.png";
+import VolumeIcon from "../../icons/sound_icon.png";
 
 //musica e efeitos sonoros
 import HomepageTheme from "../../sounds/background_music/homepage_theme.mp3";
@@ -21,25 +22,32 @@ import HomepageTheme from "../../sounds/background_music/homepage_theme.mp3";
 function HomePage() {
 
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isVolumeBarVisible, setIsVolumeBarVisible] = useState(false);
   const audioRef = useRef(null);
+ 
 
   const handleMusicToggle = () => {
     const audio = audioRef.current;
 
     if (!isMusicPlaying) {
-      audio.muted = false; 
+      audio.muted = false;
       audio.play();
     } else {
-      audio.muted = true; 
+      audio.muted = true;
     }
 
     setIsMusicPlaying(!isMusicPlaying);
+  };
+
+  const handleVolumeIconClick = () => {
+    setIsVolumeBarVisible(!isVolumeBarVisible);
   };
 
   const handleVolumeChange = (event) => {
     const audio = audioRef.current;
     audio.volume = event.target.value;
   };
+
 
 
 
@@ -91,24 +99,34 @@ function HomePage() {
         </div>
       </div>
 
+      <div className='music-section'>
       <button className='music-toggle' onClick={handleMusicToggle}>
         {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
       </button>
-
-      <input
-        className='volume-bar'
-        type="range"
-        min="0"
-        max="1"
-        step="0.1"
-        defaultValue="1"
-        onChange={handleVolumeChange}
+      
+      <img
+        src={VolumeIcon}
+        alt="Volume Icon"
+        className={`volume-icon ${isVolumeBarVisible ? 'active' : ''}`}
+        onClick={handleVolumeIconClick}
       />
+
+      {isVolumeBarVisible && (
+        <input
+          className='volume-bar'
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          defaultValue="0.5"
+          onChange={handleVolumeChange}
+        />
+      )}
 
       <audio ref={audioRef} src={HomepageTheme} loop style={{ display: 'none' }}>
         Your browser does not support the audio element.
       </audio>
-
+      </div>
     </div>
   );
 }

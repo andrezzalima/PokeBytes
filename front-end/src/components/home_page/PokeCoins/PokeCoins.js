@@ -3,6 +3,8 @@ import pokecoinBasic from "../../../icons/pokecoins0.png";
 import pokecoInter from "../../../icons/pokecoins1.png";
 import pokecoinAvanc from "../../../icons/pokecoins2.png";
 import { Link } from "react-router-dom";
+import AudioPlayer from '../../AudioPlayer/AudioPlayer';
+
 import LoginService from "../../service/LoginService";
 
 const idUsuario = "647c90dd9ac56ec4413f8f4d"
