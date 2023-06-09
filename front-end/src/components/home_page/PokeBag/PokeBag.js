@@ -47,8 +47,6 @@ function PokeBag({ onCardClick }) {
   useEffect(() => {
     async function fetchData() {
       try {
-
-        const res = await fetch("/api/user/"+ LoginService.getIdUsuario() + "/pokebag");
         const data = await res.json();
         setCartas(data.cartas);
         console.log(data.cartas)

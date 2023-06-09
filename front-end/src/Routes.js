@@ -48,7 +48,9 @@ export default () => {
             </Route>
             <Route exact path="/homePage/pokecoins/payment" element={<PaymentPage/>}> 
             </Route>
+
             <Route exact path="/homePage/pokecoins/payment/success" element={<PaymentSuccess/>}> 
+
             </Route>
             
         </Routes>

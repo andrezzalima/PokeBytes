@@ -1,5 +1,6 @@
 
 
+
 /* 
 clicar numa div para abrir o inventario do jogador
 selecionar uma carta que quero trocar
@@ -17,6 +18,7 @@ import returnIcon from "../../../icons/return_icon2.png";
 import PokeBag from "../PokeBag/PokeBag";
 import TradingMachineTheme from "../../../sounds/background_music/trading_machine_theme.mp3";
 import VolumeIcon from "../../../icons/sound_icon.png";
+
 
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
@@ -103,6 +105,7 @@ function TradeMachine(props) {
         {showRules && (
           <div className="rules-content-box">
             <div className="rules-content">
+
               {/* Rest of the rules content */}
             </div>
             <div className="inventario" onClick={abrirInventario}>
@@ -112,6 +115,44 @@ function TradeMachine(props) {
         )}
       </div>
   
+
+
+              <div className="bg-image"></div>
+              <p>
+                <span className="rules-title">
+                  It's time to trade Pokémon cards, trainer! Prepare for some exciting swaps!
+                </span>{" "}
+                <br />
+                <br />
+                Remember, you can only trade cards that share the same rarity type, which is like a Pokémon's uniqueness level! <br />
+                <br />
+                The available rarities for trading are: <span className="very-common">very common</span>,{" "}
+                <span className="common">common</span>, <span className="uncommon">uncommon</span>, and{" "}
+                <span className="rare">rare</span>. Let's keep it fair and fun! <br />
+                <br />
+                Sorry, legendary trainers! Pokémon cards beyond rare (like{" "}
+                <span className="very-rare">very rare</span>,{" "}
+                <span className="epic">epic</span>, and{" "}
+                <span className="legendary">legendary</span>) are off-limits for trading. They're just too precious! <br />
+                <br />
+                Your trusty program buddy will help you find the perfect trading partner based on the rarity you desire. Let the trading adventures begin! <br />
+                <br />
+                These rules aim to capture the spirit of Pokémon, creating an engaging and playful atmosphere. <br />
+                <br />
+                Happy trading, Pokémon trainers!
+              </p>
+
+              
+
+
+
+      
+          </div>
+        )}
+      </div>
+
+
+
       <div className="return-wrapper">
         <div className="return-to-homepage">
           <Link to="/homePage">
@@ -145,20 +186,21 @@ function TradeMachine(props) {
                 {console.log(handleCardClick)}
               </div>
             </div>
-          )}
-        </div>
-      </div>
-  
-      <div className="return-wrapper">
-        <div className="return-to-homepage">
-          <Link to="/homePage">
-            {" "}
-            <img
-              src={returnIcon}
-              className="return-icon"
-              alt="Return to Homepage"
-            />{" "}
-          </Link>
+
+
+
+        <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+
         </div>
       </div>
     </div>
