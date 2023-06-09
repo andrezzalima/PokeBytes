@@ -4,8 +4,12 @@ import "./PaymentPage.css";
 
 function PaymentPage() {
   const [formData, setFormData] = useState({
-    firstName: "Ruben",
-    lastName: "",
+    firstName: "Ethan",
+    lastName: "Red",
+    address:"PokeBytes.Av",
+    city:"Two Island",
+    state:"Sevii Islands",
+    zip:"4567-4456"
   });
 
   const handleFormSubmit = (event) => {
@@ -60,21 +64,38 @@ function PaymentPage() {
             </div>
             <div className="street">
               <label htmlFor="name">Street</label>
-              <input type="text" name="address" />
+              <input type="text" 
+              name="address" 
+              value={formData.address}
+              onChange={handleInputChange}
+              
+              />
             </div>
             <div className="address-info">
               <div>
                 <label htmlFor="city">City</label>
-                <input type="text" name="city" />
+                <input type="text" 
+                name="city" 
+                value={formData.city}
+                onChange={handleInputChange}
+                />
               </div>
               <div>
                 <label htmlFor="state">State</label>
-                <input type="text" name="state" />
+                <input type="text" 
+                name="state" 
+                value={formData.state}
+                  onChange={handleInputChange}/>
               </div>
+              
               <div>
                 <label htmlFor="zip">Zip</label>
-                <input type="text" name="zip" />
+                <input type="text" 
+                name="zip" 
+                value={formData.zip}
+                  onChange={handleInputChange} />
               </div>
+
             </div>
 
             <div className="cc-num">
