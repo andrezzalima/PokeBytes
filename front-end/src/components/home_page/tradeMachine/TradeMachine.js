@@ -20,6 +20,7 @@ import TradingMachineTheme from "../../../sounds/background_music/trading_machin
 import VolumeIcon from "../../../icons/sound_icon.png";
 
 
+
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
   const [inventario, setInventario] = useState([]);
@@ -97,16 +98,14 @@ function TradeMachine(props) {
 
 
   return (
-    <div>
-      <div className="background-tradeMachine">
-        <div className="rules" onClick={toggleRules}>
-          <span className="rules-text">RULES</span>
-        </div>
-        {showRules && (
-          <div className="rules-content-box">
-            <div className="rules-content">
-
-              {/* Rest of the rules content */}
+<div>
+    <div className="background-tradeMachine">
+      <div className="rules" onClick={toggleRules}>
+        <span className="rules-text">RULES</span>
+      </div>
+      {showRules && (
+        <div className="rules-content-box">
+          <div className="rules-content">
             </div>
             <div className="inventario" onClick={abrirInventario}>
               {/* Rest of the inventory content */}
@@ -115,44 +114,40 @@ function TradeMachine(props) {
         )}
       </div>
   
-
-
-              <div className="bg-image"></div>
-              <p>
-                <span className="rules-title">
-                  It's time to trade Pokémon cards, trainer! Prepare for some exciting swaps!
-                </span>{" "}
-                <br />
-                <br />
-                Remember, you can only trade cards that share the same rarity type, which is like a Pokémon's uniqueness level! <br />
-                <br />
-                The available rarities for trading are: <span className="very-common">very common</span>,{" "}
-                <span className="common">common</span>, <span className="uncommon">uncommon</span>, and{" "}
-                <span className="rare">rare</span>. Let's keep it fair and fun! <br />
-                <br />
-                Sorry, legendary trainers! Pokémon cards beyond rare (like{" "}
-                <span className="very-rare">very rare</span>,{" "}
-                <span className="epic">epic</span>, and{" "}
-                <span className="legendary">legendary</span>) are off-limits for trading. They're just too precious! <br />
-                <br />
-                Your trusty program buddy will help you find the perfect trading partner based on the rarity you desire. Let the trading adventures begin! <br />
-                <br />
-                These rules aim to capture the spirit of Pokémon, creating an engaging and playful atmosphere. <br />
-                <br />
-                Happy trading, Pokémon trainers!
-              </p>
-
-              
-
-
-
-      
+      <div className="bg-image"></div>
+      <p>
+        <span className="rules-title">
+          It's time to trade Pokémon cards, trainer! Prepare for some exciting swaps!
+        </span>{" "}
+        <br />
+        <br />
+        Remember, you can only trade cards that share the same rarity type, which is like a Pokémon's uniqueness level! <br />
+        <br />
+        The available rarities for trading are: <span className="very-common">very common</span>,{" "}
+        <span className="common">common</span>, <span className="uncommon">uncommon</span>, and{" "}
+        <span className="rare">rare</span>. Let's keep it fair and fun! <br />
+        <br />
+        Sorry, legendary trainers! Pokémon cards beyond rare (like{" "}
+        <span className="very-rare">very rare</span>,{" "}
+        <span className="epic">epic</span>, and{" "}
+        <span className="legendary">legendary</span>) are off-limits for trading. They're just too precious! <br />
+        <br />
+        Your trusty program buddy will help you find the perfect trading partner based on the rarity you desire. Let the trading adventures begin! <br />
+        <br />
+        These rules aim to capture the spirit of Pokémon, creating an engaging and playful atmosphere. <br />
+        <br />
+        Happy trading, Pokémon trainers!
+      </p>
+  
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <PokeBag onCardClick={handleCardClick} />
+            {console.log(handleCardClick)}
           </div>
-        )}
-      </div>
-
-
-
+        </div>
+      )}
+  
       <div className="return-wrapper">
         <div className="return-to-homepage">
           <Link to="/homePage">
@@ -172,25 +167,18 @@ function TradeMachine(props) {
         className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
         onClick={handleMusicToggle}
       />
-
+  
       <audio ref={audioRef} src={TradingMachineTheme} loop style={{ display: 'none' }}>
         Your browser does not support the audio element.
       </audio>
   
       <div className="tm-background">
         <div className="inventario" onClick={abrirInventario}>
-          {isModalOpen && (
-            <div className="modal-overlay">
-              <div className="modal-content">
-                <PokeBag onCardClick={handleCardClick} />
-                {console.log(handleCardClick)}
-              </div>
-            </div>
-
-
-
+          {/* Rest of the inventory content */}
+        </div>
+  
         <div className="return-wrapper">
-          <div className="return-to-homepage ">
+          <div className="return-to-homepage">
             <Link to="/homePage">
               {" "}
               <img
@@ -200,11 +188,11 @@ function TradeMachine(props) {
               />{" "}
             </Link>
           </div>
-
         </div>
       </div>
     </div>
   );
+  
 
           }
 

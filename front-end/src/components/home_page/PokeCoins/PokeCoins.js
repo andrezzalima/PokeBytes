@@ -6,6 +6,7 @@ import pokecoinAvanc from "../../../icons/pokecoins2.png";
 import { Link } from "react-router-dom";
 import PokeCoinsTheme from "../../../sounds/background_music/pokecoins_theme.mp3"
 import VolumeIcon from "../../../icons/sound_icon.png"
+import returnIcon from "../../../icons/return_icon2.png";
 
 
 import LoginService from "../../service/LoginService";
@@ -164,6 +165,19 @@ function PokeCoins(props) {
           <Link to = "/homePage/pokecoins/payment"><button className="buy-pokecoin" onClick={()=>buyCoins('c')}>Buy</button></Link>
         </div>
       </div>
+
+      <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+        </div>
     </div>
   );
 }

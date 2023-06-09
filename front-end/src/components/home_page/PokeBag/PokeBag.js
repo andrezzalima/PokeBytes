@@ -43,7 +43,7 @@ function PokeBag({ onCardClick }) {
   const [cartas, setCartas] = useState([]);
 
   const idUsuario = "647c90dd9ac56ec4413f8f4d"
-  
+/*   
   useEffect(() => {
     async function fetchData() {
       try {
@@ -57,7 +57,7 @@ function PokeBag({ onCardClick }) {
 
 
     fetchData();
-  }, []);
+  }, []); */
 
 
   const getFormattedRarity = (rarity) => {

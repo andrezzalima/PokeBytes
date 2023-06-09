@@ -29,7 +29,7 @@ function ModalLogin(props) {
       navigate('/homePage?id=' + idRecebido)
 
     } */
-  }
+  
 
 
 

@@ -1,16 +1,23 @@
+
+
 .background-login {
-  background-image: url("../../images/background_gradient.png");
+ 
+  background-image: url('../../images/background_gradient.png');
   height: 100vh;
   background-attachment: fixed;
   background-position: center center;
   overflow: hidden;
   background-repeat: no-repeat;
   background-size: cover;
+  
+
+  
 }
 
 .pokebola {
   position: relative;
   width: 60%;
+  
 }
 
 .buttons {
@@ -22,6 +29,7 @@
   bottom: 10%;
   width: 100%;
   margin-top: 10px;
+  
 }
 
 .pokebytes {
