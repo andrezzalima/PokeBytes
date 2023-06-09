@@ -1,71 +1,34 @@
-import React, { useState, useRef, useEffect } from 'react';
-import "./PokeCards.css";
-import Dropdown from "../../home_page/Icones/Dropdown";
+import React, { useEffect, useState } from "react";
+import "./PokeBag.css";
+//import LoginService from "../service/LoginService"
 import { Link } from "react-router-dom";
-import PokeCardsTheme from "../../../sounds/background_music/pokecards_theme.mp3"
-import VolumeIcon from "../../../icons/sound_icon.png"
-import returnIcon from "../../../icons/return_icon2.png";
+import returnIcon from "../../../icons/return_icon2.png"
+
+//${LoginService.getIdUsuario()}
 
 
+function PokeBag({ onCardClick }) {
+  const [cartas, setCartas] = useState([]);
 
-function PokeCards(props) {
-
-  const [rarity, setRarity] = useState('');
-  const [showCardDiv, setShowCardDiv] = useState(false); // Novo estado
-  const [cardsData, setCardsData] = useState([]);
-  const [isMusicPlaying, setIsMusicPlaying] = useState(false);
-  const [isVolumeBarVisible, setIsVolumeBarVisible] = useState(false);
-  const audioRef = useRef(null);
-
-  const handleMusicToggle = () => {
-    const audio = audioRef.current;
+  const idUsuario = "647de2191f8686ad8f72ea51"
   
-    if (audio) {
-      audio.muted = !audio.muted;
-      setIsMusicPlaying(!audio.muted);
-    }
-
-    setIsMusicPlaying(!isMusicPlaying);
-  };
-
   useEffect(() => {
-    let timer = setTimeout(() => {
-      const audio = audioRef.current;
-      if (audio && audio.paused) {
-        audio.play();
+    async function fetchData() {
+      try {
+
+        const res = await fetch("/api/user/"+ idUsuario + "/pokebag");
+        const data = await res.json();
+        setCartas(data.cartas);
+        console.log(data.cartas)
+      } catch (error) {
+        console.log("Ocorreu um erro ao obter as cartas:", error);
       }
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, []);
-  const idUsuario = "647c90dd9ac56ec4413f8f4d";
-
-  async function buyPack() {
-    const res = await fetch("/api/purchases/packs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: idUsuario,
-        packageType: rarity,
-      }),
-    });
-    console.log(idUsuario);
-    console.log(res.status);
-    
-    if (res) {
-      const data = await res.json();
-      setCardsData(data);
-      console.log(cardsData)
-    } else {
-      console.error("Erro ao fazer a solicitação:", res.status);
     }
-    
 
-    // Exibir a div com os 10 cards após a compra
-    setShowCardDiv(true);
-  }
+
+    fetchData();
+  }, []);
+
 
   const getFormattedRarity = (rarity) => {
     const formattedRarity = rarity.replace('_', ' ');
@@ -141,6 +104,8 @@ function PokeCards(props) {
       backgroundImage = 'Grass.png';
     } else if (type === 'Ice') {
       backgroundImage = 'Ice.png';
+    } else if (type === 'Fairy') {
+      backgroundImage = 'Fairy.png';
     } else if (type === 'Fighting') {
       backgroundImage = 'Fighting.png';
     } else if (type === 'Poison') {
@@ -187,6 +152,8 @@ function PokeCards(props) {
       backgroundImage = 'Grass.png';
     } else if (type === 'Ice') {
       backgroundImage = 'Ice.png';
+    } else if (type === 'Fairy') {
+      backgroundImage = 'Fairy.png';
     } else if (type === 'Fighting') {
       backgroundImage = 'Fighting.png';
     } else if (type === 'Poison') {
@@ -209,6 +176,7 @@ function PokeCards(props) {
       backgroundImage = null;
     }
 
+
     if (backgroundImage) {
       return imagePath + backgroundImage;
     } else {
@@ -216,68 +184,57 @@ function PokeCards(props) {
     }
   }
 
+
+  function getColorRarity(rarity) {
+    let backgroundColor;
+    let color;
+  
+    if (rarity === 'very_common') {
+      backgroundColor = '#804320';
+      color = '#fafff3';
+    } else if (rarity === 'common') {
+      backgroundColor = '#32D61F';
+    } else if (rarity === 'uncommon') {
+      backgroundColor = '#008B8B';
+    } else if (rarity === 'rare') {
+      backgroundColor = '#309BF0';
+    } else if (rarity === 'very_rare') {
+      backgroundColor = '#A78F72';
+    } else if (rarity === 'epic') {
+      backgroundColor = '#FF00FF';
+    } else if (rarity === 'legendary') {
+      backgroundColor = '#FFA500';
+    } else {
+      backgroundColor = '#000';
+    }
+  
+    if (backgroundColor) {
+      return { backgroundColor, color };
+    } else {
+      return null;
+    }
+  }  
+
+  const handleCardClick = (cardData) => {
+    onCardClick(cardData);
+  };
+
   return (
 
+    <div className="background-pokeBag">
 
-    <div className="background-pokeCard">
-
-<div className="iconProfile">
-        <Dropdown />
-      </div>
-
-      <div className="poker-card-wrapper">
-        <div className="divPacks">
-          <p className="pSilver">Silver</p>
-          <div
-            className="silver"
-            onClick={() => {
-              setRarity("silver");
-              buyPack();
-              
-            }}
-          ></div>
-        </div>
-
-      
-
-        <div className="divPacks">
-          <p className="pGold">Gold</p>
-          <div
-            className="gold"
-            onClick={() => {
-              setRarity("gold");
-              buyPack();
-              
-            }}
-          ></div>
-        </div>
-
-        <div className="divPacks">
-          <p className="pPlatinum">Platinum</p>
-          <div
-            className="platinum"
-            onClick={() => {
-              setRarity("platinum");
-              buyPack();
-              
-            }}
-          ></div>
-        </div>
-      </div>
-
-      {/* Div com os 10 cards */}
-        {showCardDiv && (
-        <div className="cardDiv">
-
-         {cardsData.length > 0 && cardsData.map((carta, index) => (
-           <div className="carta-exterior" key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
+      <div className="container-pokebag">
+        {cartas.map((carta, index) => (
+          <div className="carta-exterior" onClick={() => handleCardClick(carta)} key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
             <div className="carta-interior">
               <div className="card-upper-info">
+
                 <div className="id-label-hp-type">
-                  <div className="id-and-label">
+              <div className="id-and-label">
                     <p className="pokemonID"><b>#{carta.pokemon.id}</b></p>
                     <p className="pokemonLabel">{carta.pokemon.label}</p>
                   </div>
+                  
                   <div className="hp-and-type">
                     <p className="pokemonHP">{carta.pokemon.base.HP}HP</p>
                     <img className="grassType w-6 h-6"  src={getIconTypes(carta.pokemon.type[0])} ></img>
@@ -293,18 +250,17 @@ function PokeCards(props) {
                         src={`/images/pokemons/${carta.pokemon.id.toLocaleString(
                           "en-US",
                           { minimumIntegerDigits: 3 }
-                          )}.png`}
+                        )}.png`}
                         alt={carta.pokemon.label}
                       />
                     </div>
-                   
                   </div>
                   <div className="card-lower-info">
                   </div>
 
                   <div className="info-pokemons">
                   <p className="pokemonRarity">
-                    <b>Rarity:</b> <span className="rarity border-dotted border-2">{getFormattedRarity(carta.pokemon.rarity)}</span>
+                    <b>Rarity:</b> <span style = {getColorRarity(carta.pokemon.rarity)} className="rarity border-dotted border-2">{getFormattedRarity(carta.pokemon.rarity)}</span>
                   </p>
                   <p className="pokemonType">
                     <b>Type:</b> {carta.pokemon.type.join(", ")}</p>
@@ -318,41 +274,10 @@ function PokeCards(props) {
                 </div>
               </div>
             </div>
-            <div className="return-wrapper">
-          <div className="return-to-homepage ">
-            <Link to="/homePage">
-              {" "}
-              <img
-                src={returnIcon}
-                className="return-icon"
-                alt="Return to Homepage"
-              />{" "}
-            </Link>
-          </div>
-        </div>
           </div>
         ))}
-
-
-
-        </div>
-      )} 
-      
-
-      <img
-        src={VolumeIcon}
-        alt="Volume Icon"
-        className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
-        onClick={handleMusicToggle}
-      />
-
-      <audio ref={audioRef} src={PokeCardsTheme} loop style={{ display: 'none' }}>
-        Your browser does not support the audio element.
-      </audio>
-
-      
+      </div>
       <div className="return-wrapper">
-        
           <div className="return-to-homepage ">
             <Link to="/homePage">
               {" "}
@@ -364,12 +289,8 @@ function PokeCards(props) {
             </Link>
           </div>
         </div>
-
-
     </div>
-
-    
   );
-}
+};
 
-export default PokeCards;
+export default PokeBag;
