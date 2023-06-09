@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "./PokeBag.css";
-
+//import LoginService from "../service/LoginService"
 import { Link } from "react-router-dom";
 import returnIcon from "../../../icons/return_icon2.png"
 
-
+//${LoginService.getIdUsuario()}
 
 
 function PokeBag({ onCardClick }) {
   const [cartas, setCartas] = useState([]);
 
-  const idUsuario = "647c90dd9ac56ec4413f8f4d"
+  const idUsuario = "647de2191f8686ad8f72ea51"
   
   useEffect(() => {
     async function fetchData() {
       try {
 
-        const res = await fetch("/api/user/"+ LoginService.getIdUsuario() + "/pokebag");
+        const res = await fetch("/api/user/"+ idUsuario + "/pokebag");
         const data = await res.json();
         setCartas(data.cartas);
         console.log(data.cartas)
@@ -225,7 +225,7 @@ function PokeBag({ onCardClick }) {
 
       <div className="container-pokebag">
         {cartas.map((carta, index) => (
-          <div className="carta-exterior" onClick={() => handleCardClick(carta.pokemon.rarity)} key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
+          <div className="carta-exterior" onClick={() => handleCardClick(carta)} key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
             <div className="carta-interior">
               <div className="card-upper-info">
 

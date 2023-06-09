@@ -13,6 +13,7 @@ body {
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 
 .rules {
@@ -161,13 +162,16 @@ body {
 }
 
 
-/* .inventario{
-  background-color: red;
-  width:  50px;
-  height: 70px;
-  align-items: end;
-} */
+ .inventario{
+  width:  4%;
+  height: 16%;
+  position: absolute;
+  left: 40%;
+  bottom: 16%;
+ 
 
+
+} 
 
 
 .modal-overlay{
@@ -180,9 +184,180 @@ body {
   width: 100%;
 }
 
-.modal-content{
+.modal-content-invent{
   background-color: transparent;
   text-decoration: none;
   border: none;
+  border-radius: 20px;
+  padding: 20px;
+  width: 30%;
+  max-width: 50%;
+  box-shadow: none;
+}
+
+.modal-content-troca{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+ 
+}
+
+.opcoesTroca{
+  width:  4%;
+  height: 16%;
+  position: absolute;
+  left: 55.5%;
+  bottom: 16%;
 
 }
+
+.selectCards{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+  width: 80%;
+}
+.efetivarTroca{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  position: absolute;
+  left: 48%;
+  top: 78%;
+  background-color: cadetblue;
+
+}
+
+
+/* ------------ carta ------------ */
+
+
+
+.cardDiv {  
+
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+  margin-top: 50px;
+  height: 70%;
+
+}
+
+.carta-exterior {
+  border: 10px solid #ffcb05;
+  border-radius: 12px;
+  background-size: cover;
+  opacity: 0.95;
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);    
+}
+
+.carta-interior{
+  width: 150px;
+  max-height: 210px ;
+}
+
+.id-label-hp-type {
+  letter-spacing: 0.4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+.id-and-label {
+  display: flex;
+  font-size: 10px;
+  text-align: center;
+  gap: 3px;
+  font-weight: 900;
+  margin-left: 10px;
+
+}
+
+.hp-and-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-weight: 900;
+  margin-right: 10px;
+
+}
+
+.grassType {
+  border: 1px solid black;
+  border-radius: 50%;
+
+}
+
+.image-wrapper {
+  border: 4px solid #ffcb05;
+  margin: 5px 12px 0 12px;
+  letter-spacing: 0.4px;
+  max-height: 170px;
+
+}
+
+.image-inner-wrapper {
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-field {
+  width: 65%;
+}
+
+
+.pokemonHP {
+  color: #d5250e;
+}
+
+.card-lower-info {
+  font-size: 30px;
+}
+
+.pokemonRarity {
+  margin-top: 10px;
+  font-size: 10px;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.rarity {
+  color: #fafff3;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 2px;
+  font-size: 8px;
+
+}
+
+.pokemonType, .pokemonAttack,.pokemonDefense {
+  font-size: 10px;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+
+.info-pokemons{
+  background-color: rgba(250, 235, 215, 0.301);
+  
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+
+
+

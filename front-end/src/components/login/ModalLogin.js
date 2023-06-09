@@ -3,7 +3,7 @@ import "./ModalLogin.css";
 import voltar2 from "../../icons/return_icon.png";
 import { motion } from "framer-motion";
 import { useNavigate } from 'react-router-dom';
-import LoginService from "../service/LoginService";
+//import LoginService from "../service/LoginService";
 
 
 import { Link } from "react-router-dom";
@@ -23,12 +23,12 @@ function ModalLogin(props) {
     setModal(false);
   };
 
-  const login = async () => {
+/*   const login = async () => {
     let success = await LoginService.login(username, password)
     if(success){
       navigate('/homePage?id=' + idRecebido)
     }
-  }
+  } */
 
   return (
     <div className="backgroundModal">
@@ -83,7 +83,7 @@ function ModalLogin(props) {
                     ></img>
                   </div>
                 </div>
-                <Link onClick={login}>
+                <Link /* onClick={login} */>
                   <button className="enter">Enter</button>
                 </Link>
               </div>
