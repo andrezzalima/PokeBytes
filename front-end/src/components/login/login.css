@@ -37,7 +37,7 @@
 
 .buttonLogin,
 .buttonSignUp {
-  font-weight: 700;
+  font-weight: 100;
   border-radius: 50px;
   width: 300px;
   height: 45px;
@@ -46,21 +46,29 @@
   border: none;
   color: #ffcb05;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  font-size: 16px;
+}
+
+.music-section{
+    position: relative;
+    top: 3%;
+    left: 4%;
+
 }
 
 .music-toggle {
   position: absolute;
   border-radius: 100px;
   top: 80px;
-  left: 95%;
+  right: 90%;
   transform: translate(-50%, -50%);
   font-weight: 700;
   border: none;
   padding: 25px;
   color: #ffcb05;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  font-size: 16px;
+  font-size: 12px;
+  width: 100px;
+  font-family: PokemonRBYG;
 }
 
 .music-toggle:hover {
@@ -72,23 +80,29 @@
   position: absolute;
   color: #ffcb05;
   top: 65px;
-  left: 89%;
-  width: 70px;
+  right: 87.5%;
+  width: 50px;
   transform: rotate(-90deg);
   cursor: pointer;
+  
 }
 
 .volume-bar::-webkit-slider-runnable-track {
+  background-color: #ffcb05;
+  opacity: 1;
+  border-radius: 50px;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
-    background-color: #ffffff; 
-    opacity: 1;
-    border-radius: 50px;
-    
-  }
+.volume-bar::-webkit-slider-thumb {
+  box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 50px;
+  opacity: 1;
+}
 
-
-  .volume-bar::-webkit-slider-thumb {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 50px;
-  }
-  
+.volume-icon {
+  position: absolute;
+  width: 50px;
+  top: 55px;
+  right: 89.5%;
+}

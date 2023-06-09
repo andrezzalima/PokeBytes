@@ -3,22 +3,28 @@ import "./login.css";
 import ModalLogin from "./ModalLogin";
 import ModalSignUp from "./ModalSignUp";
 import OpeningTheme from "../../sounds/background_music/opening_theme.mp3";
+import VolumeIcon from "../../icons/sound_icon.png";
 
 function Login(props) {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+  const [isVolumeBarVisible, setIsVolumeBarVisible] = useState(false);
   const audioRef = useRef(null);
 
   const handleMusicToggle = () => {
     const audio = audioRef.current;
 
     if (!isMusicPlaying) {
-      audio.muted = false; 
+      audio.muted = false;
       audio.play();
     } else {
-      audio.muted = true; 
+      audio.muted = true;
     }
 
     setIsMusicPlaying(!isMusicPlaying);
+  };
+
+  const handleVolumeIconClick = () => {
+    setIsVolumeBarVisible(!isVolumeBarVisible);
   };
 
   const handleVolumeChange = (event) => {
@@ -35,24 +41,35 @@ function Login(props) {
         <ModalSignUp />
       </div>
 
+
       <button className='music-toggle' onClick={handleMusicToggle}>
         {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
       </button>
-
-      <input
-        className='volume-bar'
-        type="range"
-        min="0"
-        max="1"
-        step="0.1"
-        defaultValue="1"
-        onChange={handleVolumeChange}
+      
+      <img
+        src={VolumeIcon}
+        alt="Volume Icon"
+        className={`volume-icon ${isVolumeBarVisible ? 'active' : ''}`}
+        onClick={handleVolumeIconClick}
       />
+
+      {isVolumeBarVisible && (
+        <input
+          className='volume-bar'
+          type="range"
+          min="0"
+          max="1"
+          step="0.1"
+          defaultValue="0.5"
+          onChange={handleVolumeChange}
+        />
+      )}
 
       <audio ref={audioRef} src={OpeningTheme} loop style={{ display: 'none' }}>
         Your browser does not support the audio element.
       </audio>
-    </div>
+      </div>
+    
   );
 }
 
