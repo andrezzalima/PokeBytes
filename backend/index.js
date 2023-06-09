@@ -58,6 +58,7 @@ app.post("/api/user", async(req, res) => {
         }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
   })
 
@@ -79,8 +80,23 @@ app.patch("/api/user", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(400).json({message: err})
   }
 });
+
+//ACESSAR DADOS DO USUARIO
+app.get("/api/user/:id", async (req, res) => {
+    try{
+       const collectionUser = await getMongoCollection("user");
+        const userFound = await collectionUser.findOne({
+        _id: new ObjectId(req.params.id)
+    }) 
+        res.status(200).json(userFound)
+    } catch (err) {
+    console.log(err);
+    res.status(400).json({message: err})
+  }
+})
 
 //COMPRAR POKECOINS
 
@@ -113,6 +129,7 @@ app.patch("/api/purchase/coins", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(400).json({message: err})
   }
 });
 
@@ -159,6 +176,7 @@ app.get("/api/user/:id/pokebag", async (req, res) => {
 
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 });
 
@@ -193,11 +211,10 @@ app.post("/api/purchases/packs", async (req, res) => {
 
         let packCards = [];
         let packCardsFrontEnd = [];
-        let rarityList = getListOfRarityOfPackages(
+        let rarityList = getListOfRarityOfPokemons(
           package.type,
           PACK_OF_CARDS_SIZE
         );
-          
 
         let pokemons = getPokemons();
 
@@ -236,6 +253,7 @@ app.post("/api/purchases/packs", async (req, res) => {
     }
   } catch (err) {
     console.log(err);
+    res.status(400).json({message: err})
   }
 });
 
@@ -245,6 +263,7 @@ app.get("/api/pokemons", async (req, res) => {
         res.status(200).json(getPokemons())
     } catch (err){
         console.log(err)
+        res.status(400).json({message: err})
     }
 })
 
@@ -272,13 +291,13 @@ app.get("/api/user/:id/card-trade/" , async (req, res) => {
                     let pokemonsIds = tradeFounded[rarity];
                     tradeFounded[rarity] =getPokemonsByIds(pokemonsIds);
                 }    
-                res.status(200).json(tradeFounded)
-                             
+                res.status(200).json(tradeFounded)                             
 
             }
         }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 })
 
@@ -329,6 +348,7 @@ app.get("/api/user/:id/card-trade-refresh/:rarity", async (req, res) => {  // /:
            }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 })
 
@@ -359,6 +379,7 @@ app.patch("/api/card-trades", async (req, res) => {
         }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 })
 
@@ -390,6 +411,12 @@ app.patch("/api/profile/edit/:id", async (req, res) => {
             if (isPhoneNumberValid(req)) {
                 updateUser.phoneNumber = req.body.phoneNumber;
             }
+            if(req.body.city){
+                updateUser.city = req.body.city;
+            }
+            if(req.body.address){
+                updateUser.address = req.body.address;
+            }
             await collectionUser.updateOne(
                 { _id: new ObjectId(req.params.id) },
                 { $set: updateUser }
@@ -401,6 +428,7 @@ app.patch("/api/profile/edit/:id", async (req, res) => {
     
 } catch (err) {
     console.log(err)
+    res.status(400).json({message: err})
 }
 })
 
@@ -441,6 +469,7 @@ app.delete("/api/profile/delete/:id", async (req, res) => {
         }
     } catch (err) {
         console.log(err)
+        res.status(400).json({message: err})
     }
 });
 
@@ -453,7 +482,7 @@ function sameDay(d1, d2) {
   }
 
 function isPhoneNumberValid(req) {
-    return req.body.phoneNumber && typeof req.body.phoneNumber === 'string' && isValidPhoneNumber(req.body.phoneNumber)
+    return req.body.phoneNumber  && isValidPhoneNumber(req.body.phoneNumber)
 }
 
 function isEmailValid(req) {
@@ -474,7 +503,6 @@ function getPokemonsByIds(ids){
     return pokemonsFiltrados;
 }
 
-
 //TODOS OS POKEMONS NA LISTA JSON
 function getPokemons(){
     if(POKEMONS.length === 0){
@@ -494,6 +522,8 @@ function getPackage(type){
     }
     return PACKAGES.find((package) => package.type === type.toLowerCase())
 }
+
+
 
 //GERA OS POKEMONS PARA OS PACOTES CONFORME A RARIDADE
 function getListOfRarityOfPokemons(type, size){
@@ -524,9 +554,8 @@ function getListOfRarityOfPokemons(type, size){
         } else {
             listaDeRaridade.push("very_common")
         }
-
     }
-  return listaDeRaridade;
+    return listaDeRaridade
 }
 
 //LISTA DE POKEMONS SEPARADOS POR RARIDADE, PARA A MAQUINA DE TROCA
@@ -566,7 +595,7 @@ async function insertNewTrade(idUsuario){
 
 //FUNÇÕES DE VALIDAÇÃO DE DADOS
 function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
 }
 
@@ -574,11 +603,11 @@ function isValidDate(date) {
     if (typeof date !== 'string') {
         return false;
     }
-    const dateRegex = /^\d{4}-\d{2}-\d{2}$/
+    const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateRegex.test(date)) {
         return false;
     }
-    const parsedDate = new Date(date)
+    const parsedDate = new Date(date);
     if (isNaN(parsedDate.getTime())) {
         return false;
     }
@@ -586,11 +615,14 @@ function isValidDate(date) {
 }
 
 function isValidPhoneNumber(phoneNumber) {
-    const phoneRegex = /^[0-9]{10,12}$/
-    return phoneRegex.test(phoneNumber)
+    const phoneRegex = /^[0-9]{10,12}$/;
+    return phoneRegex.test(phoneNumber);
 }
 
 
+
+
+
 app.listen(port, () => {
-  console.log(`À escuta em http://localhost:${port}`);
-})
+    console.log(`À escuta em http://localhost:${port}`)
+  })

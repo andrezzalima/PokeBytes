@@ -6,6 +6,7 @@ import returnIcon from "../../../icons/return_icon2.png";
 import PokeBag from "../PokeBag/PokeBag";
 import TradingMachineTheme from "../../../sounds/background_music/trading_machine_theme.mp3"
 
+
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
   const [inventario, setInventario] = useState([]);
@@ -145,22 +146,13 @@ function TradeMachine(props) {
 
               
 
-            </div>
-            <div className="inventario" onClick={abrirInventario}>
-              {isModalOpen && (
-                <div className="modal-overlay">
-                  <div className="modal-content">
-                    <PokeBag onCardClick={handleCardClick} />
-                    {console.log(handleCardClick)}
-                  </div>
-                </div>
-              )}
-            </div>
+
 
       
           </div>
         )}
       </div>
+
 
       <div className="return-wrapper">
               <div className="return-to-homepage ">
@@ -175,47 +167,6 @@ function TradeMachine(props) {
               </div>
             </div>
 
-
-      <button className='music-toggle' onClick={handleMusicToggle}>
-    {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
-  </button>
-  
-  {/*  <img
-      src={VolumeIcon}
-      alt="Volume Icon"
-      className={`volume-icon ${isVolumeBarVisible ? 'active' : ''}`}
-      onClick={handleVolumeIconClick}
-    /> */}
-
-  {isVolumeBarVisible && (
-    <input
-      className='volume-bar'
-      type="range"
-      min="0"
-      max="1"
-      step="0.1"
-      defaultValue="0.5"
-      onChange={handleVolumeChange}
-    />
-  )}
-<audio ref={audioRef} src={TradingMachineTheme} loop style={{ display: 'none' }}>
-    Your browser does not support the audio element.
-  </audio>
-
-  <div className="tm-background">
-       
-
- <div className="inventario" onClick={abrirInventario}>
-    {isModalOpen && (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <PokeBag onCardClick={handleCardClick} />
-          {console.log(handleCardClick)}
-        </div>
-      </div>
-    )}
-
- </div>
 
         <div className="return-wrapper">
           <div className="return-to-homepage ">
