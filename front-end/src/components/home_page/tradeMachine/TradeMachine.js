@@ -16,6 +16,7 @@ import VolumeIcon from "../../../icons/sound_icon.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 function TradeMachine(props) {
   const [showRules, setShowRules] = useState(false);
   const [opcoesDeTroca, setOpcoesDeTroca] = useState([]);
@@ -288,6 +289,8 @@ function TradeMachine(props) {
   }
 
   return (
+
+
     <div className="background-tradeMachine">
       <div className="selectCards">
         <div className="cartaSelecionada">
@@ -492,6 +495,7 @@ function TradeMachine(props) {
         </div>
       )}
 
+
       <div className="return-wrapper">
         <div className="return-to-homepage ">
           <Link to="/homePage">
@@ -516,28 +520,19 @@ function TradeMachine(props) {
         onClick={handleVolumeIconClick}
       />
 
-      {isVolumeBarVisible && (
-        <input
-          className="volume-bar"
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          defaultValue="0.5"
-          onChange={handleVolumeChange}
-        />
-      )}
-      <audio
-        ref={audioRef}
-        src={TradingMachineTheme}
-        loop
-        style={{ display: "none" }}
-      >
+  
+      <audio ref={audioRef} src={TradingMachineTheme} loop style={{ display: 'none' }}>
+
         Your browser does not support the audio element.
       </audio>
 
       <div className="tm-background">
         <div className="inventario" onClick={abrirInventario}>
+
+          {/* Rest of the inventory content */}
+        </div>
+  
+
           {modalInventario && (
             <div className="modal-overlay">
               <div className="modal-content-invent">
@@ -634,8 +629,9 @@ function TradeMachine(props) {
           </div>
         </div>
 
+
         <div className="return-wrapper">
-          <div className="return-to-homepage ">
+          <div className="return-to-homepage">
             <Link to="/homePage">
               {" "}
               <img
@@ -661,5 +657,11 @@ function TradeMachine(props) {
       />
     </div>
   );
-}
-export default TradeMachine;
+
+  
+
+          }
+
+  export  default TradeMachine;
+
+

@@ -60,6 +60,20 @@ function HomePage() {
         <Dropdown />
       </div>
 
+      <div className='music-section'>
+
+      <img
+        src={VolumeIcon}
+        alt="Volume Icon"
+        className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
+        onClick={handleMusicToggle}
+      />
+
+      <audio ref={audioRef} src={HomepageTheme} loop style={{ display: 'none' }}>
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
       <div className="iconBattle">
         <div className="tooltip imgBattle">
         <Link to = "/homePage/battle"><ButtonIcon image={battle} tooltip="PackOpening" alt="Packs Icon" /></Link>
@@ -99,20 +113,11 @@ function HomePage() {
           </Link>
           <span className="tooltiptext icon">PokéBag</span>
         </div>
+
+
+        
       </div>
-<div className='music-section'>
 
-      <img
-        src={VolumeIcon}
-        alt="Volume Icon"
-        className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
-        onClick={handleMusicToggle}
-      />
-
-      <audio ref={audioRef} src={HomepageTheme} loop style={{ display: 'none' }}>
-        Your browser does not support the audio element.
-      </audio>
-    </div>
       </div>
 
       

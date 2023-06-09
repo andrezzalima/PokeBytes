@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import returnIcon from "../../../icons/return_icon2.png"
 import "./PaymentPage.css";
+
 
 function PaymentPage() {
   const [formData, setFormData] = useState({
     firstName: "Ethan",
     lastName: "Red",
-    address:"PokeBytes.Av",
-    city:"Two Island",
-    state:"Sevii Islands",
-    zip:"4567-4456"
+    address: "PokeBytes.Av",
+    city: "Two Island",
+    state: "Sevii Islands",
+    zip: "4567-4456"
   });
   const [showConfirmation, setShowConfirmation] = useState(false);
   const navigate = useNavigate();
@@ -34,8 +35,24 @@ function PaymentPage() {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [name]: value,
+      [name]: value
     }));
+  };
+
+  const handlePurchaseClick = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleConfirmClick = () => {
+    // Perform the purchase logic here
+    alert("Purchase successful!");
+    setShowConfirmation(false);
+    // Add logic to navigate to the next page
+    navigate("/homePage/pokecoins/payment/success");
+  };
+
+  const handleCancelClick = () => {
+    setShowConfirmation(false);
   };
 
   return (
@@ -69,40 +86,42 @@ function PaymentPage() {
             </div>
             <div className="street">
               <label htmlFor="name">Street</label>
-              <input type="text" 
-              name="address" 
-              value={formData.address}
-              onChange={handleInputChange}
-              
+              <input
+                type="text"
+                name="address"
+                value={formData.address}
+                onChange={handleInputChange}
               />
             </div>
             <div className="address-info">
               <div>
                 <label htmlFor="city">City</label>
-                <input type="text" 
-                name="city" 
-                value={formData.city}
-                onChange={handleInputChange}
+                <input
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleInputChange}
                 />
               </div>
               <div>
                 <label htmlFor="state">State</label>
-                <input type="text" 
-                name="state" 
-                value={formData.state}
-                  onChange={handleInputChange}/>
+                <input
+                  type="text"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleInputChange}
+                />
               </div>
-              
               <div>
                 <label htmlFor="zip">Zip</label>
-                <input type="text" 
-                name="zip" 
-                value={formData.zip}
-                  onChange={handleInputChange} />
+                <input
+                  type="text"
+                  name="zip"
+                  value={formData.zip}
+                  onChange={handleInputChange}
+                />
               </div>
-
             </div>
-
             <div className="cc-num">
               <label htmlFor="card-num">Credit Card No.</label>
               <input type="text" name="card-num" />
@@ -118,9 +137,9 @@ function PaymentPage() {
               </div>
             </div>
             <div className="btns">
-              <Link to="/homePage/pokecoins/payment/success">
-                <button className="button-payment">Purchase</button>
-              </Link>
+              <button className="button-payment" onClick={handlePurchaseClick}>
+                Purchase
+              </button>
               <Link to="/homePage/pokecoins/">
                 <button className="button-payment">Cancel</button>
               </Link>
@@ -128,16 +147,30 @@ function PaymentPage() {
           </form>
         </div>
       </div>
-
+  
       {showConfirmation && (
         <div className="confirmation-dialog">
-          {/* Rest of your confirmation dialog code */}
+          <p>Are you sure you want to make the purchase?</p>
+          <button onClick={handleConfirmClick}>Yes</button>
+          <button onClick={handleCancelClick}>No</button>
         </div>
-            )}
-            </div>
-   
+      )}
+
+<div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+          </div>
+      
+    </div>
   );
-}
-
-export default PaymentPage;
-
+  }
+  
+  export default PaymentPage;
