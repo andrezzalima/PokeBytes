@@ -19,7 +19,9 @@ html, body {
     left: 0;
     width: 100%;
     height: 100%;
+
     background-image: url('C:\Users\Formando\Desktop\PokeBytes\front-end\src\images\arena.jpg');
+
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

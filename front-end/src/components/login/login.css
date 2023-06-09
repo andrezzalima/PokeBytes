@@ -65,6 +65,7 @@
   border: none;
   padding: 25px;
   color: #ffcb05;
+
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   font-size: 12px;
   width: 100px;
@@ -76,33 +77,9 @@
   background-color: #ffcb05;
 }
 
-.volume-bar {
-  position: absolute;
-  color: #ffcb05;
-  top: 65px;
-  right: 87.5%;
-  width: 50px;
-  transform: rotate(-90deg);
-  cursor: pointer;
-  
-}
-
-.volume-bar::-webkit-slider-runnable-track {
-  background-color: #ffcb05;
-  opacity: 1;
-  border-radius: 50px;
-  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.volume-bar::-webkit-slider-thumb {
-  box-shadow: 0 0px 2px 0 rgba(0, 0, 0, 1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 50px;
-  opacity: 1;
-}
-
 .volume-icon {
   position: absolute;
   width: 50px;
   top: 55px;
-  right: 89.5%;
+
 }

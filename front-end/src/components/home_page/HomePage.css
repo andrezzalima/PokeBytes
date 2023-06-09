@@ -2,8 +2,15 @@
     background-image: url('../../images/background.png');
     height: 100vh;
     background-attachment: fixed;
-    background-repeat: no-repeat;
     background-position: center;
+    overflow: hidden;
+    background-repeat: no-repeat;
     background-size: cover;
 }
+
+
+
+
+  
+
 

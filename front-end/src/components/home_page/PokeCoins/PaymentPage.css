@@ -3,6 +3,8 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    background-image: url('../../../images/pokecoins_background.png');
+    
 
 }
 
@@ -12,6 +14,11 @@
     display: flex;
     justify-content: center;
     background-color: #192653;
+    opacity: 0.9;
+    border-radius: 50px;
+    border: .3vmin solid #05060f;
+    box-shadow: .4rem .4rem #05060f;
+
    
 }
 
@@ -37,6 +44,7 @@ form {
         border-radius: 4px;
         margin-bottom: 20px;
         
+        
     }
 
     label {
@@ -44,6 +52,7 @@ form {
         font-size: 12px;
         letter-spacing: 2px;
         color: #FFCB05;
+        
     }
 
 .h1 {
@@ -56,6 +65,8 @@ form {
         align-items: center;
         letter-spacing: 1px;
         align-self: center;
+        border: .5vmin solid #05060f;
+        box-shadow: .4rem .4rem #05060f;
     }
 
 
@@ -78,6 +89,7 @@ form {
 .cc-info {
     display: flex;
     justify-content: space-between;
+    
 }
 
 .btns {
@@ -102,10 +114,14 @@ form {
 
     }
 
+
+
 .btns button:hover {
             animation-name: btn-hov;
             animation-duration: 550ms;
             animation-fill-mode: forwards;
+            background-color: #FFCB05;
+            color: #192653;
         }
 
 input:focus,

@@ -1,18 +1,30 @@
-.background-pokeCard{
-    background-image: url('../../../images/pokecards.png');
-    height: 100vh;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    font-family: PokemonRBYG, Montserrat, sans-serif;
 
-    display: flex;
-    justify-content: center;
 
+.background-pokeCard {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('C:\Users\formando\Desktop\Hugo\Projecto Final\PokeBytes\front-end\src\images\pokecards-center.png');
+  font-family: PokemonRBYG, Montserrat, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+
+.volume-icon{
+  position: absolute;
+  left: 50px;
 }
 
-.poker-card-wrapper{
+
+.poker-card-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,7 +34,7 @@
   top: 42%
 }
 
-.divPacks{
+.divPacks {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +45,7 @@
 
 }
 
-.pSilver{
+.pSilver {
   margin-bottom: 5px;
   width: 100%;
   text-align: center;
@@ -41,16 +53,7 @@
   font-family: PokemonRBYG, Montserrat, sans-serif;
 }
 
-.pGold{
-
-  margin-bottom: 5px;
-  width: 100%;
-  text-align: center;
-  border-radius: 8px;
-  font-family: PokemonRBYG, Montserrat, sans-serif;
-}
-
-.pPlatinum{
+.pGold {
 
   margin-bottom: 5px;
   width: 100%;
@@ -59,68 +62,79 @@
   font-family: PokemonRBYG, Montserrat, sans-serif;
 }
 
-.silver{
-    background-image: url(../../../images/card_back.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.7;
-    border-radius: 4px;
-    color: #3c4043;
-    cursor: pointer;
-    font-size: 10px;
-    width: 40px;
-    height: 60px;
+.pPlatinum {
+
+  margin-bottom: 5px;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+  font-family: PokemonRBYG, Montserrat, sans-serif;
+}
+
+.silver {
+  background-image: url(../../../images/card_back.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  border-radius: 4px;
+  color: #3c4043;
+  cursor: pointer;
+  font-size: 10px;
+  width: 40px;
+  height: 60px;
 
 
 
 }
 
 .silver:hover {
-    border-color: #dadce0;
-    box-shadow: rgba(217, 255, 3, 0.589) 0 1px 1px;
-    color: #202124;
-  }
-  
-  .silver:focus {
-    border-color: #4285f4;
-    outline: none;
-  } 
+  border-color: #dadce0;
+  box-shadow: rgba(217, 255, 3, 0.589) 0 1px 1px;
+  color: #202124;
+}
+
+.silver:focus {
+  border-color: #4285f4;
+  outline: none;
+}
 
 
-  .gold{
-    background-image: url(../../../images/card_back.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.7;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 10px;
-    width: 40px;
-    height: 60px;
+.gold {
+  background-image: url(../../../images/card_back.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 10px;
+  width: 40px;
+  height: 60px;
 
 
-  }
-  .gold:hover {
-    border-color: #d0ff00;
-    box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
-    color: #202124;
-  }
-  .gold:focus {
-    border-color: #4285f4;
-    outline: none;
-  } 
+}
 
-  .platinum{
-    background-image: url(../../../images/card_back.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.7;
-    cursor: pointer;
-    font-size: 10px;
-    width: 40px;
-    height: 60px;
+.gold:hover {
+  border-color: #d0ff00;
+  box-shadow: rgba(0, 0, 0, .1) 0 1px 1px;
+  color: #202124;
+}
 
-  }
+.gold:focus {
+  border-color: #4285f4;
+  outline: none;
+}
+
+.platinum {
+  background-image: url(../../../images/card_back.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+  cursor: pointer;
+  font-size: 10px;
+  width: 40px;
+  height: 60px;
+
+}
 
 
 .platinum:hover {
@@ -128,13 +142,14 @@
   box-shadow: rgba(255, 4, 4, 0.1) 0 1px 1px;
   color: #202124;
 }
+
 .platinum:focus {
   border-color: #4285f4;
   outline: none;
-} 
+}
 
 
-  
+
 
 
 
@@ -142,19 +157,21 @@
   0% {
     background-position: 0 0;
   }
+
   50% {
     background-position: 400% 0;
   }
+
   100% {
     background-position: 0 0;
   }
 }
 
 /* ------------------------------*/
- 
 
 
-.cardDiv {  
+
+.cardDiv {
 
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -169,12 +186,12 @@
   border-radius: 12px;
   background-size: cover;
   opacity: 0.95;
-  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);    
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.15);
 }
 
-.carta-interior{
+.carta-interior {
   width: 150px;
-  max-height: 210px ;
+  max-height: 210px;
 }
 
 .id-label-hp-type {
@@ -257,16 +274,18 @@
 
 }
 
-.pokemonType, .pokemonAttack,.pokemonDefense {
+.pokemonType,
+.pokemonAttack,
+.pokemonDefense {
   font-size: 10px;
   margin-bottom: 5px;
   text-align: center;
 }
 
 
-.info-pokemons{
+.info-pokemons {
   background-color: rgba(250, 235, 215, 0.301);
-  
+
 }
 
 @media (max-width: 768px) {
@@ -275,8 +294,3 @@
     height: auto;
   }
 }
-
-
-
-
-

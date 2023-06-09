@@ -23,12 +23,6 @@ function ModalLogin(props) {
     setModal(false);
   };
 
-/*   const login = async () => {
-    let success = await LoginService.login(username, password)
-    if(success){
-      navigate('/homePage?id=' + idRecebido)
-    }
-  } */
 
   return (
     <div className="backgroundModal">
@@ -83,7 +77,10 @@ function ModalLogin(props) {
                     ></img>
                   </div>
                 </div>
-                <Link /* onClick={login} */>
+
+
+                <Link>
+
                   <button className="enter">Enter</button>
                 </Link>
               </div>
