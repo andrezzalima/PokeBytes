@@ -43,14 +43,14 @@ form {
         text-transform: uppercase;
         font-size: 12px;
         letter-spacing: 2px;
-        color: #FAFF00;
+        color: #FFCB05;
     }
 
 .h1 {
         font-size: 24px;
         line-height: 10px;
         color: #192653;
-        background-color: #FAFF00;
+        background-color: #FFCB05;
        padding: 20px;
         justify-content: center;
         align-items: center;
@@ -92,7 +92,7 @@ form {
         height: 30px;
         width: 250px;
         color: #192653;
-        background-color: #FAFF00;
+        background-color: #FFCB05;
         text-transform: uppercase;
         font-weight: bold;
         border-radius: 50px;

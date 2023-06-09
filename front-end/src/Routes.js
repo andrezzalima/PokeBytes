@@ -14,7 +14,7 @@ import FAQ from './components/home_page/FAQ';
 import PokeCoins from './components/home_page/PokeCoins/PokeCoins';
 import Battle from './components/home_page/Battle/Battle';
 import PaymentPage from './components/home_page/PokeCoins/PaymentPage';
-import PaymentSucess from './components/home_page/PokeCoins/PaymentSucess';
+import PaymentSuccess from './components/home_page/PokeCoins/PaymentSuccess';
 
 
 
@@ -48,7 +48,7 @@ export default () => {
             </Route>
             <Route exact path="/homePage/pokecoins/payment" element={<PaymentPage/>}> 
             </Route>
-            <Route exact path="/homePage/pokecoins/payment/success" element={<PaymentSucess/>}> 
+            <Route exact path="/homePage/pokecoins/payment/success" element={<PaymentSuccess/>}> 
             </Route>
             
         </Routes>

@@ -23,26 +23,31 @@ function ModalLogin(props) {
     setModal(false);
   };
 
-  const login = async () => {
+  /* const login = async () => {
     let success = await LoginService.login(username, password)
     if(success){
-      navigate('/homePage')
+      navigate('/homePage?id=' + idRecebido)
     }
-  }
+  } */
 
   return (
     <div className="backgroundModal">
       <div>
         <motion.button
           initial={{
-            color: "#fff",
+            color: "#FFCB05",
             backgroundColor: "#192653",
             rotateY: "0",
+            fontFamily: "PokemonRBYG",
+            fontWeight: "bold",
+            
+            
           }}
           whileHover={{
             color: "#192653",
-            backgroundColor: "#FAFF00",
+            backgroundColor: "#FFCB05",
             rotateY: "180",
+            
           }}
           className="buttonLogin"
           onClick={abrirModal}
@@ -59,13 +64,13 @@ function ModalLogin(props) {
                 <input
                   className="inputUsername inputIconName"
                   type="email"
-                  placeholder="USERNAME"
+                  placeholder="Username"
                   onChange={setUsername} value={username}
                 ></input>
                 <input
                   className="inputPassword inputIconPass"
                   type="password"
-                  placeholder="PASSWORD"
+                  placeholder="Password"
                   onChange={setPassword} value={password}
                 ></input>
 
@@ -78,7 +83,7 @@ function ModalLogin(props) {
                     ></img>
                   </div>
                 </div>
-                <Link onClick={login}>
+                <Link>
                   <button className="enter">Enter</button>
                 </Link>
               </div>

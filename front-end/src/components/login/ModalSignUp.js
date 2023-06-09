@@ -44,14 +44,17 @@ function ModalSignUp() {
       <div>
       <motion.button
           initial={{
-            color: "#fff",
+            color: "#FFCB05",
             backgroundColor: "#192653",
             rotateY: "0",
+            fontFamily: "PokemonRBYG",
+            fontWeight: "bold",
           }}
           whileHover={{
             color: "#192653",
-            backgroundColor: "#FAFF00",
+            backgroundColor: "#FFCB05",
             rotateY: "180",
+            
           }} className="buttonLogin" onClick={abrirModal}>
           SIGN UP
         </motion.button>

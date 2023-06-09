@@ -1,14 +1,15 @@
 .tooltip {
     position: relative;
     display: inline-block;
-  
+    border: 5px transparent solid;
+    transition: border 200ms linear;
+    border-radius: 100%;
   }
-
-
+  
+  
   .tooltip .tooltiptext {
-    visibility: hidden;
     width: 130px;
-    background-color: #FAFF00;
+    background-color: #FFCB05;
     color: #192653;
     border-bottom: 5px solid #6667AB;
     text-align: center;
@@ -23,16 +24,16 @@
     transition: opacity 0.8s;
     font-family: PokemonRBYG, Arial, Helvetica, sans-serif;
     font-weight: 900;
-  }
 
+    transition: opacity 450ms;
+  }
+  
   .tooltip:hover{
-    border: 5px #6667AB solid;
-    border-radius: 100%;
+    border-color: #6667AB;
 
   }
 
    .tooltip:hover .tooltiptext {
-    visibility: visible;
     opacity: 1;
   }
 
