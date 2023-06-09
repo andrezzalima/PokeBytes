@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./PokeBag.css";
+import "./PokeCards.css";
 //import LoginService from "../service/LoginService"
 import { Link } from "react-router-dom";
 import returnIcon from "../../../icons/return_icon2.png"
