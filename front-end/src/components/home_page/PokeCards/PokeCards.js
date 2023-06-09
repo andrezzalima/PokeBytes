@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
 import "./PokeCards.css";
+
 import { Link } from "react-router-dom";
 import PokeCardsTheme from "../../../sounds/background_music/pokecards_theme.mp3"
 import VolumeIcon from "../../../icons/sound_icon.png"
 import returnIcon from "../../../icons/return_icon2.png";
+
 
 function PokeCards(props) {
 
@@ -307,6 +309,18 @@ function PokeCards(props) {
                 </div>
               </div>
             </div>
+            <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+        </div>
           </div>
         ))}
 

@@ -1,7 +1,9 @@
 class LoginService{
     static idUsuario;
+    static idUsuarioFixo = "6481fa5a0d7eb87ed1836929";
 
     static async login(username, password){
+      console.log("entrou")
         const res = await fetch("/api/user", {
             method: "PATCH",
             headers: {
@@ -11,9 +13,20 @@ class LoginService{
               username: username,
               password: password
             }),
+
           }).then(res => res.json()).then(objWithoutPromise => objWithoutPromise)
+
           this.idUsuario = res.id
           return true;
+    }
+
+    static getIdUsuario(){
+      if(this.idUsuario){
+        return this.idUsuario
+      }else{
+        console.log(this.idUsuarioFixo)
+        return this.idUsuarioFixo
+      }
     }
 }
 

@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./PokeBag.css";
 
+import { Link } from "react-router-dom";
+import returnIcon from "../../../icons/return_icon2.png"
 
 
-function PokeBag(props) {
+
+
+function PokeBag({ onCardClick }) {
   const [cartas, setCartas] = useState([]);
 
   const idUsuario = "647c90dd9ac56ec4413f8f4d"
@@ -11,7 +15,8 @@ function PokeBag(props) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch(`/api/user/${idUsuario}/pokebag`);
+
+        const res = await fetch("/api/user/"+ LoginService.getIdUsuario() + "/pokebag");
         const data = await res.json();
         setCartas(data.cartas);
         console.log(data.cartas)
@@ -210,13 +215,17 @@ function PokeBag(props) {
     }
   }  
 
+  const handleCardClick = (cardData) => {
+    onCardClick(cardData);
+  };
+
   return (
 
     <div className="background-pokeBag">
 
       <div className="container-pokebag">
         {cartas.map((carta, index) => (
-          <div className="carta-exterior" key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
+          <div className="carta-exterior" onClick={() => handleCardClick(carta.pokemon.rarity)} key={index} style = {{backgroundImage: `url(${getTypeBackgroundGradient(carta.pokemon.type[0])})`}}>
             <div className="carta-interior">
               <div className="card-upper-info">
 
@@ -268,6 +277,18 @@ function PokeBag(props) {
           </div>
         ))}
       </div>
+      <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+        </div>
     </div>
   );
 };

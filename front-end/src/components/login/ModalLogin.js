@@ -26,7 +26,7 @@ function ModalLogin(props) {
   const login = async () => {
     let success = await LoginService.login(username, password)
     if(success){
-      navigate('/homePage')
+      navigate('/homePage?id=' + idRecebido)
     }
   }
 

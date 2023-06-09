@@ -1,4 +1,12 @@
 
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import "./TradeMachine.css";
+import returnIcon from "../../../icons/return_icon2.png";
+import PokeBag from "../PokeBag/PokeBag";
+import TradingMachineTheme from "../../../sounds/background_music/trading_machine_theme.mp3"
+
+
 /* 
 clicar numa div para abrir o inventario do jogador
 selecionar uma carta que quero trocar
@@ -26,7 +34,9 @@ function TradeMachine(props) {
   const [selectedPokemon, setSelectedPokemon] = useState();
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [isVolumeBarVisible, setIsVolumeBarVisible] = useState(false);
+
 
   const audioRef = useRef(null);
 
@@ -49,21 +59,28 @@ function TradeMachine(props) {
 
   const idUsuario = "647c90dd9ac56ec4413f8f4d";
 
-  function abrirInventario() {
+  
+  function abrirInventario(){
+
     setIsModalOpen(true);
   }
 
   const handleCardClick = (cardData) => {
-    console.log(cardData);
-    const rarity = cardData;
-    return rarity;
+
+    // Aqui você tem acesso ao id do card clicado
+    console.log(cardData)
+    const rarity = cardData
+    return rarity
+
   };
 
   async function getOpcoes(rarity) {
     const res = await fetch(`/api/user/${idUsuario}/card-trade`);
     const corpo = await res.json();
     let opcoesRaridade = corpo[rarity];
+
     console.log("huahuahua", opcoesRaridade);
+
     if (opcoesRaridade) {
       setOpcoesDeTroca(opcoesRaridade);
     } else {
@@ -84,6 +101,7 @@ function TradeMachine(props) {
     setShowRules(!showRules);
   };
 
+
   const handleVolumeIconClick = () => {
     setIsVolumeBarVisible(!isVolumeBarVisible);
   };
@@ -101,6 +119,7 @@ function TradeMachine(props) {
       }
     };
   }, []);
+
 
 
   return (
@@ -176,6 +195,7 @@ function TradeMachine(props) {
               </div>
             </div>
 
+
       <button className='music-toggle' onClick={handleMusicToggle}>
     {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
   </button>
@@ -204,6 +224,32 @@ function TradeMachine(props) {
 
   <div className="tm-background">
        
+
+ <div className="inventario" onClick={abrirInventario}>
+    {isModalOpen && (
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <PokeBag onCardClick={handleCardClick} />
+          {console.log(handleCardClick)}
+        </div>
+      </div>
+    )}
+
+ </div>
+
+        <div className="return-wrapper">
+          <div className="return-to-homepage ">
+            <Link to="/homePage">
+              {" "}
+              <img
+                src={returnIcon}
+                className="return-icon"
+                alt="Return to Homepage"
+              />{" "}
+            </Link>
+          </div>
+        </div>
+
       </div>
 
     </div>

@@ -42,14 +42,10 @@ body {
  
   background-repeat: no-repeat;
   background-position: center;
+
   background-color: #FFCB05;
-  border: 10px solid #192653;
-  padding: 10px;
-  position: absolute;
-  top: 52%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 15px;
+
+
   
 }
 
@@ -164,6 +160,7 @@ body {
   padding:20px
 }
 
+
 /* .inventario{
   background-color: red;
   width:  50px;
@@ -172,3 +169,20 @@ body {
 } */
 
 
+
+.modal-overlay{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 180%;
+  top: 1px;
+  height: 100%;
+  width: 100%;
+}
+
+.modal-content{
+  background-color: transparent;
+  text-decoration: none;
+  border: none;
+
+}
