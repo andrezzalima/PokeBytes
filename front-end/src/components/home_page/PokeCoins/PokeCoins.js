@@ -1,17 +1,50 @@
+import React, { useState, useRef, useEffect } from 'react';
 import "./PokeCoins.css";
 import pokecoinBasic from "../../../icons/pokecoins0.png";
 import pokecoInter from "../../../icons/pokecoins1.png";
 import pokecoinAvanc from "../../../icons/pokecoins2.png";
 import { Link } from "react-router-dom";
-import AudioPlayer from '../../AudioPlayer/AudioPlayer';
+import PokeCoinsTheme from "../../../sounds/background_music/pokecoins_theme.mp3"
+import VolumeIcon from "../../../icons/sound_icon.png"
+
 
 import LoginService from "../../service/LoginService";
 
 const idUsuario = "647c90dd9ac56ec4413f8f4d"
 
 function PokeCoins(props) {
-    async function buyCoins(ref) {
-        
+    
+
+    
+       /////////////////////////////////////////////////////////////////////////////
+
+      const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+      const audioRef = useRef(null);
+    
+      const handleMusicToggle = () => {
+        const audio = audioRef.current;
+      
+        if (audio) {
+          audio.muted = !audio.muted;
+          setIsMusicPlaying(!audio.muted);
+        }
+    
+        setIsMusicPlaying(!isMusicPlaying);
+      };
+    
+      useEffect(() => {
+        let timer = setTimeout(() => {
+          const audio = audioRef.current;
+          if (audio && audio.paused) {
+            audio.play();
+          }
+        }, 500);
+    
+        return () => clearTimeout(timer);
+      }, []);
+
+       /////////////////////////////////////////////////////////////////////////////
+       async function buyCoins(ref) {
         let coinsAdded;      
         if (ref === 'a') {
           coinsAdded = 300;
@@ -92,6 +125,20 @@ function PokeCoins(props) {
           <Link to = "/homePage/pokecoins/payment"><button className="buy-pokecoin" onClick={() => buyCoins('b')}>Buy</button></Link>
         </div>
       </div>
+
+      
+      
+      
+      <img
+        src={VolumeIcon}
+        alt="Volume Icon"
+        className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
+        onClick={handleMusicToggle}
+      />
+
+      <audio ref={audioRef} src={PokeCoinsTheme} loop style={{ display: 'none' }}>
+        Your browser does not support the audio element.
+      </audio>
 
 
       <div class="card-pokecoin">

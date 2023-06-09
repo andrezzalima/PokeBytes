@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import "./Icones/tooltip.css";
 import "./HomePage.css";
 import { Link } from "react-router-dom";
@@ -22,31 +22,30 @@ import HomepageTheme from "../../sounds/background_music/homepage_theme.mp3";
 function HomePage() {
 
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
-  const [isVolumeBarVisible, setIsVolumeBarVisible] = useState(false);
   const audioRef = useRef(null);
  
 
   const handleMusicToggle = () => {
     const audio = audioRef.current;
-
-    if (!isMusicPlaying) {
-      audio.muted = false;
-      audio.play();
-    } else {
-      audio.muted = true;
+  
+    if (audio) {
+      audio.muted = !audio.muted;
+      setIsMusicPlaying(!audio.muted);
     }
 
     setIsMusicPlaying(!isMusicPlaying);
   };
 
-  const handleVolumeIconClick = () => {
-    setIsVolumeBarVisible(!isVolumeBarVisible);
-  };
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      const audio = audioRef.current;
+      if (audio && audio.paused) {
+        audio.play();
+      }
+    }, 500);
 
-  const handleVolumeChange = (event) => {
-    const audio = audioRef.current;
-    audio.volume = event.target.value;
-  };
+    return () => clearTimeout(timer);
+  }, []);
 
 
 
@@ -54,6 +53,9 @@ function HomePage() {
 
   return (
     <div className="background">
+
+    
+      
       <div className="iconProfile">
         <Dropdown />
       </div>
@@ -98,36 +100,22 @@ function HomePage() {
           <span className="tooltiptext icon">PokéBag</span>
         </div>
       </div>
+<div className='music-section'>
 
-      <div className='music-section'>
-      <button className='music-toggle' onClick={handleMusicToggle}>
-        {isMusicPlaying ? "MUSIC OFF" : "MUSIC ON"}
-      </button>
-      
       <img
         src={VolumeIcon}
         alt="Volume Icon"
-        className={`volume-icon ${isVolumeBarVisible ? 'active' : ''}`}
-        onClick={handleVolumeIconClick}
+        className={`volume-icon ${isMusicPlaying ? 'muted' : ''}`}
+        onClick={handleMusicToggle}
       />
-
-      {isVolumeBarVisible && (
-        <input
-          className='volume-bar'
-          type="range"
-          min="0"
-          max="1"
-          step="0.1"
-          defaultValue="0.5"
-          onChange={handleVolumeChange}
-        />
-      )}
 
       <audio ref={audioRef} src={HomepageTheme} loop style={{ display: 'none' }}>
         Your browser does not support the audio element.
       </audio>
-      </div>
     </div>
+      </div>
+
+      
   );
 }
 
